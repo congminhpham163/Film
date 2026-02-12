@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/css/header.css" />
 
 <header class="main-header">
+
     <div class="logo">
         <a href="/Movie">MOVIE+</a>
     </div>
@@ -12,4 +13,28 @@
                placeholder="Tìm phim..." />
         <button type="submit">🔍</button>
     </form>
+
+    <div class="header-auth">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <span class="user-name">
+                Xin chào @User.Identity.Name
+            </span>
+
+            <a href="/Account/Logout" class="btn-logout">
+                Đăng xuất
+            </a>
+        }
+        else
+        {
+            <a href="/Account/Login" class="btn-login">
+                Đăng nhập
+            </a>
+
+            <a href="/Account/Register" class="btn-register">
+                Đăng ký
+            </a>
+        }
+    </div>
+
 </header>

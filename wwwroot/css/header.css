@@ -58,3 +58,62 @@
     color: white;
     cursor: pointer;
 }
+/* ===== AUTH ===== */
+
+.header-auth {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Username */
+.user-name {
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* Login button */
+.btn-login {
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: 1px solid #444;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: #1f1f1f;
+    border-color: #666;
+}
+
+/* Register button */
+.btn-register {
+    padding: 8px 20px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #e50914, #ff2e2e);
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+    transition: 0.3s;
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.6);
+}
+
+/* Logout */
+.btn-logout {
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: #1f1f1f;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-logout:hover {
+    background: #e50914;
+}

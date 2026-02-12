@@ -1,0 +1,123 @@
+/* ===== BODY ===== */
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ===== CONTAINER ===== */
+
+.auth-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== BOX ===== */
+
+.auth-box {
+    background: #141414;
+    padding: 40px;
+    width: 380px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(229, 9, 20, 0.3);
+    text-align: center;
+}
+
+.auth-box h2 {
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+/* ===== INPUT ===== */
+
+.auth-box input[type="text"],
+.auth-box input[type="password"],
+.auth-box input[type="email"],
+.auth-box input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: #1f1f1f;
+    color: white;
+    transition: 0.3s;
+}
+
+.auth-box input:focus {
+    background: #2a2a2a;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+}
+
+/* ===== BUTTON ===== */
+
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #e50914, #ff2e2e);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(229, 9, 20, 0.6);
+}
+
+/* ===== REMEMBER ===== */
+
+.remember {
+    text-align: left;
+    color: #bbb;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.remember input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    accent-color: #e50914; /* checkbox màu đỏ */
+}
+/* ===== ERROR ===== */
+
+.error {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.field-error {
+    color: #ff4d4d;
+    font-size: 12px;
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* ===== SWITCH LINK ===== */
+
+.switch {
+    margin-top: 20px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.switch a {
+    color: #e50914;
+    text-decoration: none;
+}
+
+.switch a:hover {
+    text-decoration: underline;
+}
