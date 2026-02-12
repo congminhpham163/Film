@@ -15,45 +15,45 @@ public class MovieController : Controller
     string? category = null,
     string? country = null,
     string? year = null)
-{
-    MovieResponse? result = null;
-
-    ViewBag.Category = category;
-    ViewBag.Country = country;
-    ViewBag.Year = year;
-
-    if (!string.IsNullOrEmpty(keyword))
     {
-        result = await _filmService.SearchMovies(keyword, page);
-        ViewBag.Keyword = keyword;
-    }
-    else
-    {
-        if (!string.IsNullOrEmpty(category) ||
-            !string.IsNullOrEmpty(country) ||
-            !string.IsNullOrEmpty(year))
+        MovieResponse? result = null;
+
+        ViewBag.Category = category;
+        ViewBag.Country = country;
+        ViewBag.Year = year;
+
+        if (!string.IsNullOrEmpty(keyword))
         {
-            result = await _filmService.GetMoviesWithFilter(page, category, country, year);
+            result = await _filmService.SearchMovies(keyword, page);
+            ViewBag.Keyword = keyword;
         }
         else
         {
-            result = await _filmService.GetMoviesByPage(page);
+            if (!string.IsNullOrEmpty(category) ||
+                !string.IsNullOrEmpty(country) ||
+                !string.IsNullOrEmpty(year))
+            {
+                result = await _filmService.GetMoviesWithFilter(page, category, country, year);
+            }
+            else
+            {
+                result = await _filmService.GetMoviesByPage(page);
+            }
         }
+
+        ViewBag.CurrentPage = result?.pagination?.currentPage ?? 1;
+        ViewBag.TotalPages = result?.pagination?.totalPages ?? 1;
+
+        ViewBag.Categories = await _filmService.GetCategories();
+        ViewBag.Countries = await _filmService.GetCountries();
+        ViewBag.Years = Enumerable.Range(2000, DateTime.Now.Year - 1999)    
+                                .Reverse()
+                                .ToList();
+
+
+        // ⚠ QUAN TRỌNG: luôn trả List<MovieItem>
+        return View(result?.items ?? new List<MovieItem>());
     }
-
-    ViewBag.CurrentPage = result?.pagination?.currentPage ?? 1;
-    ViewBag.TotalPages = result?.pagination?.totalPages ?? 1;
-
-    ViewBag.Categories = await _filmService.GetCategories();
-    ViewBag.Countries = await _filmService.GetCountries();
-    ViewBag.Years = Enumerable.Range(2000, DateTime.Now.Year - 1999)    
-                            .Reverse()
-                            .ToList();
-
-
-    // ⚠ QUAN TRỌNG: luôn trả List<MovieItem>
-    return View(result?.items ?? new List<MovieItem>());
-}
 
 
 
@@ -64,6 +64,7 @@ public class MovieController : Controller
         if (movie == null)
             return NotFound();
 
+        ViewBag.MovieId = id;
         return View(movie);
     }
 

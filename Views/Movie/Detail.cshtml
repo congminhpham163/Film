@@ -92,17 +92,17 @@
     </div>
 
     <script>
-
     let currentIndex = 0;
     let episodeButtons = [];
     let iframe = null;
+    const movieId = "@ViewBag.MovieId";
 
     document.addEventListener("DOMContentLoaded", function () {
 
         episodeButtons = document.querySelectorAll(".episode-btn");
         iframe = document.getElementById("moviePlayer");
 
-        const savedIndex = localStorage.getItem("currentEpisode");
+        const savedIndex = localStorage.getItem("currentEpisode_" + movieId);
 
         if (savedIndex !== null && episodeButtons[savedIndex]) {
             playMovie(episodeButtons[savedIndex], parseInt(savedIndex));
@@ -118,17 +118,14 @@
 
         iframe.src = url;
 
-        // Lưu tập đang xem
-        localStorage.setItem("currentEpisode", index);
+        // Lưu theo từng phim
+        localStorage.setItem("currentEpisode_" + movieId, index);
 
-        // Highlight
         episodeButtons.forEach(btn => btn.classList.remove("active-episode"));
         element.classList.add("active-episode");
 
-        // Hiển thị tập đang xem
         document.getElementById("currentEpisodeName").innerText = name;
 
-        // Tự chuyển tập khi video kết thúc (giả lập 45 phút)
         autoNextAfterTime();
 
         window.scrollTo({
@@ -136,6 +133,7 @@
             behavior: "smooth"
         });
     }
+
 
     function nextEpisode() {
         if (currentIndex < episodeButtons.length - 1) {

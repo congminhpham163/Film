@@ -95,3 +95,4 @@ E:\MovieWeb\obj\Debug\net9.0\compressed\gsdxf1zhkm-vrmpmo0v7g.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\lgninhctd2-6l2t0m24r4.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\jijh3rzkxw-8wf09d9b26.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\ktzyd8hlpa-oyz50lxnr2.gz
+E:\MovieWeb\obj\Debug\net9.0\MovieWeb.sourcelink.json
