@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="/css/header.css" />
+
+<header class="main-header">
+    <div class="logo">
+        <a href="/Movie">MOVIE+</a>
+    </div>
+
+    <form method="get" action="/Movie/Index" class="header-search">
+        <input type="text"
+               name="keyword"
+               value="@Context.Request.Query["keyword"]"
+               placeholder="Tìm phim..." />
+        <button type="submit">🔍</button>
+    </form>
+</header>

@@ -1,0 +1,23 @@
+using System.Text.Json;
+public class V1MovieResponse
+{
+    public JsonElement status { get; set; }
+    public string msg { get; set; }
+    public V1Data data { get; set; }
+}
+
+public class V1Data
+{
+    public List<MovieItem> items { get; set; }
+    public V1Params @params { get; set; }
+}
+
+public class V1Params
+{
+    public Pagination pagination { get; set; }
+}
+public class V1Pagination
+{
+    public int currentPage { get; set; }
+    public int totalPages { get; set; }
+}

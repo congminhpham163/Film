@@ -1,0 +1,87 @@
+.detail-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+}
+
+.detail-left img {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.detail-right {
+    max-width: 600px;
+}
+
+.detail-right h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.episode-section {
+    padding: 40px;
+}
+
+.episode-btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 15px;
+    background: #e50914;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.episode-btn:hover {
+    background: #b20710;
+}
+.player-container {
+    padding: 40px;
+}
+
+.player-container iframe {
+    border-radius: 10px;
+}
+.active-episode {
+    background: white !important;
+    color: black !important;
+    font-weight: bold;
+    box-shadow: 0 0 10px #e50914;
+}
+.active-episode {
+    background: #e50914;
+    color: white;
+    font-weight: bold;
+}
+
+.player-controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.player-controls button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background: #111;
+    color: white;
+    border: 1px solid #444;
+    cursor: pointer;
+}
+
+.player-controls button:hover {
+    background: #e50914;
+}
+.now-watching {
+    text-align: center;
+    font-size: 18px;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #e50914;
+}
+
+.active-episode {
+    background: #e50914;
+    color: white;
+    font-weight: bold;
+}

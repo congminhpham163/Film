@@ -1,0 +1,191 @@
+@{
+    Layout = null;
+    int current = ViewBag.CurrentPage ?? 1;
+    int total = ViewBag.TotalPages ?? 1;
+
+    int start = Math.Max(1, current - 2);
+    int end = Math.Min(total, current + 2);
+}
+@model List<MovieItem>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Movie+</title>
+    <link rel="stylesheet" href="/css/movie.css" />
+</head>
+<body>
+
+    @Html.Partial("_Header")
+
+    <form method="get" action="/Movie" class="filter-form">
+
+        <select name="category">
+            <option value="">-- Thể loại --</option>
+
+            @foreach (var item in (List<CategoryItem>)ViewBag.Categories)
+            {
+                <option value="@item.slug"
+                        selected="@(ViewBag.Category == item.slug)">
+                    @item.name
+                </option>
+            }
+        </select>
+
+
+        <select name="country">
+            <option value="">-- Quốc gia --</option>
+
+            @foreach (var item in (List<CategoryItem>)ViewBag.Countries)
+            {
+                <option value="@item.slug"
+                        selected="@(ViewBag.Country == item.slug)">
+                    @item.name
+                </option>
+            }
+        </select>
+
+        <select name="year">
+            <option value="">-- Năm --</option>
+
+            @foreach (var y in (List<int>)ViewBag.Years)
+            {
+                <option value="@y"
+                        selected="@(ViewBag.Year == y.ToString())">
+                    @y
+                </option>
+            }
+        </select>
+
+        <button type="submit">Lọc</button>
+    </form>
+
+    <h2>
+        @if(ViewBag.Keyword != null)
+        {
+            <text>Kết quả tìm kiếm: "@ViewBag.Keyword"</text>
+        }
+        else
+        {
+            <text>Danh sách phim</text>
+        }
+    </h2>
+
+
+    <div class="movie-container">
+        @foreach (var movie in Model)
+        {
+            <div class="movie-card">
+                <a href="/Movie/Detail/@movie.slug">
+                    <img src="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                         onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
+                </a>
+
+                <div class="movie-info">
+                    <h4>@movie.name</h4>
+                    <p>@movie.year</p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="pagination">
+        @if (current > 1)
+        {
+            <a class="page-nav"
+            asp-controller="Movie"
+            asp-action="Index"
+            asp-route-page="@(current - 1)"
+            asp-route-category="@ViewBag.Category"
+            asp-route-country="@ViewBag.Country"
+            asp-route-year="@ViewBag.Year">
+            « Trước
+            </a>
+        }
+
+        <!-- Trang 1 -->
+        @if (start > 1)
+        {
+            <a class="page-number"
+            asp-controller="Movie"
+            asp-action="Index"
+            asp-route-page="1"
+            asp-route-category="@ViewBag.Category"
+            asp-route-country="@ViewBag.Country"
+            asp-route-year="@ViewBag.Year"
+            asp-route-keyword="@ViewBag.Keyword">
+                1
+            </a>
+
+
+            @if (start > 2)
+            {
+                <span class="page-dots">...</span>
+            }
+        }
+
+        <!-- Các trang giữa -->
+        @for (int i = start; i <= end; i++)
+        {
+            if (i == current)
+            {
+                <span class="page-number active">@i</span>
+            }
+            else
+            {
+                <a class="page-number"
+                asp-controller="Movie"
+                asp-action="Index"
+                asp-route-page="@i"
+                asp-route-category="@ViewBag.Category"
+                asp-route-country="@ViewBag.Country"
+                asp-route-year="@ViewBag.Year"
+                asp-route-keyword="@ViewBag.Keyword">
+                @i
+                </a>
+            }
+        }
+
+        <!-- Trang cuối -->
+        @if (end < total)
+        {
+            @if (end < total - 1)
+            {
+                <span class="page-dots">...</span>
+            }
+
+            <a class="page-number"
+            asp-controller="Movie"
+            asp-action="Index"
+            asp-route-page="@total"
+            asp-route-category="@ViewBag.Category"
+            asp-route-country="@ViewBag.Country"
+            asp-route-year="@ViewBag.Year"
+            asp-route-keyword="@ViewBag.Keyword">
+            @total
+            </a>
+
+        }
+
+        @if (current < total)
+        {
+            <a class="page-nav"
+            asp-controller="Movie"
+            asp-action="Index"
+            asp-route-page="@(current + 1)"
+            asp-route-category="@ViewBag.Category"
+            asp-route-country="@ViewBag.Country"
+            asp-route-year="@ViewBag.Year"
+            asp-route-keyword="@ViewBag.Keyword">
+            Sau »
+            </a>
+        }
+
+    </div>
+
+
+    @Html.Partial("_Footer")
+
+</body>
+</html>

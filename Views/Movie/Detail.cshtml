@@ -1,0 +1,175 @@
+@{
+    Layout = null;
+    int index = 0;
+}
+@model MovieDetailResponse
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@Model.movie.name</title>
+    <link rel="stylesheet" href="/css/movie.css" />
+    <link rel="stylesheet" href="/css/detail.css" />
+
+</head>
+<body>
+
+    @Html.Partial("_Header")
+
+    <div class="detail-container">
+
+        <div class="detail-left">
+            <img src="@Model.movie.poster_url"
+                 onerror="this.src='https://via.placeholder.com/300x450'" />
+        </div>
+
+        <div class="detail-right">
+            <h1>@Model.movie.name</h1>
+            <p><strong>Tên gốc:</strong> @Model.movie.origin_name</p>
+            <p><strong>Năm:</strong> @Model.movie.year</p>
+            <p>
+                <strong>Quốc gia:</strong>
+                @if (Model.movie.country != null && Model.movie.country.Any())
+                {
+                    @string.Join(", ", Model.movie.country.Select(c => c.name))
+                }
+                else
+                {
+                    <span>Đang cập nhật</span>
+                }
+            </p>
+            <p><strong>Trạng thái:</strong> @Model.movie.status</p>
+            <p>@Html.Raw(Model.movie.content)</p>
+        </div>
+
+    </div>
+
+    <div class="episode-section">
+        <h2>Danh sách tập</h2>
+
+        @{
+            int index = 0;
+        }
+
+        @foreach (var server in Model.episodes)
+        {
+            <h3>@server.server_name</h3>
+
+            @foreach (var ep in server.server_data)
+            {
+                <button class="episode-btn"
+                        data-index="@index"
+                        data-url="@ep.link_embed"
+                        data-name="@ep.name"
+                        onclick="playMovie(this, @index)">
+                    @ep.name
+                </button>
+
+                index++;
+            }
+        }
+    </div>
+
+    <div class="now-watching">
+        Bạn đang xem: Tập <span id="currentEpisodeName">Chưa chọn tập</span>
+    </div>
+
+    <!-- Player -->
+    <div class="player-container">
+        <iframe id="moviePlayer"
+                width="100%"
+                height="600"
+                frameborder="0"
+                allowfullscreen>
+        </iframe>
+        
+        <div class="player-controls">
+            <button onclick="prevEpisode()">⏮ Previous</button>
+            <button onclick="nextEpisode()">Next ⏭</button>
+        </div>
+
+    </div>
+
+    <script>
+
+    let currentIndex = 0;
+    let episodeButtons = [];
+    let iframe = null;
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        episodeButtons = document.querySelectorAll(".episode-btn");
+        iframe = document.getElementById("moviePlayer");
+
+        const savedIndex = localStorage.getItem("currentEpisode");
+
+        if (savedIndex !== null && episodeButtons[savedIndex]) {
+            playMovie(episodeButtons[savedIndex], parseInt(savedIndex));
+        }
+    });
+
+    function playMovie(element, index) {
+
+        currentIndex = index;
+
+        const url = element.dataset.url;
+        const name = element.dataset.name;
+
+        iframe.src = url;
+
+        // Lưu tập đang xem
+        localStorage.setItem("currentEpisode", index);
+
+        // Highlight
+        episodeButtons.forEach(btn => btn.classList.remove("active-episode"));
+        element.classList.add("active-episode");
+
+        // Hiển thị tập đang xem
+        document.getElementById("currentEpisodeName").innerText = name;
+
+        // Tự chuyển tập khi video kết thúc (giả lập 45 phút)
+        autoNextAfterTime();
+
+        window.scrollTo({
+            top: iframe.offsetTop - 100,
+            behavior: "smooth"
+        });
+    }
+
+    function nextEpisode() {
+        if (currentIndex < episodeButtons.length - 1) {
+            currentIndex++;
+            playMovie(episodeButtons[currentIndex], currentIndex);
+        }
+    }
+
+    function prevEpisode() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            playMovie(episodeButtons[currentIndex], currentIndex);
+        }
+    }
+
+    // 🔥 Auto next (vì iframe embed không bắt được sự kiện ended)
+    function autoNextAfterTime() {
+
+        // Clear timer cũ
+        if (window.autoNextTimer) {
+            clearTimeout(window.autoNextTimer);
+        }
+
+        // Giả sử 45 phút = 2700000 ms
+        window.autoNextTimer = setTimeout(() => {
+            nextEpisode();
+        }, 2700000);
+    }
+
+</script>
+
+
+
+    @Html.Partial("_Footer")
+
+</body>
+</html>

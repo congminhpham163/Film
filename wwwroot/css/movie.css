@@ -1,0 +1,201 @@
+body {
+    background-color: #141414;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Tiêu đề */
+h2 {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 28px;
+}
+
+/* Form tìm kiếm */
+.search-form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.search-form input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: #e50914;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #b20710;
+}
+
+/* Grid phim */
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    padding: 0 40px 40px 40px;
+}
+
+/* Card phim */
+.movie-card {
+    position: relative;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.movie-card a {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;   /* Tỉ lệ chuẩn */
+    background: #111;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 100%;          /* QUAN TRỌNG */
+    object-fit: contain;   /* Hiện nguyên hình */
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Overlay */
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.movie-info h4 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.movie-info p {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    color: #ccc;
+}
+/* ===== PAGINATION ===== */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 50px 0;
+}
+
+/* Nút số trang */
+.page-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: #1f1f1f;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+}
+
+.page-number:hover {
+    background: #e50914;
+    transform: translateY(-2px);
+}
+
+/* Trang hiện tại */
+.page-number.active {
+    background: #e50914;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
+}
+
+/* Nút Trước / Sau */
+.page-nav {
+    padding: 10px 18px;
+    background: #141414;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+}
+
+.page-nav:hover {
+    background: #e50914;
+    transform: translateY(-2px);
+}
+.page-dots {
+    color: #888;
+    font-size: 18px;
+    padding: 0 8px;
+}
+
+/* ===== FILTER ===== */
+
+.filter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.filter-form select {
+    padding: 10px 15px;
+    background: #1f1f1f;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.filter-form select:hover {
+    border-color: #e50914;
+}
+
+.filter-form button {
+    padding: 10px 20px;
+    background: #e50914;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-form button:hover {
+    background: #ff1f2f;
+}
