@@ -204,3 +204,70 @@ h2 {
 .filter-form button:hover {
     background: #ff1f2f;
 }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+    /* Typography */
+    h2 {
+        font-size: 22px;
+        margin: 20px 0;
+    }
+
+    /* Search Form */
+    .search-form input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Filter Form - Ẩn nút Lọc */
+    .filter-form {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 15px;
+    }
+
+    .filter-form select {
+        width: 100%;
+        padding: 12px 15px;
+        /* Larger touch target */
+        font-size: 14px;
+    }
+
+    /* Movie Grid - 2 cột */
+    .movie-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 15px 30px 15px;
+    }
+
+    .movie-info h4 {
+        font-size: 12px;
+    }
+
+    .movie-info p {
+        font-size: 11px;
+    }
+
+    /* Pagination */
+    .pagination {
+        gap: 5px;
+        margin: 30px 0;
+        padding: 0 10px;
+    }
+
+    .page-number {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .page-nav {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .page-dots {
+        font-size: 16px;
+    }
+}

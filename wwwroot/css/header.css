@@ -21,6 +21,7 @@
     border: none;
     outline: none;
 }
+
 .main-header {
     display: flex;
     justify-content: space-between;
@@ -58,6 +59,7 @@
     color: white;
     cursor: pointer;
 }
+
 /* ===== AUTH ===== */
 
 .header-auth {
@@ -105,6 +107,7 @@
 }
 
 /* Logout */
+
 .btn-logout {
     padding: 6px 16px;
     border-radius: 20px;
@@ -116,4 +119,32 @@
 
 .btn-logout:hover {
     background: #e50914;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+    }
+
+    .logo a {
+        font-size: 18px;
+    }
+
+    .header-search {
+        width: 100%;
+        order: 3;
+        margin-top: 10px;
+    }
+
+    .header-search input {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .header-search button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
 }

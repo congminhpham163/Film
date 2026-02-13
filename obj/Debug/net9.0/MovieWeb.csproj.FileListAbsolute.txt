@@ -332,7 +332,6 @@ C:\Users\acer\Downloads\Film\obj\Debug\net9.0\scopedcss\bundle\MovieWeb.styles.c
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\scopedcss\projectbundle\MovieWeb.bundle.scp.css
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\eyh3qdcpzn-2ox0hys3a3.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\gsdxf1zhkm-vrmpmo0v7g.gz
-C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\jijh3rzkxw-iwf1ys0ern.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\s1szbeez1a-xtxxf3hu2r.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\j49w3i72or-nakmwdwsxp.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\bwhoyomm4m-st1cbwfwo5.gz
@@ -407,5 +406,6 @@ C:\Users\acer\Downloads\Film\obj\Debug\net9.0\refint\MovieWeb.dll
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\MovieWeb.pdb
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\MovieWeb.genruntimeconfig.cache
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\ref\MovieWeb.dll
-C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\ktzyd8hlpa-udp1tgr4kh.gz
-C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\lgninhctd2-jrwttdii6o.gz
+C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\lgninhctd2-odgbp8532a.gz
+C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\jijh3rzkxw-jkf0rwz44t.gz
+C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\ktzyd8hlpa-cae6grsgzq.gz

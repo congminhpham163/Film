@@ -154,3 +154,91 @@
     color: #fff;
     text-align: center;
 }
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+    /* Container - Stack vertically */
+    .detail-container {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 25px;
+        margin: 20px 15px;
+    }
+
+    /* Image column - full width */
+    .detail-left {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .detail-left img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Info column */
+    .detail-right h1 {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+
+    .detail-right p {
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    /* Episode Section */
+    .episode-section {
+        padding: 20px 15px;
+    }
+
+    .episode-section h2,
+    .episode-section h3 {
+        font-size: 20px;
+    }
+
+    .episode-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+        margin: 4px;
+        min-width: 44px;
+        /* Touch target */
+        min-height: 44px;
+    }
+
+    /* Now Watching */
+    .now-watching {
+        font-size: 16px;
+        margin: 15px 0;
+    }
+
+    /* Player */
+    .player-container {
+        padding: 20px 15px;
+    }
+
+    .player-container iframe {
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+
+    .player-controls button {
+        padding: 12px 16px;
+        /* Larger touch target */
+        margin: 0 5px;
+        font-size: 14px;
+    }
+
+    /* Related Movies */
+    .related-movies-section {
+        padding: 20px 15px;
+        margin-top: 20px;
+    }
+
+    .related-movies-section h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+}
