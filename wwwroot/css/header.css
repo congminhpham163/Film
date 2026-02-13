@@ -44,20 +44,22 @@
 }
 
 .header-search input {
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 12px 18px;
+    border-radius: 25px;
     border: none;
     outline: none;
-    width: 250px;
+    width: 350px;
+    font-size: 15px;
 }
 
 .header-search button {
     background: #e50914;
     border: none;
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 12px 18px;
+    border-radius: 25px;
     color: white;
     cursor: pointer;
+    font-size: 15px;
 }
 
 /* ===== AUTH ===== */

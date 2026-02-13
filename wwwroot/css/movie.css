@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
     background-color: #141414;
     color: white;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: Lato, Montserrat, 'Segoe UI', sans-serif;
 }
 
 /* Tiêu đề */
@@ -45,12 +47,12 @@ h2 {
 /* Grid phim */
 .movie-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 25px;
     padding: 0 40px 40px 40px;
 }
 
-/* Card phim */
+/* ===== CARD PHIM ===== */
 .movie-card {
     position: relative;
     border-radius: 10px;
@@ -60,8 +62,7 @@ h2 {
 .movie-card a {
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    /* Tỉ lệ 16:9 */
+    aspect-ratio: 2 / 3;
     background: #111;
     overflow: hidden;
     border-radius: 10px;
@@ -70,9 +71,7 @@ h2 {
 .movie-card img {
     width: 100%;
     height: 100%;
-    /* QUAN TRỌNG */
     object-fit: cover;
-    /* Cắt ảnh cho vừa khung */
     transition: transform 0.3s ease;
 }
 

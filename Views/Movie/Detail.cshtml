@@ -1,6 +1,5 @@
 @{
     Layout = null;
-    int index = 0;
 }
 @model MovieDetailResponse
 
@@ -14,7 +13,10 @@
     <link rel="stylesheet" href="/css/detail.css" />
 
 </head>
-<body>
+<body data-movie-slug="@ViewBag.MovieId"
+      data-movie-name="@Model.movie.name"
+      data-movie-poster="@Model.movie.poster_url"
+      data-movie-year="@Model.movie.year">
 
     @Html.Partial("_Header")
 
@@ -117,25 +119,43 @@
     }
 
     <script>
+    // ===== STATE =====
     let currentIndex = 0;
     let episodeButtons = [];
     let iframe = null;
-    const movieId = "@ViewBag.MovieId";
 
+    // Movie metadata from server
+    const body = document.body;
+    const movieSlug = body.dataset.movieSlug;
+    const movieName = body.dataset.movieName;
+    const moviePoster = body.dataset.moviePoster;
+    const movieYear = parseInt(body.dataset.movieYear) || 0;
+
+    // ===== INIT =====
     document.addEventListener("DOMContentLoaded", function () {
-
         episodeButtons = document.querySelectorAll(".episode-btn");
         iframe = document.getElementById("moviePlayer");
 
-        const savedIndex = localStorage.getItem("currentEpisode_" + movieId);
+        // Try to restore from watchHistory first, fallback to old key
+        const history = getWatchHistory();
+        const savedEntry = history.find(item => item.slug === movieSlug);
 
-        if (savedIndex !== null && episodeButtons[savedIndex]) {
-            playMovie(episodeButtons[savedIndex], parseInt(savedIndex));
+        if (savedEntry && episodeButtons[savedEntry.episodeIndex]) {
+            playMovie(episodeButtons[savedEntry.episodeIndex], savedEntry.episodeIndex);
+        } else {
+            // Fallback: check old per-movie key
+            const oldSaved = localStorage.getItem("currentEpisode_" + movieSlug);
+            if (oldSaved !== null && episodeButtons[parseInt(oldSaved)]) {
+                playMovie(episodeButtons[parseInt(oldSaved)], parseInt(oldSaved));
+            }
         }
+
+        // Periodically update progress (simulate watching progress)
+        startProgressTracker();
     });
 
+    // ===== PLAY =====
     function playMovie(element, index) {
-
         currentIndex = index;
 
         const url = element.dataset.url;
@@ -143,13 +163,17 @@
 
         iframe.src = url;
 
-        // Lưu theo từng phim
-        localStorage.setItem("currentEpisode_" + movieId, index);
-
+        // Highlight active episode
         episodeButtons.forEach(btn => btn.classList.remove("active-episode"));
         element.classList.add("active-episode");
 
         document.getElementById("currentEpisodeName").innerText = name;
+
+        // Save to watch history
+        saveToWatchHistory(index, name);
+
+        // Also keep backward-compatible old key
+        localStorage.setItem("currentEpisode_" + movieSlug, index);
 
         autoNextAfterTime();
 
@@ -159,7 +183,68 @@
         });
     }
 
+    // ===== WATCH HISTORY MANAGEMENT =====
+    function getWatchHistory() {
+        try {
+            return JSON.parse(localStorage.getItem('watchHistory')) || [];
+        } catch (e) {
+            return [];
+        }
+    }
 
+    function saveToWatchHistory(episodeIndex, episodeName) {
+        let history = getWatchHistory();
+
+        // Check if this movie already exists in history
+        const existingIdx = history.findIndex(item => item.slug === movieSlug);
+
+        const entry = {
+            slug: movieSlug,
+            name: movieName,
+            poster: moviePoster,
+            episodeIndex: episodeIndex,
+            episodeName: episodeName,
+            year: movieYear,
+            timestamp: Date.now(),
+            progress: 5 // Start at 5% when just started watching
+        };
+
+        if (existingIdx !== -1) {
+            // Update existing entry
+            history[existingIdx] = entry;
+        } else {
+            // Add new entry at beginning
+            history.unshift(entry);
+        }
+
+        // Limit to 20 items max
+        if (history.length > 20) {
+            history = history.slice(0, 20);
+        }
+
+        localStorage.setItem('watchHistory', JSON.stringify(history));
+    }
+
+    // Simulate watching progress — update every 2 minutes
+    function startProgressTracker() {
+        setInterval(function () {
+            if (!iframe.src || iframe.src === 'about:blank') return;
+
+            let history = getWatchHistory();
+            const idx = history.findIndex(item => item.slug === movieSlug);
+            if (idx !== -1) {
+                // Increment progress by a small amount (simulating watching)
+                let currentProgress = history[idx].progress || 5;
+                if (currentProgress < 90) {
+                    history[idx].progress = Math.min(90, currentProgress + 8);
+                    history[idx].timestamp = Date.now();
+                    localStorage.setItem('watchHistory', JSON.stringify(history));
+                }
+            }
+        }, 120000); // Every 2 minutes
+    }
+
+    // ===== NAVIGATION =====
     function nextEpisode() {
         if (currentIndex < episodeButtons.length - 1) {
             currentIndex++;
@@ -176,7 +261,6 @@
 
     // 🔥 Auto next (vì iframe embed không bắt được sự kiện ended)
     function autoNextAfterTime() {
-
         // Clear timer cũ
         if (window.autoNextTimer) {
             clearTimeout(window.autoNextTimer);
@@ -196,3 +280,4 @@
 
 </body>
 </html>
+
