@@ -44,11 +44,11 @@ h2 {
     background-color: #b20710;
 }
 
-/* Grid phim */
+/* Grid phim - 6 columns fixed */
 .movie-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
     padding: 0 40px 40px 40px;
 }
 

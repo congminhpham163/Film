@@ -22,19 +22,53 @@ public class FilmService
             return cachedData;
         }
 
-        var response = await _httpClient.GetAsync($"danh-sach/phim-moi-cap-nhat?page={page}");
+        // Fetch 2 API pages to get ~30 movies (each API page has ~24 movies)
+        // UI page 1 → API pages 1-2
+        // UI page 2 → API pages 3-4
+        // UI page 3 → API pages 5-6
+        int startApiPage = (page - 1) * 2 + 1;
+        
+        var task1 = _httpClient.GetAsync($"danh-sach/phim-moi-cap-nhat?page={startApiPage}");
+        var task2 = _httpClient.GetAsync($"danh-sach/phim-moi-cap-nhat?page={startApiPage + 1}");
 
-        if (!response.IsSuccessStatusCode)
+        await Task.WhenAll(task1, task2);
+
+        var response1 = await task1;
+        var response2 = await task2;
+
+        if (!response1.IsSuccessStatusCode)
             return null;
 
-        var json = await response.Content.ReadAsStringAsync();
-
-        var result = JsonSerializer.Deserialize<MovieResponse>(json,
+        var json1 = await response1.Content.ReadAsStringAsync();
+        var result1 = JsonSerializer.Deserialize<MovieResponse>(json1,
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-        _cache.Set(cacheKey, result, TimeSpan.FromMinutes(10));
+        if (result1 == null)
+            return null;
 
-        return result;
+        // Merge second page if available
+        if (response2.IsSuccessStatusCode)
+        {
+            var json2 = await response2.Content.ReadAsStringAsync();
+            var result2 = JsonSerializer.Deserialize<MovieResponse>(json2,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            if (result2?.items != null)
+            {
+                result1.items.AddRange(result2.items);
+            }
+        }
+
+        // Recalculate pagination: divide total pages by 2
+        if (result1.pagination != null)
+        {
+            result1.pagination.currentPage = page;
+            result1.pagination.totalPages = (int)Math.Ceiling((double)result1.pagination.totalPages / 2);
+        }
+
+        _cache.Set(cacheKey, result1, TimeSpan.FromMinutes(10));
+
+        return result1;
     }
 
 
@@ -111,8 +145,8 @@ public class FilmService
     string? country,
     string? year)
     {
-        // USER REQUEST: "Show all" - we fetch 5 pages at a time to simulate a larger list
-        int batchSize = 5; 
+        // Fetch ~30 movies per page - we fetch 6 API pages
+        int batchSize = 6; 
         int startApiPage = (page - 1) * batchSize + 1;
         
         var tasks = new List<Task<V1MovieResponse?>>();
