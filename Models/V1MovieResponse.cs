@@ -14,10 +14,15 @@ public class V1Data
 
 public class V1Params
 {
-    public Pagination pagination { get; set; }
+    public V1Pagination pagination { get; set; }
 }
 public class V1Pagination
 {
+    public int totalItems { get; set; }
+    public int totalItemsPerPage { get; set; }
     public int currentPage { get; set; }
-    public int totalPages { get; set; }
+    public int pageRanges { get; set; }
+    
+    // Computed property to match Pagination model
+    public int totalPages => totalItemsPerPage > 0 ? (int)Math.Ceiling((double)totalItems / totalItemsPerPage) : 0;
 }

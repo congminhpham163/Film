@@ -91,6 +91,30 @@
 
     </div>
 
+    <!-- Related Movies Section -->
+    @if (ViewBag.RelatedMovies != null && ((List<MovieItem>)ViewBag.RelatedMovies).Any())
+    {
+        <div class="related-movies-section">
+            <h2>Phim Cùng Thể Loại</h2>
+            <div class="movie-container">
+                @foreach (var item in (List<MovieItem>)ViewBag.RelatedMovies)
+                {
+                    <div class="movie-card">
+                        <a href="/Movie/Detail/@item.slug">
+                            <img src="https://img.ophim.live/uploads/movies/@item.poster_url"
+                                 alt="@item.name"
+                                 onerror="this.src='https://via.placeholder.com/300x450'" />
+                        </a>
+                        <div class="movie-info">
+                            <h4>@item.name</h4>
+                            <p>@item.year</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+
     <script>
     let currentIndex = 0;
     let episodeButtons = [];

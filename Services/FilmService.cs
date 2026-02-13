@@ -111,8 +111,61 @@ public class FilmService
     string? country,
     string? year)
     {
-        var queryParams = new List<string>();
+        // USER REQUEST: "Show all" - we fetch 5 pages at a time to simulate a larger list
+        int batchSize = 5; 
+        int startApiPage = (page - 1) * batchSize + 1;
+        
+        var tasks = new List<Task<V1MovieResponse?>>();
 
+        for (int i = 0; i < batchSize; i++)
+        {
+            int currentApiPage = startApiPage + i;
+            tasks.Add(FetchSinglePage(currentApiPage, category, country, year));
+        }
+
+        var responses = await Task.WhenAll(tasks);
+
+        var aggregatedItems = new List<MovieItem>();
+        V1Pagination? lastPagination = null;
+
+        foreach (var response in responses)
+        {
+            if (response?.data?.items != null)
+            {
+                aggregatedItems.AddRange(response.data.items);
+                lastPagination = response.data.@params?.pagination;
+            }
+        }
+
+        if (aggregatedItems.Count == 0 || lastPagination == null)
+            return null;
+
+        // Recalculate pagination for the UI
+        // API TotalPages = 355 (for example)
+        // Batch Size = 5
+        // New TotalPages = Ceiling(355 / 5) = 71
+        
+        int newTotalPages = (int)Math.Ceiling((double)lastPagination.totalPages / batchSize);
+
+        // Use status/msg from the last successful response
+        var lastResponse = responses.LastOrDefault(r => r?.data?.items != null);
+        
+        return new MovieResponse
+        {
+            status = lastResponse?.status ?? default,
+            msg = lastResponse?.msg ?? "",
+            items = aggregatedItems,
+            pagination = new Pagination
+            {
+                currentPage = page,
+                totalPages = newTotalPages
+            }
+        };
+    }
+
+    private async Task<V1MovieResponse?> FetchSinglePage(int page, string? category, string? country, string? year)
+    {
+        var queryParams = new List<string>();
         queryParams.Add($"page={page}");
 
         if (!string.IsNullOrEmpty(category))
@@ -125,36 +178,21 @@ public class FilmService
             queryParams.Add($"year={year}");
 
         var queryString = string.Join("&", queryParams);
-
         var endpoint = $"v1/api/danh-sach/phim-moi-cap-nhat?{queryString}";
 
-        var response = await _httpClient.GetAsync(endpoint);
-
-        if (!response.IsSuccessStatusCode)
-            return null;
-
-        var json = await response.Content.ReadAsStringAsync();
-
-        var result = JsonSerializer.Deserialize<V1MovieResponse>(json,
-            new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
-
-        if (result?.data == null)
-            return null;
-
-        return new MovieResponse
+        try 
         {
-            status = result.status,
-            msg = result.msg,
-            items = result.data.items ?? new List<MovieItem>(),
-            pagination = result.data.@params?.pagination ?? new Pagination
-            {
-                currentPage = result.data.@params.pagination.currentPage,
-                totalPages = result.data.@params.pagination.totalPages
-            }
-        };
+            var response = await _httpClient.GetAsync(endpoint);
+            if (!response.IsSuccessStatusCode) return null;
+            
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<V1MovieResponse>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+        catch 
+        {
+            return null;
+        }
     }
 
 

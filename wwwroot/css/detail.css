@@ -1,21 +1,73 @@
+/* Container Layout */
 .detail-container {
     display: flex;
-    gap: 40px;
-    padding: 40px;
+    gap: 50px;
+    /* Increased gap for better spacing */
+    padding: 60px;
+    /* More padding around content */
+    align-items: flex-start;
+    /* Align to top */
+    background: linear-gradient(to bottom, #1a1a1a, #141414);
+    /* Subtle gradient background */
+    border-radius: 15px;
+    /* Soft corners for container */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Depth */
+    margin: 40px auto;
+    /* Center with margin */
+    max-width: 1200px;
+    /* Limit max width for large screens */
+}
+
+/* Image Column */
+.detail-left {
+    flex: 0 0 400px;
+    /* Fixed width for image column: 400px */
 }
 
 .detail-left img {
-    width: 300px;
-    border-radius: 10px;
+    width: 100%;
+    /* Fill the column */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    /* Shadow for pop */
+    transition: transform 0.3s ease;
 }
 
+.detail-left img:hover {
+    transform: scale(1.02);
+    /* Subtle zoom on hover */
+}
+
+/* Info Column */
 .detail-right {
-    max-width: 600px;
+    flex: 1;
+    /* Take remaining space */
+    /* Removed max-width restriction */
 }
 
 .detail-right h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 42px;
+    /* Large title */
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.detail-right p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    /* Standard paragraph spacing */
+    color: #ddd;
+    /* Softer white for text */
+}
+
+.detail-right strong {
+    color: #e50914;
+    /* Highlight labels with brand color */
+    margin-right: 5px;
 }
 
 .episode-section {
@@ -36,6 +88,7 @@
 .episode-btn:hover {
     background: #b20710;
 }
+
 .player-container {
     padding: 40px;
 }
@@ -43,12 +96,14 @@
 .player-container iframe {
     border-radius: 10px;
 }
+
 .active-episode {
     background: white !important;
     color: black !important;
     font-weight: bold;
     box-shadow: 0 0 10px #e50914;
 }
+
 .active-episode {
     background: #e50914;
     color: white;
@@ -72,6 +127,7 @@
 .player-controls button:hover {
     background: #e50914;
 }
+
 .now-watching {
     text-align: center;
     font-size: 18px;
@@ -84,4 +140,17 @@
     background: #e50914;
     color: white;
     font-weight: bold;
+}
+
+/* Related Movies Section */
+.related-movies-section {
+    padding: 40px;
+    margin-top: 40px;
+}
+
+.related-movies-section h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #fff;
+    text-align: center;
 }

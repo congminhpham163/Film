@@ -60,7 +60,8 @@ h2 {
 .movie-card a {
     display: block;
     width: 100%;
-    aspect-ratio: 2 / 3;   /* Tỉ lệ chuẩn */
+    aspect-ratio: 16 / 9;
+    /* Tỉ lệ 16:9 */
     background: #111;
     overflow: hidden;
     border-radius: 10px;
@@ -68,8 +69,10 @@ h2 {
 
 .movie-card img {
     width: 100%;
-    height: 100%;          /* QUAN TRỌNG */
-    object-fit: contain;   /* Hiện nguyên hình */
+    height: 100%;
+    /* QUAN TRỌNG */
+    object-fit: cover;
+    /* Cắt ảnh cho vừa khung */
     transition: transform 0.3s ease;
 }
 
@@ -87,7 +90,7 @@ h2 {
     bottom: 0;
     width: 100%;
     padding: 10px;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
 }
 
 .movie-info h4 {
@@ -100,6 +103,7 @@ h2 {
     font-size: 12px;
     color: #ccc;
 }
+
 /* ===== PAGINATION ===== */
 
 .pagination {
@@ -156,6 +160,7 @@ h2 {
     background: #e50914;
     transform: translateY(-2px);
 }
+
 .page-dots {
     color: #888;
     font-size: 18px;

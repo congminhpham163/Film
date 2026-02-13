@@ -13,6 +13,7 @@ public class MovieDetail
     public string poster_url { get; set; }
     public int year { get; set; }
     public string status { get; set; }
+    public List<Category> category { get; set; }
     public List<Country> country { get; set; }
 }
 

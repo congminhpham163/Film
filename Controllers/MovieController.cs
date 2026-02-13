@@ -65,6 +65,26 @@ public class MovieController : Controller
             return NotFound();
 
         ViewBag.MovieId = id;
+
+        // Fetch related movies from same category
+        if (movie.movie.category != null && movie.movie.category.Any())
+        {
+            var firstCategory = movie.movie.category.First().slug;
+            var relatedMoviesResult = await _filmService.GetMoviesWithFilter(1, firstCategory, null, null);
+            
+            // Filter out current movie and take first 12
+            var relatedMovies = relatedMoviesResult?.items?
+                .Where(m => m.slug != id)
+                .Take(12)
+                .ToList() ?? new List<MovieItem>();
+            
+            ViewBag.RelatedMovies = relatedMovies;
+        }
+        else
+        {
+            ViewBag.RelatedMovies = new List<MovieItem>();
+        }
+
         return View(movie);
     }
 
