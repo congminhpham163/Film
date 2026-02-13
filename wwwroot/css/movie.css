@@ -52,55 +52,102 @@ h2 {
     padding: 0 40px 40px 40px;
 }
 
-/* ===== CARD PHIM ===== */
+/* ===== CARD PHIM — Paul Atreides Style (Desktop Only) ===== */
 .movie-card {
+    --bg: #1a1a1a;
+    --title-color: #fff;
+    --title-color-hover: #fff;
+    --text-color: #bbb;
+    background: var(--bg);
+    border-radius: 1.2rem;
+    padding: 0.4rem;
+    overflow: clip;
     position: relative;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.movie-card::before {
+    content: "";
+    position: absolute;
+    width: calc(100% - 0.8rem);
+    height: 35%;
+    bottom: 0.4rem;
+    left: 0.4rem;
+    mask: linear-gradient(#0000, #000f 80%);
+    -webkit-mask: linear-gradient(#0000, #000f 80%);
+    backdrop-filter: blur(0.8rem);
+    -webkit-backdrop-filter: blur(0.8rem);
+    border-radius: 0 0 0.9rem 0.9rem;
+    translate: 0 0;
+    transition: translate 0.25s;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .movie-card a {
     display: block;
     width: 100%;
-    aspect-ratio: 2 / 3;
-    background: #111;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 0.9rem;
+    text-decoration: none;
+    color: inherit;
 }
 
 .movie-card img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 2 / 3;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    object-position: 50% 10%;
+    border-radius: 0.9rem;
+    display: block;
+    transition: aspect-ratio 0.3s ease, object-position 0.4s ease;
 }
 
-.movie-card:hover {
-    transform: scale(1.05);
-}
-
-.movie-card:hover img {
-    transform: scale(1.1);
-}
-
-/* Overlay */
+/* Info section - always visible at bottom */
 .movie-info {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
     padding: 10px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
 }
 
 .movie-info h4 {
-    margin: 0;
-    font-size: 14px;
+    margin: 0 0 0.3rem 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--title-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .movie-info p {
-    margin: 5px 0 0 0;
-    font-size: 12px;
-    color: #ccc;
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--text-color);
+}
+
+/* ===== HOVER STATE (Desktop) ===== */
+.movie-card:hover {
+    box-shadow: 0 8px 30px rgba(229, 9, 20, 0.3);
+}
+
+.movie-card:hover::before {
+    translate: 0 100%;
+}
+
+.movie-card:hover img {
+    aspect-ratio: 16 / 9;
+    object-position: 50% 15%;
+    transition: aspect-ratio 0.3s ease, object-position 0.3s ease;
+}
+
+.movie-card:hover .movie-info h4 {
+    color: var(--title-color-hover);
 }
 
 /* ===== PAGINATION ===== */
@@ -236,16 +283,79 @@ h2 {
     /* Movie Grid - 2 cột */
     .movie-container {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 12px;
         padding: 0 15px 30px 15px;
+    }
+
+    /* Override fancy card styles for mobile - use simple cards */
+    .movie-card {
+        background: transparent;
+        border-radius: 10px;
+        padding: 0;
+    }
+
+    .movie-card::before {
+        display: none;
+        /* No backdrop-filter blur on mobile */
+    }
+
+    .movie-card a {
+        aspect-ratio: 2 / 3;
+        background: #111;
+        border-radius: 10px;
+    }
+
+    .movie-card img {
+        aspect-ratio: 2 / 3;
+        object-position: 50% 50%;
+        border-radius: 10px;
+        transition: none;
+        /* No transitions on mobile */
+    }
+
+    /* Info always visible at bottom on mobile */
+    .movie-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        height: auto;
+        padding: 8px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        z-index: 1;
     }
 
     .movie-info h4 {
         font-size: 12px;
+        opacity: 1;
+        translate: 0 0;
+        margin: 0;
     }
 
     .movie-info p {
         font-size: 11px;
+        opacity: 1;
+        translate: 0 0;
+        margin: 3px 0 0 0;
+    }
+
+    /* No hover effects on mobile */
+    .movie-card:hover {
+        box-shadow: none;
+    }
+
+    .movie-card:hover::before {
+        translate: 0 0;
+    }
+
+    .movie-card:hover img {
+        aspect-ratio: 2 / 3;
+        object-position: 50% 50%;
+    }
+
+    .movie-card:hover .movie-info {
+        height: auto;
     }
 
     /* Pagination */
