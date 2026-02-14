@@ -84,8 +84,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>0svhnrb8qq</Fingerprint>
-      <Integrity>4NFskPbc6FX2RY3bWPtpqWRbb8ClqIuBLjWlQOdpbkM=</Integrity>
+      <Fingerprint>150hxe6b7m</Fingerprint>
+      <Integrity>CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\header.css'))</OriginalItemSpec>
@@ -102,8 +102,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wh22cmv1ny</Fingerprint>
-      <Integrity>3LJQO3mkP8W3eodTttTG8C2rupqBLDMq3ZOMq8/lWJc=</Integrity>
+      <Fingerprint>x36g2uo03o</Fingerprint>
+      <Integrity>7XyadgRm1wtYsAT+jylh+Yri0B+EwFq9BVuywBXKarw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\movie.css'))</OriginalItemSpec>

@@ -87,5 +87,10 @@ public class MovieController : Controller
 
         return View(movie);
     }
+    
+    public IActionResult MyList()
+    {
+        return View();
+    }
 
 }

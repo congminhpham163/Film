@@ -1,0 +1,107 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Danh Sách Của Tôi";
+}
+
+<link rel="stylesheet" href="/css/movie.css" />
+
+@Html.Partial("_Header")
+
+
+<div class="page-header">
+    <button onclick="goBack()" class="back-btn">
+        ← Quay lại
+    </button>
+
+    <h1 class="page-title">Danh Sách Của Tôi</h1>
+</div>
+
+
+        <style>
+        .page-header {
+            position: relative;
+            height: 60px;
+            margin: 20px 0 30px 0;
+        }
+
+        .page-title {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            background: linear-gradient(135deg, #ff0033, #ff6600);
+            border: none;
+            padding: 8px 16px;
+            color: white;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            transform: translateY(-50%);
+        }
+
+        </style>
+
+
+<div class="movie-container" id="myListPageContainer">
+</div>
+
+@Html.Partial("_Footer")
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    renderMyListPage();
+});
+
+function getMyList() {
+    try {
+        return JSON.parse(localStorage.getItem('myList')) || [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function renderMyListPage() {
+    const container = document.getElementById("myListPageContainer");
+    const list = getMyList();
+
+    if (!list || list.length === 0) {
+        container.innerHTML = "<p style='padding:20px;'>Chưa có phim nào trong danh sách.</p>";
+        return;
+    }
+
+    list.sort((a, b) => b.savedAt - a.savedAt);
+
+    list.forEach(item => {
+        container.innerHTML += `
+            <div class="movie-card">
+                <a href="/Movie/Detail/${item.slug}">
+                    <img src="${item.poster}" 
+                         onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
+                </a>
+                <div class="movie-info">
+                    <h4>${item.name}</h4>
+                    <p>${item.year || ""}</p>
+                </div>
+            </div>
+        `;
+    });
+}
+function goBack() {
+    if (document.referrer) {
+        window.history.back();
+    } else {
+        window.location.href = "/Movie";
+    }
+}
+
+</script>
