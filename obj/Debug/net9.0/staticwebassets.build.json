@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "n3VmYGYg1LpL79QGIfQmW8c6kLHJ6NkwuCogl60mE+w=",
+  "Hash": "uAC9nEW76E8B/Jhbu7l+ZLxbBJC+D53E/t3iaTGcMsE=",
   "Source": "MovieWeb",
   "BasePath": "_content/MovieWeb",
   "Mode": "Default",
@@ -878,12 +878,12 @@
       "OriginalItemSpec": "E:\\MovieWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-150hxe6b7m.gz",
+      "Identity": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-up4c6kspz9.gz",
       "SourceId": "MovieWeb",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/MovieWeb",
-      "RelativePath": "css/header#[.{fingerprint=150hxe6b7m}]?.css.gz",
+      "RelativePath": "css/header#[.{fingerprint=up4c6kspz9}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -892,8 +892,8 @@
       "RelatedAsset": "E:\\MovieWeb\\wwwroot\\css\\header.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "wb6d0c0u0o",
-      "Integrity": "TJGkLQBLTtcd6OHaSP6y26ODE/reQu3WfdMB62Cez8s=",
+      "Fingerprint": "xvt7kpptco",
+      "Integrity": "Dfvxy1yg11pqMXv/IJ9SiYhbjcdC4TmdI3WPT3wtBNs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\MovieWeb\\wwwroot\\css\\header.css"
@@ -1522,8 +1522,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "150hxe6b7m",
-      "Integrity": "CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34=",
+      "Fingerprint": "up4c6kspz9",
+      "Integrity": "HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\header.css"
@@ -4004,8 +4004,8 @@
       ]
     },
     {
-      "Route": "css/header.150hxe6b7m.css",
-      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-150hxe6b7m.gz",
+      "Route": "css/header.css",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-up4c6kspz9.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -4024,15 +4024,15 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"TJGkLQBLTtcd6OHaSP6y26ODE/reQu3WfdMB62Cez8s=\""
+          "Value": "\"Dfvxy1yg11pqMXv/IJ9SiYhbjcdC4TmdI3WPT3wtBNs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:00:54 GMT"
+          "Value": "Sat, 14 Feb 2026 13:38:21 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -4048,26 +4048,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34=\""
+          "Value": "W/\"HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "150hxe6b7m"
-        },
-        {
-          "Name": "label",
-          "Value": "css/header.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34="
+          "Value": "sha256-HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ="
         }
       ]
     },
     {
-      "Route": "css/header.150hxe6b7m.css",
+      "Route": "css/header.css",
       "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\header.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -4085,35 +4077,27 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34=\""
+          "Value": "\"HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:00:54 GMT"
+          "Value": "Sat, 14 Feb 2026 13:38:21 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "150hxe6b7m"
-        },
-        {
-          "Name": "label",
-          "Value": "css/header.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34="
+          "Value": "sha256-HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ="
         }
       ]
     },
     {
-      "Route": "css/header.150hxe6b7m.css.gz",
-      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-150hxe6b7m.gz",
+      "Route": "css/header.css.gz",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-up4c6kspz9.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -4130,11 +4114,164 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"TJGkLQBLTtcd6OHaSP6y26ODE/reQu3WfdMB62Cez8s=\""
+          "Value": "\"Dfvxy1yg11pqMXv/IJ9SiYhbjcdC4TmdI3WPT3wtBNs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:00:54 GMT"
+          "Value": "Sat, 14 Feb 2026 13:38:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Dfvxy1yg11pqMXv/IJ9SiYhbjcdC4TmdI3WPT3wtBNs="
+        }
+      ]
+    },
+    {
+      "Route": "css/header.up4c6kspz9.css",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-up4c6kspz9.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001290322581"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "774"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Dfvxy1yg11pqMXv/IJ9SiYhbjcdC4TmdI3WPT3wtBNs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 14 Feb 2026 13:38:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "up4c6kspz9"
+        },
+        {
+          "Name": "label",
+          "Value": "css/header.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/header.up4c6kspz9.css",
+      "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\header.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1990"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 14 Feb 2026 13:38:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "up4c6kspz9"
+        },
+        {
+          "Name": "label",
+          "Value": "css/header.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HsdngJeOSq/uvMoIevJKzT/4AIM9UqnFACISTukUViQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/header.up4c6kspz9.css.gz",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-up4c6kspz9.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "774"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Dfvxy1yg11pqMXv/IJ9SiYhbjcdC4TmdI3WPT3wtBNs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 14 Feb 2026 13:38:21 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4152,7 +4289,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "150hxe6b7m"
+          "Value": "up4c6kspz9"
         },
         {
           "Name": "label",
@@ -4160,144 +4297,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-TJGkLQBLTtcd6OHaSP6y26ODE/reQu3WfdMB62Cez8s="
-        }
-      ]
-    },
-    {
-      "Route": "css/header.css",
-      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-150hxe6b7m.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.001290322581"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "774"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"TJGkLQBLTtcd6OHaSP6y26ODE/reQu3WfdMB62Cez8s=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:00:54 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34="
-        }
-      ]
-    },
-    {
-      "Route": "css/header.css",
-      "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\header.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1990"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:00:54 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-CwxLAdIlRka0dSTAOILknaWw4gRjtmnnN4KKqYdAf34="
-        }
-      ]
-    },
-    {
-      "Route": "css/header.css.gz",
-      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\jijh3rzkxw-150hxe6b7m.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "774"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"TJGkLQBLTtcd6OHaSP6y26ODE/reQu3WfdMB62Cez8s=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:00:54 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-TJGkLQBLTtcd6OHaSP6y26ODE/reQu3WfdMB62Cez8s="
+          "Value": "sha256-Dfvxy1yg11pqMXv/IJ9SiYhbjcdC4TmdI3WPT3wtBNs="
         }
       ]
     },
@@ -4326,7 +4326,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:36:50 GMT"
+          "Value": "Sat, 14 Feb 2026 13:55:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4379,7 +4379,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:36:50 GMT"
+          "Value": "Sat, 14 Feb 2026 13:55:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4416,7 +4416,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:36:50 GMT"
+          "Value": "Sat, 14 Feb 2026 13:55:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4463,7 +4463,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:36:50 GMT"
+          "Value": "Sat, 14 Feb 2026 13:55:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4524,7 +4524,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:36:50 GMT"
+          "Value": "Sat, 14 Feb 2026 13:55:58 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4569,7 +4569,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 14 Feb 2026 13:36:50 GMT"
+          "Value": "Sat, 14 Feb 2026 13:55:58 GMT"
         },
         {
           "Name": "Cache-Control",
