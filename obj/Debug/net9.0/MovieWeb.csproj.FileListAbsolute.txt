@@ -17,7 +17,6 @@ E:\MovieWeb\obj\Debug\net9.0\MovieWeb.RazorAssemblyInfo.cs
 E:\MovieWeb\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 E:\MovieWeb\obj\Debug\net9.0\scopedcss\bundle\MovieWeb.styles.css
 E:\MovieWeb\obj\Debug\net9.0\scopedcss\projectbundle\MovieWeb.bundle.scp.css
-E:\MovieWeb\obj\Debug\net9.0\compressed\mldm5rpxzz-61n19gt1b8.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\s1szbeez1a-xtxxf3hu2r.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\j49w3i72or-agp80tu62r.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\bwhoyomm4m-st1cbwfwo5.gz
@@ -92,8 +91,6 @@ E:\MovieWeb\obj\Debug\net9.0\MovieWeb.pdb
 E:\MovieWeb\obj\Debug\net9.0\MovieWeb.genruntimeconfig.cache
 E:\MovieWeb\obj\Debug\net9.0\ref\MovieWeb.dll
 E:\MovieWeb\obj\Debug\net9.0\compressed\gsdxf1zhkm-vrmpmo0v7g.gz
-E:\MovieWeb\obj\Debug\net9.0\compressed\lgninhctd2-6l2t0m24r4.gz
-E:\MovieWeb\obj\Debug\net9.0\compressed\ktzyd8hlpa-oyz50lxnr2.gz
 E:\MovieWeb\obj\Debug\net9.0\MovieWeb.sourcelink.json
 E:\MovieWeb\obj\Debug\net9.0\MovieWeb.csproj.AssemblyReference.cache
 E:\MovieWeb\bin\Debug\net9.0\Azure.Core.dll
@@ -202,8 +199,6 @@ E:\MovieWeb\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 E:\MovieWeb\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 E:\MovieWeb\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 E:\MovieWeb\obj\Debug\net9.0\MovieWeb.csproj.Up2Date
-E:\MovieWeb\obj\Debug\net9.0\compressed\jijh3rzkxw-iwf1ys0ern.gz
-E:\MovieWeb\obj\Debug\net9.0\compressed\eyh3qdcpzn-6xmbm6b4yx.gz
 C:\Users\acer\Downloads\Film\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\acer\Downloads\Film\bin\Debug\net9.0\appsettings.json
 C:\Users\acer\Downloads\Film\bin\Debug\net9.0\MovieWeb.staticwebassets.runtime.json
@@ -410,3 +405,8 @@ C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\lgninhctd2-odgbp8532a.g
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\w5h9di40kk-dc3cdn25d2.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\jijh3rzkxw-7xe0tjqibu.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\ktzyd8hlpa-3d37ppj85c.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\eyh3qdcpzn-2ox0hys3a3.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\w5h9di40kk-dc3cdn25d2.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\lgninhctd2-thssqquxl2.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\ktzyd8hlpa-tc4hqzjtfe.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\jijh3rzkxw-wll6tw3pfg.gz

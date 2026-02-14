@@ -1,10 +1,14 @@
 /* HEADER */
 .main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 40px;
-    background-color: #111;
+    background: #111;
     border-bottom: 1px solid #222;
 }
 
@@ -39,88 +43,43 @@
 }
 
 .header-search {
-    display: flex;
-    gap: 10px;
+    position: relative;
 }
 
-.header-search input {
-    padding: 12px 18px;
-    border-radius: 25px;
+.search-wrapper {
+    position: relative;
+}
+
+.search-wrapper input {
+    padding: 10px 40px 10px 15px; /* chừa chỗ cho icon */
+    border-radius: 20px;
     border: none;
     outline: none;
-    width: 350px;
-    font-size: 15px;
+    width: 220px;
+    background: #222;
+    color: #fff;
 }
 
-.header-search button {
-    background: #e50914;
+.search-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     border: none;
-    padding: 12px 18px;
-    border-radius: 25px;
-    color: white;
+    background: none;
     cursor: pointer;
-    font-size: 15px;
+    padding: 0;
+}
+.search-btn img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    filter: invert(1);
+    margin-top: 5px;
 }
 
-/* ===== AUTH ===== */
-
-.header-auth {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-/* Username */
-.user-name {
-    color: #ccc;
-    font-size: 14px;
-}
-
-/* Login button */
-.btn-login {
-    padding: 8px 18px;
-    border-radius: 30px;
-    border: 1px solid #444;
-    background: transparent;
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn-login:hover {
-    background: #1f1f1f;
-    border-color: #666;
-}
-
-/* Register button */
-.btn-register {
-    padding: 8px 20px;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #e50914, #ff2e2e);
-    color: white;
-    text-decoration: none;
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
-    transition: 0.3s;
-}
-
-.btn-register:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.6);
-}
-
-/* Logout */
-
-.btn-logout {
-    padding: 6px 16px;
-    border-radius: 20px;
-    background: #1f1f1f;
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn-logout:hover {
-    background: #e50914;
+.search-btn:hover img {
+    opacity: 1;
 }
 
 /* ===== MOBILE RESPONSIVE ===== */

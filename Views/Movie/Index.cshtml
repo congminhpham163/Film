@@ -21,6 +21,37 @@
 
     @Html.Partial("_Header")
 
+<!-- LUNAR NEW YEAR BANNER -->
+<div class="tet-banner">
+    <div class="tet-overlay"></div>
+
+    <div class="tet-content">
+        <h1>🧧 Chúc Mừng Năm Mới Âm Lịch 2026 🧧</h1>
+        <p>An khang thịnh vượng – Vạn sự như ý – Xem phim thả ga cùng Movie+ 🍿</p>
+    </div>
+
+    <div class="lantern lantern-left"></div>
+    <div class="lantern lantern-right"></div>
+</div>
+<script>
+function createPetal() {
+    const petal = document.createElement("div");
+
+    const symbols = ["🌸", "🧧", "✨", "🏵️"];
+    petal.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+    petal.className = "petal";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+    document.body.appendChild(petal);
+
+    setTimeout(() => petal.remove(), 8000);
+}
+
+setInterval(createPetal, 400);
+</script>
+
     <!-- Continue Watching Section -->
     <div class="continue-watching-section" id="continueWatchingSection">
         <h2>Đang Xem</h2>

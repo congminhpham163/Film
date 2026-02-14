@@ -7,11 +7,15 @@
     </div>
 
     <form method="get" action="/Movie/Index" class="header-search">
-        <input type="text"
-               name="keyword"
-               value="@Context.Request.Query["keyword"]"
-               placeholder="Tìm phim..." />
-        <button type="submit">🔍</button>
+        <div class="search-wrapper">
+            <input type="text"
+                name="keyword"
+                value="@Context.Request.Query["keyword"]"
+                placeholder="Tìm phim..." />
+            <button type="submit" class="search-btn">
+                <img src="/icons/find.png" alt="Search" />
+            </button>
+        </div>
     </form>
 
     <div class="header-auth">

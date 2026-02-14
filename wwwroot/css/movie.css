@@ -251,6 +251,90 @@ h2 {
     background: #ff1f2f;
 }
 
+/* ===== TẾT BANNER ===== */
+.tet-banner {
+    position: relative;
+    width: 100%;
+    padding: 70px 0px;
+    background: linear-gradient(135deg, #8B0000, #b30000);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.tet-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(255,215,0,0.15), transparent 70%);
+}
+
+.tet-content {
+    position: relative;
+    z-index: 2;
+}
+
+.tet-content h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+    color: #FFD700;
+}
+
+.tet-content p {
+    font-size: 16px;
+}
+
+/* ===== ĐÈN LỒNG ===== */
+.lantern {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background: #ff1a1a;
+    border-radius: 50% 50% 45% 45%;
+    top: 20px;
+    animation: swing 3s ease-in-out infinite;
+}
+
+.lantern::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    width: 4px;
+    height: 20px;
+    background: gold;
+    transform: translateX(-50%);
+}
+
+.lantern-left {
+    left: 10%;
+}
+
+.lantern-right {
+    right: 10%;
+}
+
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(8deg); }
+    100% { transform: rotate(0deg); }
+}
+.petal {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear forwards;
+    z-index: 999;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.8;
+    }
+}
+
+
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
 

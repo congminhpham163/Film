@@ -15,6 +15,8 @@ public class MovieDetail
     public string status { get; set; }
     public List<Category> category { get; set; }
     public List<Country> country { get; set; }
+    public List<string> actor { get; set; }
+    public List<string> director { get; set; }
 }
 
 public class EpisodeData

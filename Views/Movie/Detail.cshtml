@@ -1,5 +1,12 @@
 @{
     Layout = null;
+    string statusVN = Model.movie.status switch
+    {
+        "ongoing" => "Đang chiếu",
+        "completed" => "Hoàn thành",
+        "trailer" => "Trailer",
+        _ => "Đang cập nhật"
+    };
 }
 @model MovieDetailResponse
 
@@ -42,8 +49,49 @@
                     <span>Đang cập nhật</span>
                 }
             </p>
-            <p><strong>Trạng thái:</strong> @Model.movie.status</p>
-            <p>@Html.Raw(Model.movie.content)</p>
+            <p>
+                <strong>Đạo diễn:</strong>
+                @if (Model.movie.director != null && Model.movie.director.Any())
+                {
+                    @string.Join(", ", Model.movie.director)
+                }
+                else
+                {
+                    <span>Đang cập nhật</span>
+                }
+            </p>
+            <p>
+                <strong>Diễn viên:</strong>
+                @if (Model.movie.actor != null && Model.movie.actor.Any())
+                {
+                    @string.Join(", ", Model.movie.actor)
+                }
+                else
+                {
+                    <span>Đang cập nhật</span>
+                }
+            </p>
+            <p><strong>Trạng thái:</strong> @statusVN</p>
+
+            <div class="movie-description">
+                <h3>Nội dung phim</h3>
+                <div class="description-content collapsed" id="movieContent">
+                    @Html.Raw(Model.movie.content)
+                </div>
+                <button class="toggle-content" onclick="toggleContent()">Xem thêm</button>
+            </div>
+            <script>
+            function toggleContent() {
+                const content = document.getElementById("movieContent");
+                const btn = document.querySelector(".toggle-content");
+
+                content.classList.toggle("collapsed");
+
+                btn.innerText = content.classList.contains("collapsed")
+                    ? "Xem thêm"
+                    : "Thu gọn";
+            }
+            </script>
         </div>
 
     </div>
@@ -89,6 +137,7 @@
         
         <div class="player-controls">
             <button onclick="prevEpisode()">⏮ Trước</button>
+            <button onclick="toggleCinemaMode()">Rạp phim</button>
             <button onclick="nextEpisode()">Sau ⏭</button>
         </div>
 
@@ -106,7 +155,7 @@
                         <a href="/Movie/Detail/@item.slug">
                             <img src="https://img.ophim.live/uploads/movies/@item.poster_url"
                                  alt="@item.name"
-                                 onerror="this.src='https://via.placeholder.com/300x450'" />
+                                 onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
                         </a>
                         <div class="movie-info">
                             <h4>@item.name</h4>
@@ -136,22 +185,30 @@
         episodeButtons = document.querySelectorAll(".episode-btn");
         iframe = document.getElementById("moviePlayer");
 
-        // Try to restore from watchHistory first, fallback to old key
         const history = getWatchHistory();
         const savedEntry = history.find(item => item.slug === movieSlug);
 
         if (savedEntry && episodeButtons[savedEntry.episodeIndex]) {
+            // Nếu đã xem trước đó → mở lại tập cũ
             playMovie(episodeButtons[savedEntry.episodeIndex], savedEntry.episodeIndex);
-        } else {
-            // Fallback: check old per-movie key
-            const oldSaved = localStorage.getItem("currentEpisode_" + movieSlug);
-            if (oldSaved !== null && episodeButtons[parseInt(oldSaved)]) {
-                playMovie(episodeButtons[parseInt(oldSaved)], parseInt(oldSaved));
-            }
+        } 
+        else if (episodeButtons.length > 0) {
+            // 🔥 Nếu chưa có history → tự động chọn tập 1
+            playMovie(episodeButtons[0], 0);
         }
 
-        // Periodically update progress (simulate watching progress)
         startProgressTracker();
+    });
+
+    // ===== CINEMAMODE =====
+    function toggleCinemaMode() {
+        document.body.classList.toggle("cinema-mode");
+    }
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+            document.body.classList.remove("cinema-mode");
+        }
     });
 
     // ===== PLAY =====
@@ -174,8 +231,6 @@
 
         // Also keep backward-compatible old key
         localStorage.setItem("currentEpisode_" + movieSlug, index);
-
-        autoNextAfterTime();
 
         window.scrollTo({
             top: iframe.offsetTop - 100,
@@ -259,18 +314,7 @@
         }
     }
 
-    // 🔥 Auto next (vì iframe embed không bắt được sự kiện ended)
-    function autoNextAfterTime() {
-        // Clear timer cũ
-        if (window.autoNextTimer) {
-            clearTimeout(window.autoNextTimer);
-        }
-
-        // Giả sử 45 phút = 2700000 ms
-        window.autoNextTimer = setTimeout(() => {
-            nextEpisode();
-        }, 2700000);
-    }
+    
 
 </script>
 

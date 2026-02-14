@@ -155,6 +155,53 @@
     text-align: center;
 }
 
+/* ===== MOVIE DESCRIPTION ===== */
+
+.description-content p {
+    margin-bottom: 10px;
+}
+.description-content.collapsed {
+    max-height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+
+.toggle-content {
+    margin-top: 10px;
+    background: #ff4c4c;
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ===== CINEMA MODE LIGHTWEIGHT ===== */
+
+body.cinema-mode::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 999;
+    pointer-events: none;
+}
+
+/* Player nổi lên */
+body.cinema-mode .player-container {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Không blur nữa */
+body.cinema-mode .detail-container,
+body.cinema-mode .episode-section,
+body.cinema-mode .related-movies-section,
+body.cinema-mode .now-watching {
+    opacity: 0.4;
+}
+
+
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
 
