@@ -36,6 +36,13 @@
 
         <div class="detail-right">
             <h1>@Model.movie.name</h1>
+
+            <div class="movie-actions">
+                <button id="saveMovieBtn" onclick="toggleSaveMovie()">
+                    <span class="icon">♡</span>
+                    <span class="text">Thêm vào danh sách</span>
+                </button>
+            </div>
             <p><strong>Tên gốc:</strong> @Model.movie.origin_name</p>
             <p><strong>Năm:</strong> @Model.movie.year</p>
             <p>
@@ -92,6 +99,73 @@
                     : "Thu gọn";
             }
             </script>
+
+            <script>
+            // ===== MY LIST =====
+                function getMyList() {
+                    try {
+                        return JSON.parse(localStorage.getItem('myList')) || [];
+                    } catch {
+                        return [];
+                    }
+                }
+
+                function saveMyList(list) {
+                    localStorage.setItem('myList', JSON.stringify(list));
+                }
+
+                function toggleSaveMovie() {
+                    let list = getMyList();
+                    const btn = document.getElementById("saveMovieBtn");
+
+                    const existingIndex = list.findIndex(m => m.slug === movieSlug);
+
+                    if (existingIndex !== -1) {
+                        // Remove movie
+                        list.splice(existingIndex, 1);
+                        btn.classList.remove("saved");
+                        btn.innerText = "+ Thêm vào danh sách";
+                        showToast("Đã xóa khỏi Danh Sách ❌", "remove");
+                    } else {
+                        // Add movie
+                        const movieData = {
+                            slug: movieSlug,
+                            name: movieName,
+                            poster: moviePoster,
+                            year: movieYear,
+                            savedAt: Date.now()
+                        };
+
+                        list.unshift(movieData);
+
+                        if (list.length > 50) {
+                            list = list.slice(0, 50);
+                        }
+
+                        btn.classList.add("saved");
+                        btn.innerText = "✓ Đã lưu";
+                        showToast("Đã thêm vào Danh Sách ❤️", "success");
+                    }
+
+                    saveMyList(list);
+                }
+
+                // ===== CHECK ON LOAD =====
+                function checkIfSaved() {
+                    const list = getMyList();
+                    const btn = document.getElementById("saveMovieBtn");
+
+                    if (list.some(m => m.slug === movieSlug)) {
+                        btn.classList.add("saved");
+                        btn.innerText = "✓ Đã lưu";
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    checkIfSaved();
+                });
+
+            </script>
         </div>
 
     </div>
@@ -134,7 +208,7 @@
                 frameborder="0"
                 allowfullscreen>
         </iframe>
-        
+
         <div class="player-controls">
             <button onclick="prevEpisode()">⏮ Trước</button>
             <button onclick="toggleCinemaMode()">Rạp phim</button>
@@ -318,8 +392,21 @@
 
 </script>
 
+    <div id="toast" class="toast"></div>
 
+    <script>
+    function showToast(message, type = "success") {
+        const toast = document.getElementById("toast");
 
+        toast.className = "toast show " + type;
+        toast.innerText = message;
+
+        setTimeout(() => {
+            toast.className = "toast";
+        }, 2500);
+    }
+
+    </script>
     @Html.Partial("_Footer")
 
 </body>

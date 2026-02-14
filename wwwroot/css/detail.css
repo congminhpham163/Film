@@ -201,6 +201,75 @@ body.cinema-mode .now-watching {
     opacity: 0.4;
 }
 
+/* FAVORITE */
+.movie-actions {
+    margin: 15px 0 20px 0;
+}
+
+#saveMovieBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    border: 1px solid #444;
+    background: #1c1c1c;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#saveMovieBtn.saved {
+    background: #e50914;
+    border-color: #e50914;
+}
+
+#saveMovieBtn .icon {
+    font-size: 16px;
+}
+
+#saveMovieBtn:hover {
+    background: #2a2a2a;
+    transform: translateY(-2px);
+}
+
+#saveMovieBtn.saved .icon {
+    content: "♥";
+}
+
+#saveMovieBtn.saved:hover {
+    background: #c40812;
+}
+/* THÔNG BÁO */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #111;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.success {
+    border-left: 4px solid #00c853;
+}
+
+.toast.remove {
+    border-left: 4px solid #e50914;
+}
+
 
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
