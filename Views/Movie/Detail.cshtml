@@ -44,6 +44,18 @@
                 </button>
             </div>
             <p><strong>Tên gốc:</strong> @Model.movie.origin_name</p>
+            <p>
+                <strong>Thể loại:</strong>
+                @if (Model.movie.category != null && Model.movie.category.Any())
+                {
+                    @string.Join(", ", Model.movie.category.Select(c => c.name))
+                }
+                else
+                {
+                    <span>Đang cập nhật</span>
+                }
+            </p>
+
             <p><strong>Năm:</strong> @Model.movie.year</p>
             <p>
                 <strong>Quốc gia:</strong>

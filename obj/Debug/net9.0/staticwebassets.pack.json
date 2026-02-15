@@ -5,10 +5,6 @@
       "PackagePath": "staticwebassets\\MovieWeb.1kwnduqftd.bundle.scp.css"
     },
     {
-      "Id": "E:\\MovieWeb\\wwwroot\\Favion.jpg",
-      "PackagePath": "staticwebassets\\Favion.jpg"
-    },
-    {
       "Id": "E:\\MovieWeb\\wwwroot\\css\\account.css",
       "PackagePath": "staticwebassets\\css\\account.css"
     },
@@ -31,6 +27,10 @@
     {
       "Id": "E:\\MovieWeb\\wwwroot\\css\\movie.css",
       "PackagePath": "staticwebassets\\css\\movie.css"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
       "Id": "E:\\MovieWeb\\wwwroot\\icons\\find.png",
