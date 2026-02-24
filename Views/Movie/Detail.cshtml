@@ -293,8 +293,22 @@
                         </div>
                         <!-- Right: speed, PIP, fullscreen -->
                         <div class="vid-ctrl-right">
+                            <!-- Quality Menu -->
                             <div class="vid-speed-wrap">
-                                <button class="vid-sm-btn vid-speed-btn" onclick="toggleSpeedMenu()">
+                                <button class="vid-sm-btn vid-speed-btn" onclick="toggleQualityMenu()" id="btnQuality" title="Chất lượng">
+                                    <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v2c0 1.66 1.34 3 3 3h14c1.66 0 3-1.34 3-3v-2c0-1.66-1.34-3-3-3zm-9 6H8v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+                                    <span id="qualityLabel">Auto</span>
+                                </button>
+                                <div class="vid-speed-menu" id="qualityMenu" style="display:none">
+                                    <div class="vid-speed-title">Chất lượng</div>
+                                    <div id="qualityList">
+                                        <button onclick="setQuality(-1, this)" class="active-speed">Auto</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Speed Menu -->
+                            <div class="vid-speed-wrap">
+                                <button class="vid-sm-btn vid-speed-btn" onclick="toggleSpeedMenu()" title="Tốc độ">
                                     <svg viewBox="0 0 24 24"><path d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44zM13 13.66V4h-2v9.66l-1.42-1.42L8.14 13.7 12 17.56l3.86-3.85-1.44-1.44z"/></svg>
                                     <span id="speedLabel">1x</span>
                                 </button>
@@ -451,6 +465,8 @@
     let episodeButtons = [];
     let hls = null;
     let overlayTimer = null;
+    let isDragging = false;
+    let wasPaused = true;
 
     const body     = document.body;
     const movieSlug  = body.dataset.movieSlug;
@@ -508,18 +524,42 @@
         videoEl.addEventListener('ended', nextEpisode);
 
         // Progress bar dragging
-        let dragging = false;
         function getPct(e) {
             const r = progressWrap.getBoundingClientRect();
             const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
             return Math.max(0, Math.min(1, x / r.width));
         }
-        progressWrap.addEventListener('mousedown', e => { dragging = true; seekPct(getPct(e)); });
-        progressWrap.addEventListener('touchstart', e => { dragging = true; seekPct(getPct(e)); }, {passive:true});
-        document.addEventListener('mousemove', e => { if (dragging) seekPct(getPct(e)); });
-        document.addEventListener('touchmove', e => { if (dragging) seekPct(getPct(e)); }, {passive:true});
-        document.addEventListener('mouseup', () => dragging = false);
-        document.addEventListener('touchend', () => dragging = false);
+        function handleDragStart(e) {
+            isDragging = true;
+            wasPaused = videoEl.paused;
+            videoEl.pause();
+            const pct = getPct(e);
+            updateProgress(pct);
+            if (videoEl.duration) timeCur.innerText = fmtTime(pct * videoEl.duration);
+        }
+        function handleDragMove(e) {
+            if (!isDragging) return;
+            const pct = getPct(e);
+            updateProgress(pct);
+            if (videoEl.duration) timeCur.innerText = fmtTime(pct * videoEl.duration);
+        }
+        function handleDragEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            const pct = getPct(e);
+            if (videoEl.duration) {
+                videoEl.currentTime = pct * videoEl.duration;
+            }
+            if (!wasPaused) {
+                videoEl.play().catch(()=>{});
+            }
+        }
+        progressWrap.addEventListener('mousedown', handleDragStart);
+        progressWrap.addEventListener('touchstart', handleDragStart, {passive:true});
+        document.addEventListener('mousemove', handleDragMove);
+        document.addEventListener('touchmove', handleDragMove, {passive:true});
+        document.addEventListener('mouseup', handleDragEnd);
+        document.addEventListener('touchend', handleDragEnd);
 
         // Show/hide overlay on tap/click
         document.getElementById('playerWrapper').addEventListener('click', function(e) {
@@ -527,10 +567,12 @@
             toggleOverlay();
         });
 
-        // Close speed menu on outside click
+        // Close menus on outside click
         document.addEventListener('click', function(e) {
-            if (!e.target.closest('.vid-speed-wrap'))
+            if (!e.target.closest('.vid-speed-wrap')) {
                 document.getElementById('speedMenu').style.display = 'none';
+                document.getElementById('qualityMenu').style.display = 'none';
+            }
         });
 
         // Keyboard shortcuts
@@ -576,7 +618,10 @@
             hls = new Hls();
             hls.loadSource(m3u8);
             hls.attachMedia(videoEl);
-            hls.on(Hls.Events.MANIFEST_PARSED, () => videoEl.play().catch(()=>{}));
+            hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+                videoEl.play().catch(()=>{});
+                renderQualityMenu(data.levels);
+            });
         } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
             videoEl.src = m3u8;
             videoEl.play().catch(()=>{});
@@ -595,12 +640,6 @@
     function seekBy(sec) {
         videoEl.currentTime = Math.max(0, videoEl.currentTime + sec);
         showOverlay();
-    }
-    function seekPct(pct) {
-        if (videoEl.duration) {
-            videoEl.currentTime = pct * videoEl.duration;
-            updateProgress(pct);
-        }
     }
     function toggleFS() {
         const wrapper = document.getElementById('playerWrapper');
@@ -647,10 +686,43 @@
         document.getElementById('iconVolOn').style.display  = (v == 0) ? 'none' : '';
         document.getElementById('iconVolOff').style.display = (v == 0) ? '' : 'none';
     }
+    // Quality
+    function toggleQualityMenu() {
+        const q = document.getElementById('qualityMenu');
+        q.style.display = q.style.display === 'none' ? 'block' : 'none';
+        document.getElementById('speedMenu').style.display = 'none'; // hide speed
+    }
+    function renderQualityMenu(levels) {
+        const qList = document.getElementById('qualityList');
+        qList.innerHTML = '<button onclick="setQuality(-1, this)" class="active-speed">Auto</button>';
+        if (levels && levels.length > 0) {
+            let addedQualities = new Set();
+            levels.forEach((level, index) => {
+                let height = level.height || Math.round(level.bitrate / 1000);
+                if (!addedQualities.has(height)) {
+                    addedQualities.add(height);
+                    let text = level.height ? level.height + 'p' : height + ' kbps';
+                    qList.innerHTML += `<button onclick="setQuality(${index}, this)">${text}</button>`;
+                }
+            });
+        }
+    }
+    function setQuality(levelIndex, btn) {
+        if (hls) {
+            hls.currentLevel = levelIndex;
+            document.getElementById('qualityLabel').innerText = levelIndex === -1 ? 'Auto' : hls.levels[levelIndex].height + 'p';
+            document.querySelectorAll('#qualityList button').forEach(b => b.classList.remove('active-speed'));
+            if (btn) btn.classList.add('active-speed');
+        }
+        document.getElementById('qualityMenu').style.display = 'none';
+        showOverlay();
+    }
+
     // Speed
     function toggleSpeedMenu() {
         const m = document.getElementById('speedMenu');
         m.style.display = m.style.display === 'none' ? 'block' : 'none';
+        document.getElementById('qualityMenu').style.display = 'none'; // hide quality
     }
     function setSpeed(s, btn) {
         videoEl.playbackRate = s;
@@ -674,7 +746,7 @@
         timeDur.innerText = fmtTime(videoEl.duration);
     }
     function onTimeUpdate() {
-        if (!videoEl.duration) return;
+        if (!videoEl.duration || isDragging) return;
         timeCur.innerText = fmtTime(videoEl.currentTime);
         updateProgress(videoEl.currentTime / videoEl.duration);
     }
