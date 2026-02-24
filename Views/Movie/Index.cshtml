@@ -73,174 +73,324 @@
 
         <select name="category">
             <option value="">-- Thể loại --</option>
-
+            <option value="hoathinh" selected="@(ViewBag.Category == "hoathinh")">Hoạt Hình</option>
             @foreach (var item in (List<CategoryItem>)ViewBag.Categories)
             {
-                <option value="@item.slug"
-                        selected="@(ViewBag.Category == item.slug)">
-                    @item.name
-                </option>
+                <option value="@item.slug" selected="@(ViewBag.Category == item.slug)">@item.name</option>
             }
         </select>
 
-
         <select name="country">
             <option value="">-- Quốc gia --</option>
-
             @foreach (var item in (List<CategoryItem>)ViewBag.Countries)
             {
-                <option value="@item.slug"
-                        selected="@(ViewBag.Country == item.slug)">
-                    @item.name
-                </option>
+                <option value="@item.slug" selected="@(ViewBag.Country == item.slug)">@item.name</option>
             }
         </select>
 
         <select name="year">
             <option value="">-- Năm --</option>
-
             @foreach (var y in (List<int>)ViewBag.Years)
             {
-                <option value="@y"
-                        selected="@(ViewBag.Year == y.ToString())">
-                    @y
-                </option>
+                <option value="@y" selected="@(ViewBag.Year == y.ToString())">@y</option>
             }
+        </select>
+
+        <select name="type">
+            <option value="">-- Định dạng --</option>
+            <option value="single" selected="@(ViewBag.Type == "single")">Phim lẻ</option>
+            <option value="series" selected="@(ViewBag.Type == "series")">Phim bộ</option>
+            <option value="hoathinh" selected="@(ViewBag.Type == "hoathinh")">Hoạt hình</option>
+        </select>
+
+        <select name="quality">
+            <option value="">-- Chất lượng --</option>
+            <option value="FHD" selected="@(ViewBag.Quality == "FHD")">Full HD (FHD)</option>
+            <option value="HD" selected="@(ViewBag.Quality == "HD")">HD</option>
+            <option value="SD" selected="@(ViewBag.Quality == "SD")">SD</option>
+        </select>
+
+        <select name="lang">
+            <option value="">-- Ngôn ngữ --</option>
+            <option value="Vietsub" selected="@(ViewBag.Lang == "Vietsub")">Vietsub</option>
+            <option value="Thuyết Minh" selected="@(ViewBag.Lang == "Thuyết Minh")">Thuyết Minh</option>
+            <option value="Lồng Tiếng" selected="@(ViewBag.Lang == "Lồng Tiếng")">Lồng Tiếng</option>
         </select>
 
         <button type="submit">Lọc</button>
     </form>
 
-    <h2>
-        @if(ViewBag.Keyword != null)
-        {
-            <text>Kết quả tìm kiếm: "@ViewBag.Keyword"</text>
-        }
-        else
-        {
-            <text>Danh sách phim</text>
-        }
-    </h2>
 
+    @if(ViewBag.IsHomePage != null && (bool)ViewBag.IsHomePage == true)
+    {
+        <!-- TRANG CHỦ (HOME PAGE) -->
+        <h2 class="row-header">
+            Phim Mới Cập Nhật
+        </h2>
+        <div class="movie-row-container">
+            <div class="movie-row">
+                @if(ViewBag.LatestMovies != null)
+                {
+                    foreach (var movie in (List<MovieItem>)ViewBag.LatestMovies)
+                    {
+                        <div class="movie-card">
+                            <button class="favorite-btn"
+                                    data-slug="@movie.slug"
+                                    data-name="@movie.name"
+                                    data-poster="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                    data-year="@movie.year"
+                                    onclick="toggleFavorite(event, this)">
+                                +
+                            </button>
+                            <a href="/Movie/Detail/@movie.slug">
+                                <img src="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                     onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
+                            </a>
 
-    <div class="movie-container">
-        @foreach (var movie in Model)
-        {
-            <div class="movie-card">
-                <button class="favorite-btn"
-                        data-slug="@movie.slug"
-                        data-name="@movie.name"
-                        data-poster="https://img.ophim.live/uploads/movies/@movie.poster_url"
-                        data-year="@movie.year"
-                        onclick="toggleFavorite(event, this)">
-                    +
-                </button>
-                <a href="/Movie/Detail/@movie.slug">
-                    <img src="https://img.ophim.live/uploads/movies/@movie.poster_url"
-                         onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
-                </a>
-
-                <div class="movie-info">
-                    <h4>@movie.name</h4>
-                    <p>@movie.year</p>
-                </div>
+                            <div class="movie-info">
+                                <h4>@movie.name</h4>
+                                <p>@movie.year</p>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
-        }
-    </div>
+        </div>
 
-    <div class="pagination">
-        @if (current > 1)
-        {
-            <a class="page-nav"
-            asp-controller="Movie"
-            asp-action="Index"
-            asp-route-page="@(current - 1)"
-            asp-route-category="@ViewBag.Category"
-            asp-route-country="@ViewBag.Country"
-            asp-route-year="@ViewBag.Year">
-            « Trước
-            </a>
-        }
+        <h2 class="row-header">
+            Phim Hành Động 
+            <a href="/Movie?category=hanh-dong" class="view-all-link">Xem Tất Cả »</a>
+        </h2>
+        <div class="movie-row-container">
+            <div class="movie-row">
+                @if(ViewBag.ActionMovies != null)
+                {
+                    foreach (var movie in (List<MovieItem>)ViewBag.ActionMovies)
+                    {
+                        <div class="movie-card">
+                            <button class="favorite-btn"
+                                    data-slug="@movie.slug"
+                                    data-name="@movie.name"
+                                    data-poster="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                    data-year="@movie.year"
+                                    onclick="toggleFavorite(event, this)">
+                                +
+                            </button>
+                            <a href="/Movie/Detail/@movie.slug">
+                                <img src="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                     onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
+                            </a>
+                            <div class="movie-info">
+                                <h4>@movie.name</h4>
+                                <p>@movie.year</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
 
-        <!-- Trang 1 -->
-        @if (start > 1)
-        {
-            <a class="page-number"
-            asp-controller="Movie"
-            asp-action="Index"
-            asp-route-page="1"
-            asp-route-category="@ViewBag.Category"
-            asp-route-country="@ViewBag.Country"
-            asp-route-year="@ViewBag.Year"
-            asp-route-keyword="@ViewBag.Keyword">
-                1
-            </a>
+        <h2 class="row-header">
+            Phim Kinh Dị 
+            <a href="/Movie?category=kinh-di" class="view-all-link">Xem Tất Cả »</a>
+        </h2>
+        <div class="movie-row-container">
+            <div class="movie-row">
+                @if(ViewBag.HorrorMovies != null)
+                {
+                    foreach (var movie in (List<MovieItem>)ViewBag.HorrorMovies)
+                    {
+                        <div class="movie-card">
+                            <button class="favorite-btn"
+                                    data-slug="@movie.slug"
+                                    data-name="@movie.name"
+                                    data-poster="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                    data-year="@movie.year"
+                                    onclick="toggleFavorite(event, this)">
+                                +
+                            </button>
+                            <a href="/Movie/Detail/@movie.slug">
+                                <img src="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                     onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
+                            </a>
+                            <div class="movie-info">
+                                <h4>@movie.name</h4>
+                                <p>@movie.year</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
 
+        <h2 class="row-header">
+            Phim Hoạt Hình 
+            <a href="/Movie?category=hoathinh" class="view-all-link">Xem Tất Cả »</a>
+        </h2>
+        <div class="movie-row-container">
+            <div class="movie-row">
+                @if(ViewBag.AnimationMovies != null)
+                {
+                    foreach (var movie in (List<MovieItem>)ViewBag.AnimationMovies)
+                    {
+                        <div class="movie-card">
+                            <button class="favorite-btn"
+                                    data-slug="@movie.slug"
+                                    data-name="@movie.name"
+                                    data-poster="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                    data-year="@movie.year"
+                                    onclick="toggleFavorite(event, this)">
+                                +
+                            </button>
+                            <a href="/Movie/Detail/@movie.slug">
+                                <img src="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                     onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
+                            </a>
 
-            @if (start > 2)
+                            <div class="movie-info">
+                                <h4>@movie.name</h4>
+                                <p>@movie.year</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- TRANG DANH SÁCH (LIST PAGE) -->
+        <h2>
+            @if(ViewBag.Keyword != null)
             {
-                <span class="page-dots">...</span>
-            }
-        }
-
-        <!-- Các trang giữa -->
-        @for (int i = start; i <= end; i++)
-        {
-            if (i == current)
-            {
-                <span class="page-number active">@i</span>
+                <text>Kết quả tìm kiếm: "@ViewBag.Keyword"</text>
             }
             else
+            {
+                <text>Danh sách phim</text>
+            }
+        </h2>
+
+
+        <div class="movie-container">
+            @foreach (var movie in Model)
+            {
+                <div class="movie-card">
+                    <button class="favorite-btn"
+                            data-slug="@movie.slug"
+                            data-name="@movie.name"
+                            data-poster="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                            data-year="@movie.year"
+                            onclick="toggleFavorite(event, this)">
+                        +
+                    </button>
+                    <a href="/Movie/Detail/@movie.slug">
+                        <img src="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                             onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
+                    </a>
+
+                    <div class="movie-info">
+                        <h4>@movie.name</h4>
+                        <p>@movie.year</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="pagination">
+            @if (current > 1)
+            {
+                <a class="page-nav"
+                asp-controller="Movie"
+                asp-action="Index"
+                asp-route-page="@(current - 1)"
+                asp-route-category="@ViewBag.Category"
+                asp-route-country="@ViewBag.Country"
+                asp-route-year="@ViewBag.Year">
+                « Trước
+                </a>
+            }
+
+            <!-- Trang 1 -->
+            @if (start > 1)
             {
                 <a class="page-number"
                 asp-controller="Movie"
                 asp-action="Index"
-                asp-route-page="@i"
+                asp-route-page="1"
                 asp-route-category="@ViewBag.Category"
                 asp-route-country="@ViewBag.Country"
                 asp-route-year="@ViewBag.Year"
                 asp-route-keyword="@ViewBag.Keyword">
-                @i
+                    1
+                </a>
+
+
+                @if (start > 2)
+                {
+                    <span class="page-dots">...</span>
+                }
+            }
+
+            <!-- Các trang giữa -->
+            @for (int i = start; i <= end; i++)
+            {
+                if (i == current)
+                {
+                    <span class="page-number active">@i</span>
+                }
+                else
+                {
+                    <a class="page-number"
+                    asp-controller="Movie"
+                    asp-action="Index"
+                    asp-route-page="@i"
+                    asp-route-category="@ViewBag.Category"
+                    asp-route-country="@ViewBag.Country"
+                    asp-route-year="@ViewBag.Year"
+                    asp-route-keyword="@ViewBag.Keyword">
+                    @i
+                    </a>
+                }
+            }
+
+            <!-- Trang cuối -->
+            @if (end < total)
+            {
+                @if (end < total - 1)
+                {
+                    <span class="page-dots">...</span>
+                }
+
+                <a class="page-number"
+                asp-controller="Movie"
+                asp-action="Index"
+                asp-route-page="@total"
+                asp-route-category="@ViewBag.Category"
+                asp-route-country="@ViewBag.Country"
+                asp-route-year="@ViewBag.Year"
+                asp-route-keyword="@ViewBag.Keyword">
+                @total
+                </a>
+
+            }
+
+            @if (current < total)
+            {
+                <a class="page-nav"
+                asp-controller="Movie"
+                asp-action="Index"
+                asp-route-page="@(current + 1)"
+                asp-route-category="@ViewBag.Category"
+                asp-route-country="@ViewBag.Country"
+                asp-route-year="@ViewBag.Year"
+                asp-route-keyword="@ViewBag.Keyword">
+                Sau »
                 </a>
             }
-        }
 
-        <!-- Trang cuối -->
-        @if (end < total)
-        {
-            @if (end < total - 1)
-            {
-                <span class="page-dots">...</span>
-            }
-
-            <a class="page-number"
-            asp-controller="Movie"
-            asp-action="Index"
-            asp-route-page="@total"
-            asp-route-category="@ViewBag.Category"
-            asp-route-country="@ViewBag.Country"
-            asp-route-year="@ViewBag.Year"
-            asp-route-keyword="@ViewBag.Keyword">
-            @total
-            </a>
-
-        }
-
-        @if (current < total)
-        {
-            <a class="page-nav"
-            asp-controller="Movie"
-            asp-action="Index"
-            asp-route-page="@(current + 1)"
-            asp-route-category="@ViewBag.Category"
-            asp-route-country="@ViewBag.Country"
-            asp-route-year="@ViewBag.Year"
-            asp-route-keyword="@ViewBag.Keyword">
-            Sau »
-            </a>
-        }
-
-    </div>
+        </div>
+    }
 
 
     @Html.Partial("_Footer")

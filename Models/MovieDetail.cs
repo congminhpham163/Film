@@ -17,6 +17,8 @@ public class MovieDetail
     public List<Country> country { get; set; }
     public List<string> actor { get; set; }
     public List<string> director { get; set; }
+    public bool chieu_rap { get; set; }
+    public string type { get; set; }
 }
 
 public class EpisodeData

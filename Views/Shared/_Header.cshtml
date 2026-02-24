@@ -1,25 +1,99 @@
+@inject FilmService FilmSvc
+@{
+    var headerCategories = await FilmSvc.GetCategories();
+    var headerCountries  = await FilmSvc.GetCountries();
+    var sortedCats = headerCategories.OrderBy(c => c.name).ToList();
+    var sortedCnts = headerCountries.OrderBy(c => c.name).ToList();
+    var kw = Context.Request.Query["keyword"].ToString();
+}
+
 <link rel="stylesheet" href="/css/header.css" />
 
 <header class="main-header">
 
+    <!-- LOGO -->
     <div class="logo">
         <a href="/Movie">MOVIE+</a>
     </div>
 
+    <!-- NAV -->
+    <nav class="header-nav">
+        <a href="/Movie" class="nav-link">Trang Chủ</a>
+        <a href="/Movie?type=series&showAll=true" class="nav-link">Phim Bộ</a>
+        <a href="/Movie?type=single&showAll=true" class="nav-link">Phim Lẻ</a>
+        <a href="/Movie?category=hoathinh" class="nav-link">Hoạt Hình</a>
+
+        <!-- Thể Loại dropdown -->
+        <div class="nav-dropdown">
+            <span class="nav-link dropdown-trigger">
+                Thể Loại <span class="arrow">▾</span>
+            </span>
+            <div class="dropdown-menu">
+                @foreach (var cat in sortedCats)
+                {
+                    <a href="/Movie?category=@cat.slug" class="dropdown-item">@cat.name</a>
+                }
+            </div>
+        </div>
+
+        <!-- Quốc Gia dropdown -->
+        <div class="nav-dropdown">
+            <span class="nav-link dropdown-trigger">
+                Quốc Gia <span class="arrow">▾</span>
+            </span>
+            <div class="dropdown-menu">
+                @foreach (var cnt in sortedCnts)
+                {
+                    <a href="/Movie?country=@cnt.slug" class="dropdown-item">@cnt.name</a>
+                }
+            </div>
+        </div>
+
+        <a href="/Movie?showAll=true" class="nav-link">Tất cả phim</a>
+    </nav>
+
+    <!-- SEARCH -->
     <form method="get" action="/Movie/Index" class="header-search">
         <div class="search-wrapper">
             <input type="text"
-                name="keyword"
-                value="@Context.Request.Query["keyword"]"
-                placeholder="Tìm phim..." />
+                   name="keyword"
+                   value="@kw"
+                   placeholder="Tìm phim..." />
             <button type="submit" class="search-btn">
                 <img src="/icons/find.png" alt="Search" />
             </button>
         </div>
     </form>
 
-    <div class="header-auth">
-        <!-- Authentication removed -->
-    </div>
-
 </header>
+
+<script>
+(function () {
+    // Click trigger → toggle .open; click outside → close all
+    document.querySelectorAll('.nav-dropdown .dropdown-trigger').forEach(trigger => {
+        trigger.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const parent = this.closest('.nav-dropdown');
+            const isOpen = parent.classList.contains('open');
+
+            // Close all dropdowns first
+            document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+
+            // Toggle the clicked one
+            if (!isOpen) parent.classList.add('open');
+        });
+    });
+
+    // Click outside → close all
+    document.addEventListener('click', function () {
+        document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+    });
+
+    // Prevent clicks inside the menu from closing it
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    });
+})();
+</script>

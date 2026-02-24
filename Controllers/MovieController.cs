@@ -14,13 +14,41 @@ public class MovieController : Controller
     string? keyword = null,
     string? category = null,
     string? country = null,
-    string? year = null)
+    string? year = null,
+    string? type = null,
+    string? quality = null,
+    string? lang = null,
+    bool showAll = false)
     {
         MovieResponse? result = null;
 
         ViewBag.Category = category;
         ViewBag.Country = country;
         ViewBag.Year = year;
+        ViewBag.Type = type;
+        ViewBag.Quality = quality;
+        ViewBag.Lang = lang;
+
+        // Hoạt Hình là type trong API, không phải category - chuyển đổi sang đúng param
+        if (category == "hoathinh")
+        {
+            type = "hoathinh";
+            category = null;
+            ViewBag.Category = "hoathinh"; // giữ để dropdown hiện đúng trạng thái selected
+            ViewBag.Type = null;            // đừng để type dropdown cũng selected
+        }
+
+        bool isHomePage = !showAll &&
+                          string.IsNullOrEmpty(keyword) && 
+                          string.IsNullOrEmpty(category) && 
+                          string.IsNullOrEmpty(country) && 
+                          string.IsNullOrEmpty(year) &&
+                          string.IsNullOrEmpty(quality) &&
+                          string.IsNullOrEmpty(lang) &&
+                          type != "hoathinh" &&
+                          page == 1;
+        
+        ViewBag.IsHomePage = isHomePage;
 
         if (!string.IsNullOrEmpty(keyword))
         {
@@ -29,29 +57,42 @@ public class MovieController : Controller
         }
         else
         {
-            if (!string.IsNullOrEmpty(category) ||
-                !string.IsNullOrEmpty(country) ||
-                !string.IsNullOrEmpty(year))
+            bool hasFilter = !string.IsNullOrEmpty(category) ||
+                             !string.IsNullOrEmpty(country) ||
+                             !string.IsNullOrEmpty(year) ||
+                             !string.IsNullOrEmpty(type) ||
+                             !string.IsNullOrEmpty(quality) ||
+                             !string.IsNullOrEmpty(lang);
+
+            if (hasFilter)
             {
-                result = await _filmService.GetMoviesWithFilter(page, category, country, year);
+                result = await _filmService.GetMoviesWithFilter(page, category, country, year, type, quality, lang);
             }
             else
             {
                 result = await _filmService.GetMoviesByPage(page);
+                
+                if (isHomePage)
+                {
+                    ViewBag.LatestMovies = result?.items ?? new List<MovieItem>();
+                    ViewBag.ActionMovies = await _filmService.GetActionMovies();
+                    ViewBag.HorrorMovies = await _filmService.GetHorrorMovies();
+                    ViewBag.AnimationMovies = await _filmService.GetAnimationMovies();
+                }
             }
         }
 
         ViewBag.CurrentPage = result?.pagination?.currentPage ?? 1;
         ViewBag.TotalPages = result?.pagination?.totalPages ?? 1;
 
-        ViewBag.Categories = await _filmService.GetCategories();
+        var categories = await _filmService.GetCategories();
+        ViewBag.Categories = categories.OrderBy(c => c.name).ToList();
+        
         ViewBag.Countries = await _filmService.GetCountries();
         ViewBag.Years = Enumerable.Range(2000, DateTime.Now.Year - 1999)    
                                 .Reverse()
                                 .ToList();
 
-
-        // ⚠ QUAN TRỌNG: luôn trả List<MovieItem>
         return View(result?.items ?? new List<MovieItem>());
     }
 

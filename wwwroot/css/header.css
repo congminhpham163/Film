@@ -5,30 +5,138 @@
     z-index: 1000;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 16px 50px;
+    gap: 30px;
+    padding: 0 40px;
+    height: 64px;
 
-    background: rgba(15, 15, 15, 0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-
-    transition: all 0.3s ease;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* ===== LOGO ===== */
 .logo a {
     color: #e50914;
-    font-size: 26px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 800;
     letter-spacing: 1px;
     text-decoration: none;
+    white-space: nowrap;
     transition: 0.3s;
 }
 
 .logo a:hover {
     color: #ff2e3a;
-    transform: scale(1.05);
+}
+
+/* ===== NAV ===== */
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    /* chiếm khoảng trống giữa logo và search */
+}
+
+.nav-link {
+    color: #ccc;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.nav-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ===== DROPDOWN ===== */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    user-select: none;
+}
+
+.dropdown-trigger .arrow {
+    font-size: 10px;
+    transition: transform 0.25s;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    min-width: 480px;
+    max-height: 380px;
+    overflow-y: auto;
+
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    padding: 12px;
+
+    /* 2 cột */
+    columns: 2;
+    column-gap: 0;
+}
+
+/* Bridge the gap so hover doesn't drop */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 0;
+    right: 0;
+    height: 15px;
+    background: transparent;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.dropdown-item {
+    display: block;
+    break-inside: avoid;
+    color: #ccc;
+    font-size: 13px;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    color: #fff;
+    background: rgba(229, 9, 20, 0.15);
+}
+
+/* Show via JS .open class (not hover) */
+.nav-dropdown.open .dropdown-menu {
+    display: block;
+}
+
+.nav-dropdown.open .dropdown-trigger .arrow {
+    transform: rotate(180deg);
 }
 
 /* ===== SEARCH ===== */
@@ -41,30 +149,27 @@
 }
 
 .search-wrapper input {
-    padding: 12px 45px 12px 18px;
+    padding: 10px 42px 10px 18px;
     border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     outline: none;
-    width: 500px;
-
+    width: 360px;
     background: #1c1c1c;
     color: #fff;
     font-size: 14px;
-
     transition: all 0.3s ease;
 }
 
-/* Focus glow effect */
 .search-wrapper input:focus {
     border: 1px solid #e50914;
-    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
     background: #222;
 }
 
 /* ===== SEARCH BUTTON ===== */
 .search-btn {
     position: absolute;
-    right: 15px;
+    right: 14px;
     top: 50%;
     transform: translateY(-50%);
     border: none;
@@ -74,11 +179,11 @@
 }
 
 .search-btn img {
-    width: 18px;
-    height: 18px;
-    opacity: 0.7;
+    width: 17px;
+    height: 17px;
+    opacity: 0.65;
     filter: invert(1);
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .search-btn:hover img {
@@ -87,23 +192,23 @@
 }
 
 /* ===== MOBILE ===== */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .main-header {
-        padding: 12px 20px;
-        flex-wrap: wrap;
+        padding: 0 16px;
+        flex-wrap: nowrap;
+        height: auto;
+        gap: 10px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        justify-content: space-between;
     }
 
-    .logo a {
-        font-size: 20px;
-    }
-
-    .header-search {
-        width: 100%;
-        margin-top: 12px;
+    /* Ẩn toàn bộ nav trên điện thoại/tablet */
+    .header-nav {
+        display: none !important;
     }
 
     .search-wrapper input {
-        width: 92%;
-        font-size: 14px;
+        width: 200px;
     }
 }

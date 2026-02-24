@@ -23,6 +23,6 @@ public class V1Pagination
     public int currentPage { get; set; }
     public int pageRanges { get; set; }
     
-    // Computed property to match Pagination model
+
     public int totalPages => totalItemsPerPage > 0 ? (int)Math.Ceiling((double)totalItems / totalItemsPerPage) : 0;
 }

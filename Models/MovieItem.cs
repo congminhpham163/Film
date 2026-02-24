@@ -6,6 +6,11 @@ public class MovieItem
     public string thumb_url { get; set; }
     public string poster_url { get; set; }
     public int year { get; set; }
+    public bool chieurap { get; set; }
+    public string type { get; set; }     // single, series, hoathinh
+    public string quality { get; set; }  // HD, FHD, SD
+    public string lang { get; set; }     // Vietsub, Thuyết Minh, Lồng Tiếng
+    public string episode_current { get; set; }
 
     public List<Category> category { get; set; }
     public List<Country> country { get; set; }

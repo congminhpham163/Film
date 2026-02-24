@@ -52,102 +52,125 @@ h2 {
     padding: 0 40px 40px 40px;
 }
 
-/* ===== CARD PHIM — Paul Atreides Style (Desktop Only) ===== */
-.movie-card {
-    --bg: #1a1a1a;
-    --title-color: #fff;
-    --title-color-hover: #fff;
-    --text-color: #bbb;
-    background: var(--bg);
-    border-radius: 1.2rem;
-    padding: 0.4rem;
-    overflow: clip;
-    position: relative;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
+/* ===== ROWS CHO TRANG CHỦ ===== */
+.row-header {
+    text-align: left;
+    margin: 20px 40px;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.movie-card::before {
-    content: "";
-    position: absolute;
-    width: calc(100% - 0.8rem);
-    height: 35%;
-    bottom: 0.4rem;
-    left: 0.4rem;
-    mask: linear-gradient(#0000, #000f 80%);
-    -webkit-mask: linear-gradient(#0000, #000f 80%);
-    backdrop-filter: blur(0.8rem);
-    -webkit-backdrop-filter: blur(0.8rem);
-    border-radius: 0 0 0.9rem 0.9rem;
-    translate: 0 0;
-    transition: translate 0.25s;
-    z-index: 1;
-    pointer-events: none;
+.view-all-link {
+    font-size: 14px;
+    color: #e50914;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.view-all-link:hover {
+    text-decoration: underline;
+}
+
+.movie-row-container {
+    margin: 0 40px;
+    padding-bottom: 20px;
+    overflow-x: auto;
+    /* Hide scrollbar for neatness */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.movie-row-container::-webkit-scrollbar {
+    display: none;
+}
+
+.movie-row {
+    display: flex;
+    gap: 20px;
+}
+
+.movie-row .movie-card {
+    flex: 0 0 16.666%;
+    /* Sizing to fit roughly 6 on screen like the grid */
+    min-width: 150px;
+}
+
+/* ===== CARD PHIM ===== */
+.movie-card {
+    --bg: #1a1a1a;
+    --card-radius: 12px;
+    background: var(--bg);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .movie-card a {
     display: block;
     width: 100%;
-    overflow: hidden;
-    border-radius: 0.9rem;
     text-decoration: none;
     color: inherit;
+    position: relative;
 }
 
 .movie-card img {
     width: 100%;
     aspect-ratio: 2 / 3;
     object-fit: cover;
-    object-position: 50% 10%;
-    border-radius: 0.9rem;
     display: block;
-    transition: aspect-ratio 0.3s ease, object-position 0.4s ease;
+    transition: transform 0.4s ease;
 }
 
-/* Info section - always visible at bottom */
+/* Info section - clearly separated below image */
 .movie-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    padding: 10px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+    padding: 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .movie-info h4 {
-    margin: 0 0 0.3rem 0;
-    font-size: 0.9rem;
+    margin: 0 0 8px 0;
+    font-size: 15px;
     font-weight: 700;
-    color: var(--title-color);
-    white-space: nowrap;
+    line-height: 1.3;
+    color: #fff;
+    /* Multiline ellipsis for long titles */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    /* LINT FIX */
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .movie-info p {
     margin: 0;
-    font-size: 0.75rem;
-    color: var(--text-color);
+    font-size: 13px;
+    color: #bbb;
 }
 
-/* ===== HOVER STATE (Desktop) ===== */
+/* ===== HOVER STATE ===== */
 .movie-card:hover {
-    box-shadow: 0 8px 30px rgba(229, 9, 20, 0.3);
-}
-
-.movie-card:hover::before {
-    translate: 0 100%;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(229, 9, 20, 0.4);
 }
 
 .movie-card:hover img {
-    aspect-ratio: 16 / 9;
-    object-position: 50% 15%;
-    transition: aspect-ratio 0.3s ease, object-position 0.3s ease;
+    transform: scale(1.05);
 }
 
 .movie-card:hover .movie-info h4 {
-    color: var(--title-color-hover);
+    color: #e50914;
+    /* Highlight title on hover */
 }
 
 /* ===== PAGINATION ===== */
@@ -266,7 +289,7 @@ h2 {
 .tet-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top, rgba(255,215,0,0.15), transparent 70%);
+    background: radial-gradient(circle at top, rgba(255, 215, 0, 0.15), transparent 70%);
 }
 
 .tet-content {
@@ -315,10 +338,19 @@ h2 {
 }
 
 @keyframes swing {
-    0% { transform: rotate(0deg); }
-    50% { transform: rotate(8deg); }
-    100% { transform: rotate(0deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
+
 .petal {
     position: fixed;
     top: -10px;
@@ -342,16 +374,21 @@ h2 {
     position: absolute;
     top: 8px;
     right: 8px;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: none;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.6);
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
+    line-height: 1;
     cursor: pointer;
     z-index: 5;
-    transition: 0.3s;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
 }
 
 .favorite-btn:hover {
@@ -460,73 +497,58 @@ h2 {
 
     /* Override fancy card styles for mobile - use simple cards */
     .movie-card {
-        background: transparent;
-        border-radius: 10px;
+        background: #1a1a1a;
+        border-radius: 8px;
         padding: 0;
     }
 
-    .movie-card::before {
-        display: none;
-        /* No backdrop-filter blur on mobile */
-    }
-
     .movie-card a {
-        aspect-ratio: 2 / 3;
-        background: #111;
-        border-radius: 10px;
+        background: transparent;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
     }
 
     .movie-card img {
         aspect-ratio: 2 / 3;
         object-position: 50% 50%;
-        border-radius: 10px;
+        border-radius: 8px 8px 0 0;
         transition: none;
         /* No transitions on mobile */
     }
 
     /* Info always visible at bottom on mobile */
     .movie-info {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: 0;
-        height: auto;
+        position: static;
+        /* Let it sit naturally below the image */
         padding: 8px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-        z-index: 1;
+        background: transparent;
     }
 
     .movie-info h4 {
-        font-size: 12px;
-        opacity: 1;
-        translate: 0 0;
-        margin: 0;
+        font-size: 13px;
+        margin: 0 0 4px 0;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        /* LINT FIX */
     }
 
     .movie-info p {
         font-size: 11px;
-        opacity: 1;
-        translate: 0 0;
-        margin: 3px 0 0 0;
+        margin: 0;
     }
 
     /* No hover effects on mobile */
     .movie-card:hover {
+        transform: none;
         box-shadow: none;
     }
 
-    .movie-card:hover::before {
-        translate: 0 0;
-    }
-
     .movie-card:hover img {
-        aspect-ratio: 2 / 3;
-        object-position: 50% 50%;
+        transform: none;
     }
 
-    .movie-card:hover .movie-info {
-        height: auto;
+    .movie-card:hover .movie-info h4 {
+        color: #fff;
     }
 
     /* Pagination */

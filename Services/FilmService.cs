@@ -86,6 +86,48 @@ public class FilmService
         return result?.items ?? new List<MovieItem>();
     }
 
+    public async Task<List<MovieItem>> GetActionMovies()
+    {
+        var response = await _httpClient.GetAsync("v1/api/the-loai/hanh-dong?page=1");
+
+        if (!response.IsSuccessStatusCode)
+            return new List<MovieItem>();
+
+        var json = await response.Content.ReadAsStringAsync();
+        var result = JsonSerializer.Deserialize<V1MovieResponse>(json,
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        return result?.data?.items ?? new List<MovieItem>();
+    }
+
+    public async Task<List<MovieItem>> GetHorrorMovies()
+    {
+        var response = await _httpClient.GetAsync("v1/api/the-loai/kinh-di?page=1");
+
+        if (!response.IsSuccessStatusCode)
+            return new List<MovieItem>();
+
+        var json = await response.Content.ReadAsStringAsync();
+        var result = JsonSerializer.Deserialize<V1MovieResponse>(json,
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        return result?.data?.items ?? new List<MovieItem>();
+    }
+
+    public async Task<List<MovieItem>> GetAnimationMovies()
+    {
+        var response = await _httpClient.GetAsync("v1/api/danh-sach/hoat-hinh?page=1");
+
+        if (!response.IsSuccessStatusCode)
+            return new List<MovieItem>();
+
+        var json = await response.Content.ReadAsStringAsync();
+        var result = JsonSerializer.Deserialize<V1MovieResponse>(json,
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        return result?.data?.items ?? new List<MovieItem>();
+    }
+
     public async Task<MovieResponse?> SearchMovies(string keyword, int page = 1)
     {
         if (string.IsNullOrWhiteSpace(keyword))
@@ -143,9 +185,11 @@ public class FilmService
     int page,
     string? category,
     string? country,
-    string? year)
+    string? year,
+    string? type = null,
+    string? quality = null,
+    string? lang = null)
     {
-        // Fetch ~30 movies per page - we fetch 6 API pages
         int batchSize = 6; 
         int startApiPage = (page - 1) * batchSize + 1;
         
@@ -154,7 +198,7 @@ public class FilmService
         for (int i = 0; i < batchSize; i++)
         {
             int currentApiPage = startApiPage + i;
-            tasks.Add(FetchSinglePage(currentApiPage, category, country, year));
+            tasks.Add(FetchSinglePage(currentApiPage, category, country, year, type, quality, lang));
         }
 
         var responses = await Task.WhenAll(tasks);
@@ -174,14 +218,8 @@ public class FilmService
         if (aggregatedItems.Count == 0 || lastPagination == null)
             return null;
 
-        // Recalculate pagination for the UI
-        // API TotalPages = 355 (for example)
-        // Batch Size = 5
-        // New TotalPages = Ceiling(355 / 5) = 71
-        
         int newTotalPages = (int)Math.Ceiling((double)lastPagination.totalPages / batchSize);
 
-        // Use status/msg from the last successful response
         var lastResponse = responses.LastOrDefault(r => r?.data?.items != null);
         
         return new MovieResponse
@@ -197,7 +235,9 @@ public class FilmService
         };
     }
 
-    private async Task<V1MovieResponse?> FetchSinglePage(int page, string? category, string? country, string? year)
+    private async Task<V1MovieResponse?> FetchSinglePage(
+        int page, string? category, string? country, string? year,
+        string? type = null, string? quality = null, string? lang = null)
     {
         var queryParams = new List<string>();
         queryParams.Add($"page={page}");
@@ -210,6 +250,15 @@ public class FilmService
 
         if (!string.IsNullOrEmpty(year))
             queryParams.Add($"year={year}");
+
+        if (!string.IsNullOrEmpty(type))
+            queryParams.Add($"type={type}");
+
+        if (!string.IsNullOrEmpty(quality))
+            queryParams.Add($"quality={quality}");
+
+        if (!string.IsNullOrEmpty(lang))
+            queryParams.Add($"lang={lang}");
 
         var queryString = string.Join("&", queryParams);
         var endpoint = $"v1/api/danh-sach/phim-moi-cap-nhat?{queryString}";
