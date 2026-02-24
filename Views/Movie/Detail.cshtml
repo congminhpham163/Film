@@ -7,6 +7,12 @@
         "trailer" => "Trailer",
         _ => "Đang cập nhật"
     };
+
+    string trailerUrl = Model.movie.trailer_url;
+    if (string.IsNullOrEmpty(trailerUrl) && Model.movie.slug == "quy-nhap-trang-2")
+    {
+        trailerUrl = "https://www.youtube.com/watch?v=q0UWKBzFFxQ";
+    }
 }
 @model MovieDetailResponse
 
@@ -43,6 +49,13 @@
                     <span class="icon">♡</span>
                     <span class="text">Thêm vào danh sách</span>
                 </button>
+                @if (!string.IsNullOrEmpty(trailerUrl))
+                {
+                    <button class="trailer-btn" onclick="openTrailer('@trailerUrl')">
+                        <svg viewBox="0 0 24 24" fill="white" style="width:16px;height:16px;margin-right:6px;vertical-align:middle"><path d="M8 5v14l11-7z"/></svg>
+                        Xem Trailer
+                    </button>
+                }
             </div>
             <p>
                 <strong>Thể loại:</strong>
@@ -144,8 +157,42 @@
                 });
 
             </script>
+
+            <script>
+            // ===== TRAILER =====
+            function openTrailer(url) {
+                // Convert YouTube watch URL to embed URL
+                let embedUrl = url;
+                const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+                if (ytMatch) embedUrl = 'https://www.youtube.com/embed/' + ytMatch[1] + '?autoplay=1&rel=0';
+                document.getElementById('trailerFrame').src = embedUrl;
+                const modal = document.getElementById('trailerModal');
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+            function closeTrailer() {
+                document.getElementById('trailerFrame').src = '';
+                document.getElementById('trailerModal').style.display = 'none';
+                document.body.style.overflow = '';
+            }
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeTrailer();
+            });
+            document.getElementById('trailerModal').addEventListener('click', function(e) {
+                if (e.target === this) closeTrailer();
+            });
+            </script>
         </div>
 
+    </div>
+
+    <!-- Trailer Modal -->
+    <div id="trailerModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;">
+        <div style="position:relative;width:90%;max-width:920px;aspect-ratio:16/9;">
+            <button onclick="closeTrailer()" style="position:absolute;top:-40px;right:0;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1;">&#x2715;</button>
+            <iframe id="trailerFrame" src="" allow="autoplay;fullscreen" allowfullscreen
+                style="width:100%;height:100%;border:none;border-radius:8px;"></iframe>
+        </div>
     </div>
 
     <div class="episode-section">
@@ -557,8 +604,29 @@
     }
     function toggleFS() {
         const wrapper = document.getElementById('playerWrapper');
-        if (!document.fullscreenElement) wrapper.requestFullscreen();
-        else document.exitFullscreen();
+        if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+            if (wrapper.requestFullscreen) {
+                wrapper.requestFullscreen();
+            } else if (wrapper.webkitRequestFullscreen) {
+                wrapper.webkitRequestFullscreen(); // Safari/iOS
+            } else if (wrapper.mozRequestFullScreen) {
+                wrapper.mozRequestFullScreen();
+            } else if (wrapper.msRequestFullscreen) {
+                wrapper.msRequestFullscreen();
+            } else if (videoEl.webkitEnterFullscreen) {
+                videoEl.webkitEnterFullscreen(); // iOS native video fallback
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
     }
     function togglePIP() {
         if (document.pictureInPictureElement) document.exitPictureInPicture();

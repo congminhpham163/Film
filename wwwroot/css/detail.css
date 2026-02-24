@@ -160,6 +160,7 @@
 .description-content p {
     margin-bottom: 10px;
 }
+
 .description-content.collapsed {
     max-height: 120px;
     overflow: hidden;
@@ -241,6 +242,29 @@ body.cinema-mode .now-watching {
 #saveMovieBtn.saved:hover {
     background: #c40812;
 }
+
+/* Trailer button */
+.trailer-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(135deg, #e50914, #b20710);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
+}
+
+.trailer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6);
+}
+
 /* THÔNG BÁO */
 .toast {
     position: fixed;

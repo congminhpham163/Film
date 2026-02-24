@@ -408,8 +408,9 @@ E:\MovieWeb\obj\Debug\net9.0\compressed\ktzyd8hlpa-x36g2uo03o.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\jijh3rzkxw-up4c6kspz9.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\mldm5rpxzz-031bl934va.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\lgninhctd2-1pztnq1l2u.gz
-C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\lgninhctd2-79rwgrbkmp.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\ktzyd8hlpa-ftmd8vo1zi.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\mldm5rpxzz-031bl934va.gz
 C:\Users\acer\Downloads\Film\bin\Debug\net9.0\response.json
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\jijh3rzkxw-me1qpskh7t.gz
+C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\lgninhctd2-002y39pxpz.gz
+C:\Users\acer\Downloads\Film\bin\Debug\net9.0\response_quynhaptrang2.json
