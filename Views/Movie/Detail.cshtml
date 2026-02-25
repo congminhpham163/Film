@@ -467,6 +467,7 @@
     let overlayTimer = null;
     let isDragging = false;
     let wasPaused = true;
+    let prefetchPromise = null;
 
     const body     = document.body;
     const movieSlug  = body.dataset.movieSlug;
@@ -487,32 +488,14 @@
     document.addEventListener('DOMContentLoaded', function () {
         episodeButtons = document.querySelectorAll('.episode-btn');
 
-        // Pre-fetch m3u8 links from API
-        fetch(`https://ophim1.com/phim/${movieSlug}`)
-            .then(r => r.json())
-            .then(data => {
-                if (data.episodes) {
-                    data.episodes.forEach(server => {
-                        server.server_data.forEach(ep => {
-                            episodeButtons.forEach(btn => {
-                                if (btn.dataset.name === ep.name) {
-                                    if (ep.link_m3u8) btn.dataset.m3u8 = ep.link_m3u8;
-                                }
-                            });
-                        });
-                    });
-                }
-
-                const history = getWatchHistory();
-                const saved = history.find(i => i.slug === movieSlug);
-                if (saved && episodeButtons[saved.episodeIndex])
-                    playMovie(episodeButtons[saved.episodeIndex], saved.episodeIndex);
-                else if (episodeButtons.length > 0)
-                    playMovie(episodeButtons[0], 0);
-            })
-            .catch(() => {
-                if (episodeButtons.length > 0) playMovie(episodeButtons[0], 0);
-            });
+        // Initial play (pre-fetch is handled inside playMovie)
+        const history = getWatchHistory();
+        const saved = history.find(i => i.slug === movieSlug);
+        if (saved && episodeButtons[saved.episodeIndex]) {
+            playMovie(episodeButtons[saved.episodeIndex], saved.episodeIndex, false);
+        } else if (episodeButtons.length > 0) {
+            playMovie(episodeButtons[0], 0, false);
+        }
 
         // Video events
         videoEl.addEventListener('timeupdate', onTimeUpdate);
@@ -598,9 +581,8 @@
     }
 
     // ===== PLAY =====
-    function playMovie(element, index) {
+    async function playMovie(element, index, scroll = true) {
         currentIndex = index;
-        const m3u8 = element.dataset.m3u8;
         const name = element.dataset.name;
 
         episodeButtons.forEach(btn => btn.classList.remove('active-episode'));
@@ -609,25 +591,84 @@
         document.getElementById('vidTitle').innerText = movieName + ' - ' + name;
         saveToWatchHistory(index, name);
 
-        if (!m3u8) return;
-
         loadingEl.classList.remove('hidden');
+
+        // Ensure links are loaded
+        if (!element.dataset.m3u8) {
+            if (!prefetchPromise) {
+                prefetchPromise = fetch(`https://ophim1.com/phim/${movieSlug}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.episodes) {
+                            data.episodes.forEach(server => {
+                                server.server_data.forEach(ep => {
+                                    episodeButtons.forEach(btn => {
+                                        if (btn.dataset.name === ep.name && ep.link_m3u8) {
+                                            btn.dataset.m3u8 = ep.link_m3u8;
+                                        }
+                                    });
+                                });
+                            });
+                        }
+                    }).catch(err => console.error("Lỗi lấy link phim:", err));
+            }
+            await prefetchPromise;
+        }
+
+        const m3u8 = element.dataset.m3u8;
+        if (!m3u8) {
+            loadingEl.classList.add('hidden');
+            showToast("Không tìm thấy link video cho tập này", "error");
+            return;
+        }
 
         if (Hls.isSupported()) {
             if (hls) hls.destroy();
-            hls = new Hls();
+            hls = new Hls({
+                maxBufferLength: 30,
+                maxMaxBufferLength: 600,
+            });
             hls.loadSource(m3u8);
             hls.attachMedia(videoEl);
             hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
                 videoEl.play().catch(()=>{});
                 renderQualityMenu(data.levels);
             });
+            let retryCount = 0;
+            hls.on(Hls.Events.ERROR, function(event, data) {
+                if (data.fatal) {
+                    switch (data.type) {
+                        case Hls.ErrorTypes.NETWORK_ERROR:
+                            console.error("fatal network error encountered, try to recover");
+                            if (retryCount < 3) {
+                                retryCount++;
+                                hls.startLoad();
+                            } else {
+                                hls.destroy();
+                                loadingEl.classList.add('hidden');
+                                showToast("Không thể tải được video (Lỗi mạng)", "error");
+                            }
+                            break;
+                        case Hls.ErrorTypes.MEDIA_ERROR:
+                            console.error("fatal media error encountered, try to recover");
+                            hls.recoverMediaError();
+                            break;
+                        default:
+                            hls.destroy();
+                            loadingEl.classList.add('hidden');
+                            showToast("Lỗi phát video", "error");
+                            break;
+                    }
+                }
+            });
         } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
             videoEl.src = m3u8;
             videoEl.play().catch(()=>{});
         }
 
-        window.scrollTo({ top: document.getElementById('playerContainer').offsetTop - 80, behavior: 'smooth' });
+        if (scroll) {
+            window.scrollTo({ top: document.getElementById('playerContainer').offsetTop - 80, behavior: 'smooth' });
+        }
         showOverlay();
     }
 
