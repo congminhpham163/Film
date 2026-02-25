@@ -53,47 +53,99 @@
     </nav>
 
     <!-- SEARCH -->
-    <form method="get" action="/Movie/Index" class="header-search">
-        <div class="search-wrapper">
-            <input type="text"
-                   name="keyword"
-                   value="@kw"
-                   placeholder="Tìm phim..." />
-            <button type="submit" class="search-btn">
-                <img src="/icons/find.png" alt="Search" />
-            </button>
-        </div>
-    </form>
+    <div class="header-search">
+        <form method="get" action="/Movie/Index" class="search-form">
 
+            <button type="button" class="search-toggle">
+                <img src="/icons/find.png" />
+            </button>
+
+            <div class="search-box">
+                <input type="text"
+                    name="keyword"
+                    value="@kw"
+                    placeholder="Tìm phim..." />
+            </div>
+
+        </form>
+
+    </div>
 </header>
 
 <script>
-(function () {
-    // Click trigger → toggle .open; click outside → close all
-    document.querySelectorAll('.nav-dropdown .dropdown-trigger').forEach(trigger => {
-        trigger.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const parent = this.closest('.nav-dropdown');
-            const isOpen = parent.classList.contains('open');
+    (function () {
+        // Click trigger → toggle .open; click outside → close all
+        document.querySelectorAll('.nav-dropdown .dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const parent = this.closest('.nav-dropdown');
+                const isOpen = parent.classList.contains('open');
 
-            // Close all dropdowns first
+                // Close all dropdowns first
+                document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+
+                // Toggle the clicked one
+                if (!isOpen) parent.classList.add('open');
+            });
+        });
+
+        // Click outside → close all
+        document.addEventListener('click', function () {
             document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
-
-            // Toggle the clicked one
-            if (!isOpen) parent.classList.add('open');
         });
-    });
 
-    // Click outside → close all
-    document.addEventListener('click', function () {
-        document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
-    });
-
-    // Prevent clicks inside the menu from closing it
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.addEventListener('click', function (e) {
-            e.stopPropagation();
+        // Prevent clicks inside the menu from closing it
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
         });
+    })();
+
+// window.addEventListener("scroll",()=>{
+//     if(window.scrollY > 20)
+//         document.body.classList.add("scrolled");
+//     else
+//         document.body.classList.remove("scrolled");
+// });
+
+    const search = document.querySelector(".header-search");
+    const toggle = document.querySelector(".search-toggle");
+    const form   = document.querySelector(".search-form");
+    const input  = document.querySelector(".search-box input");
+
+    toggle.addEventListener("click",(e)=>{
+
+        /* Nếu chưa mở → mở search */
+        if(!search.classList.contains("open")){
+            e.preventDefault();
+            search.classList.add("open");
+            input.focus();
+            return;
+        }
+
+        /* Nếu đã mở → submit */
+        if(input.value.trim() !== ""){
+            form.submit();
+        }else{
+            input.focus();
+        }
     });
-})();
+
+    /* click trong search không đóng */
+    search.addEventListener("click",(e)=>{
+        e.stopPropagation();
+    });
+
+    /* click ngoài đóng */
+    document.addEventListener("click",()=>{
+        search.classList.remove("open");
+    });
+
+    /* ESC đóng */
+    document.addEventListener("keydown",(e)=>{
+        if(e.key === "Escape"){
+            search.classList.remove("open");
+        }
+    });
 </script>
