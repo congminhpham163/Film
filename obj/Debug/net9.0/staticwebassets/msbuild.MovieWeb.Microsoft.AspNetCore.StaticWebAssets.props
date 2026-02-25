@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>dc3cdn25d2</Fingerprint>
-      <Integrity>7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8=</Integrity>
+      <Fingerprint>vx3ksdvo98</Fingerprint>
+      <Integrity>Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\continue-watching.css'))</OriginalItemSpec>

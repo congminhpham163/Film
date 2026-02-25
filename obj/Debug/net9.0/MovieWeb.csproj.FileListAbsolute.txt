@@ -401,7 +401,6 @@ C:\Users\acer\Downloads\Film\obj\Debug\net9.0\refint\MovieWeb.dll
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\MovieWeb.pdb
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\MovieWeb.genruntimeconfig.cache
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\ref\MovieWeb.dll
-C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\w5h9di40kk-dc3cdn25d2.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\eyh3qdcpzn-2ox0hys3a3.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\w5h9di40kk-dc3cdn25d2.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\ktzyd8hlpa-x36g2uo03o.gz
@@ -414,3 +413,4 @@ C:\Users\acer\Downloads\Film\bin\Debug\net9.0\response.json
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\jijh3rzkxw-me1qpskh7t.gz
 C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\lgninhctd2-002y39pxpz.gz
 C:\Users\acer\Downloads\Film\bin\Debug\net9.0\response_quynhaptrang2.json
+C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\w5h9di40kk-vx3ksdvo98.gz

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q+byAw29OVoWonOrgKkbiW3Mpz8Ut9JCQ7an/WIlnAk=",
+  "Hash": "tlynjTt1CJRDQyvxOh8Mwrk1JDuGjFJ9Rg3GUEB3XlE=",
   "Source": "MovieWeb",
   "BasePath": "_content/MovieWeb",
   "Mode": "Default",
@@ -1256,12 +1256,12 @@
       "OriginalItemSpec": "C:\\Users\\acer\\Downloads\\Film\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-dc3cdn25d2.gz",
+      "Identity": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-vx3ksdvo98.gz",
       "SourceId": "MovieWeb",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/MovieWeb",
-      "RelativePath": "css/continue-watching#[.{fingerprint=dc3cdn25d2}]?.css.gz",
+      "RelativePath": "css/continue-watching#[.{fingerprint=vx3ksdvo98}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -1270,8 +1270,8 @@
       "RelatedAsset": "C:\\Users\\acer\\Downloads\\Film\\wwwroot\\css\\continue-watching.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "b504upasub",
-      "Integrity": "QaRitwU9m4noV7VFkwU3T5aGurEK5hKWwMm2btBNy+U=",
+      "Fingerprint": "39a54wo6g4",
+      "Integrity": "J8cdRtL5UGRx0gDCp7mLVH3wuGVO4FkOV8ak9AbzuKQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\acer\\Downloads\\Film\\wwwroot\\css\\continue-watching.css"
@@ -1480,8 +1480,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "dc3cdn25d2",
-      "Integrity": "7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8=",
+      "Fingerprint": "vx3ksdvo98",
+      "Integrity": "Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\continue-watching.css"
@@ -3132,12 +3132,12 @@
     },
     {
       "Route": "css/continue-watching.css",
-      "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-dc3cdn25d2.gz",
+      "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-vx3ksdvo98.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000719424460"
+          "Quality": "0.000724637681"
         }
       ],
       "ResponseHeaders": [
@@ -3147,15 +3147,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1389"
+          "Value": "1379"
         },
         {
           "Name": "ETag",
-          "Value": "\"QaRitwU9m4noV7VFkwU3T5aGurEK5hKWwMm2btBNy+U=\""
+          "Value": "\"J8cdRtL5UGRx0gDCp7mLVH3wuGVO4FkOV8ak9AbzuKQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 24 Feb 2026 08:59:33 GMT"
+          "Value": "Wed, 25 Feb 2026 03:32:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3175,13 +3175,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8=\""
+          "Value": "W/\"Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8="
+          "Value": "sha256-Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag="
         }
       ]
     },
@@ -3196,7 +3196,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4736"
+          "Value": "4692"
         },
         {
           "Name": "Content-Type",
@@ -3204,11 +3204,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8=\""
+          "Value": "\"Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 24 Feb 2026 08:59:33 GMT"
+          "Value": "Wed, 25 Feb 2026 03:32:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3218,13 +3218,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8="
+          "Value": "sha256-Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag="
         }
       ]
     },
     {
       "Route": "css/continue-watching.css.gz",
-      "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-dc3cdn25d2.gz",
+      "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-vx3ksdvo98.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3233,7 +3233,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1389"
+          "Value": "1379"
         },
         {
           "Name": "Content-Type",
@@ -3241,11 +3241,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"QaRitwU9m4noV7VFkwU3T5aGurEK5hKWwMm2btBNy+U=\""
+          "Value": "\"J8cdRtL5UGRx0gDCp7mLVH3wuGVO4FkOV8ak9AbzuKQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 24 Feb 2026 08:59:33 GMT"
+          "Value": "Wed, 25 Feb 2026 03:32:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3263,18 +3263,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-QaRitwU9m4noV7VFkwU3T5aGurEK5hKWwMm2btBNy+U="
+          "Value": "sha256-J8cdRtL5UGRx0gDCp7mLVH3wuGVO4FkOV8ak9AbzuKQ="
         }
       ]
     },
     {
-      "Route": "css/continue-watching.dc3cdn25d2.css",
-      "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-dc3cdn25d2.gz",
+      "Route": "css/continue-watching.vx3ksdvo98.css",
+      "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-vx3ksdvo98.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000719424460"
+          "Quality": "0.000724637681"
         }
       ],
       "ResponseHeaders": [
@@ -3284,15 +3284,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1389"
+          "Value": "1379"
         },
         {
           "Name": "ETag",
-          "Value": "\"QaRitwU9m4noV7VFkwU3T5aGurEK5hKWwMm2btBNy+U=\""
+          "Value": "\"J8cdRtL5UGRx0gDCp7mLVH3wuGVO4FkOV8ak9AbzuKQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 24 Feb 2026 08:59:33 GMT"
+          "Value": "Wed, 25 Feb 2026 03:32:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3312,13 +3312,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8=\""
+          "Value": "W/\"Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "dc3cdn25d2"
+          "Value": "vx3ksdvo98"
         },
         {
           "Name": "label",
@@ -3326,12 +3326,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8="
+          "Value": "sha256-Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag="
         }
       ]
     },
     {
-      "Route": "css/continue-watching.dc3cdn25d2.css",
+      "Route": "css/continue-watching.vx3ksdvo98.css",
       "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\wwwroot\\css\\continue-watching.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3341,7 +3341,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4736"
+          "Value": "4692"
         },
         {
           "Name": "Content-Type",
@@ -3349,11 +3349,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8=\""
+          "Value": "\"Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 24 Feb 2026 08:59:33 GMT"
+          "Value": "Wed, 25 Feb 2026 03:32:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3363,7 +3363,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "dc3cdn25d2"
+          "Value": "vx3ksdvo98"
         },
         {
           "Name": "label",
@@ -3371,13 +3371,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-7eQk/VIXGXoeX0UykjzEG3oz8kVUAQcptTlojVkOVw8="
+          "Value": "sha256-Dc+3rrwLvbHZq5UttXDMxYn2xlB03UEvCni3yN3K4ag="
         }
       ]
     },
     {
-      "Route": "css/continue-watching.dc3cdn25d2.css.gz",
-      "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-dc3cdn25d2.gz",
+      "Route": "css/continue-watching.vx3ksdvo98.css.gz",
+      "AssetFile": "C:\\Users\\acer\\Downloads\\Film\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-vx3ksdvo98.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -3386,7 +3386,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1389"
+          "Value": "1379"
         },
         {
           "Name": "Content-Type",
@@ -3394,11 +3394,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"QaRitwU9m4noV7VFkwU3T5aGurEK5hKWwMm2btBNy+U=\""
+          "Value": "\"J8cdRtL5UGRx0gDCp7mLVH3wuGVO4FkOV8ak9AbzuKQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 24 Feb 2026 08:59:33 GMT"
+          "Value": "Wed, 25 Feb 2026 03:32:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3416,7 +3416,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "dc3cdn25d2"
+          "Value": "vx3ksdvo98"
         },
         {
           "Name": "label",
@@ -3424,7 +3424,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-QaRitwU9m4noV7VFkwU3T5aGurEK5hKWwMm2btBNy+U="
+          "Value": "sha256-J8cdRtL5UGRx0gDCp7mLVH3wuGVO4FkOV8ak9AbzuKQ="
         }
       ]
     },
