@@ -73,6 +73,18 @@
             <p><strong>Năm:</strong> @Model.movie.year</p>
 
             <p>
+                <strong>Quốc gia:</strong>
+                @if (Model.movie.country != null && Model.movie.country.Any())
+                {
+                    @string.Join(", ", Model.movie.country.Select(c => c.name))
+                }
+                else
+                {
+                    <span>Đang cập nhật</span>
+                }
+            </p>
+            
+            <p>
                 <strong>Đạo diễn:</strong>
                 @if (Model.movie.director != null && Model.movie.director.Any())
                 {

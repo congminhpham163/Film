@@ -13,37 +13,6 @@ h2 {
     font-size: 28px;
 }
 
-/* Form tìm kiếm
-.search-form {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.search-form input {
-    width: 300px;
-    padding: 10px;
-    border-radius: 25px;
-    border: none;
-    outline: none;
-    font-size: 14px;
-}
-
-.search-form button {
-    padding: 10px 20px;
-    border-radius: 25px;
-    border: none;
-    background-color: #e50914;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    margin-left: 10px;
-    transition: 0.3s;
-}
-
-.search-form button:hover {
-    background-color: #b20710;
-} */
-
 /* Grid phim - 6 columns fixed */
 .movie-container {
     display: grid;
@@ -76,8 +45,12 @@ h2 {
 .movie-row-container {
     margin: 0 40px;
     padding-bottom: 20px;
+    min-width:0;
     overflow-x: auto;
-    /* Hide scrollbar for neatness */
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -89,14 +62,20 @@ h2 {
 .movie-row {
     display: flex;
     gap: 20px;
+    width: max-content; /* 🔥 bắt buộc */
 }
 
 .movie-row .movie-card {
-    flex: 0 0 16.666%;
-    /* Sizing to fit roughly 6 on screen like the grid */
-    min-width: 150px;
+    flex: 0 0 auto;
+    width: 217px;
+}
+.movie-row-container {
+    scroll-snap-type: x mandatory;
 }
 
+.movie-row .movie-card {
+    scroll-snap-align: start;
+}
 /* ===== CARD PHIM ===== */
 .movie-card {
     --bg: #1a1a1a;
@@ -458,7 +437,25 @@ h2 {
     margin-bottom: 10px;
 }
 
+/* ===== SẮP CHIẾU ===== */
+.movie-card.upcoming {
+    opacity: 0.8;
+    filter: grayscale(30%);
+    position: relative;
+}
 
+.movie-card.upcoming::after {
+    content: "SẮP CHIẾU";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff4d6d;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+}
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
 
