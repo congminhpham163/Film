@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\account.css"
     },
     {
+      "Id": "E:\\MovieWeb\\wwwroot\\css\\actor.css",
+      "PackagePath": "staticwebassets\\css\\actor.css"
+    },
+    {
       "Id": "E:\\MovieWeb\\wwwroot\\css\\continue-watching.css",
       "PackagePath": "staticwebassets\\css\\continue-watching.css"
     },

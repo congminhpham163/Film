@@ -1,0 +1,86 @@
+@{
+    Layout = null;
+
+    dynamic actor = ViewBag.Actor;
+
+    // dùng danh sách FULL
+    var works = (IEnumerable<dynamic>)ViewBag.Works;
+}
+
+<link rel="stylesheet" href="/css/movie.css" />
+<link rel="stylesheet" href="/css/actor.css" />
+
+@Html.Partial("_Header")
+
+<div class="actor-page">
+
+    <!-- ================= ACTOR INFO ================= -->
+    <div class="actor-info">
+
+        <img src="@(actor.profile_path != null
+            ? "https://image.tmdb.org/t/p/w500" + actor.profile_path
+            : "https://placehold.co/300x450")" />
+
+        <div>
+            <h1>@actor.name</h1>
+
+            <p><strong>Ngày sinh:</strong>
+                @{
+                    string birthday = actor.birthday;
+
+                    if (!string.IsNullOrEmpty(birthday))
+                    {
+                        DateTime date = DateTime.Parse(birthday);
+                        @date.ToString("dd-MM-yyyy");
+                    }
+                    else
+                    {
+                        @:Đang cập nhật
+                    }
+                }
+            </p>
+
+            <p><strong>Nơi sinh:</strong>
+                @(actor.place_of_birth ?? "Đang cập nhật")
+            </p>
+
+            <p>@actor.biography</p>
+        </div>
+
+    </div>
+
+    <!-- ================= FILMOGRAPHY ================= -->
+    <h2>Tất cả tác phẩm</h2>
+
+    <div class="movie-container">
+
+        @foreach (var m in works
+            .Where(x => x.poster_path != null)
+            .OrderByDescending(x => (double?)x.popularity ?? 0))
+        {
+            var title =
+                m.title ??
+                m.name ??
+                m.original_title ??
+                m.original_name;
+
+            var type = m.media_type == "movie"
+                ? "Phim lẻ"
+                : "Phim bộ";
+
+            <a asp-controller="Movie"
+                asp-action="GoToDetailFromActor"
+                asp-route-title="@title"
+                class="movie-card">
+
+                    <img src="https://image.tmdb.org/t/p/w300@(m.poster_path)" />
+
+                    <p>@title</p>
+                    <small>@type</small>
+
+            </a>
+        }
+
+    </div>
+
+</div>

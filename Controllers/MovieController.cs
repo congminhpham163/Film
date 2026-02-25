@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Linq;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 public class MovieController : Controller
 {
@@ -134,4 +138,32 @@ public class MovieController : Controller
         return View();
     }
 
+    public async Task<IActionResult> GoToDetailFromActor(string title)
+    {
+        if (string.IsNullOrEmpty(title))
+            return RedirectToAction("Index");
+
+        var http = new HttpClient();
+
+        var url =
+            $"https://ophim1.com/v1/api/tim-kiem?keyword={Uri.EscapeDataString(title)}";
+
+        var json = await http.GetStringAsync(url);
+
+        dynamic data = JsonConvert.DeserializeObject(json);
+
+        // ⭐ FIX LỖI TẠI ĐÂY
+        JArray items = data.data.items;
+
+        var movie = items.FirstOrDefault();
+
+        if (movie != null)
+        {
+            string slug = movie["slug"].ToString();
+
+            return RedirectToAction("Detail", new { id = slug });
+        }
+
+        return RedirectToAction("Index");
+    }
 }

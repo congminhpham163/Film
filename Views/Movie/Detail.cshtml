@@ -39,7 +39,7 @@
 
         <div class="detail-left">
             <img src="@Model.movie.poster_url"
-                 onerror="this.src='https://via.placeholder.com/300x450'" />
+                 onerror="this.src='https://placehold.co/300x450?text=No+Image'"/>
         </div>
 
         <div class="detail-right">
@@ -96,11 +96,19 @@
                 }
             </p>
 
-            <p>
+            <p class="movie-actors">
                 <strong>Diễn viên:</strong>
+
                 @if (Model.movie.actor != null && Model.movie.actor.Any())
                 {
-                    @string.Join(", ", Model.movie.actor)
+                    @foreach (var actor in Model.movie.actor)
+                    {
+                        var slug = actor.ToLower().Replace(" ", "-");
+
+                        <a href="/Actor/Actor/@slug" class="actor-tag">
+                            @actor
+                        </a>
+                    }
                 }
                 else
                 {

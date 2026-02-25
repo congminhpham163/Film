@@ -13,9 +13,10 @@ builder.Services.AddMemoryCache();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
-
-
+builder.Services.AddHttpClient("tmdb", client =>
+{
+    client.BaseAddress = new Uri("https://api.themoviedb.org/3/");
+});
 
 builder.Services.AddSession();
 

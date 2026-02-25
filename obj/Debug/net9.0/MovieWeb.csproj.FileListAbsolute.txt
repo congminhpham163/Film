@@ -413,7 +413,9 @@ C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\w5h9di40kk-vx3ksdvo98.g
 E:\MovieWeb\bin\Debug\net9.0\response.json
 E:\MovieWeb\bin\Debug\net9.0\response_quynhaptrang2.json
 E:\MovieWeb\obj\Debug\net9.0\compressed\w5h9di40kk-vx3ksdvo98.gz
-E:\MovieWeb\obj\Debug\net9.0\compressed\lgninhctd2-002y39pxpz.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\7qq3yoi6ef-noepahtek9.gz
-E:\MovieWeb\obj\Debug\net9.0\compressed\jijh3rzkxw-cwmpx7fdvy.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\ktzyd8hlpa-yybjepnufd.gz
+E:\MovieWeb\bin\Debug\net9.0\Newtonsoft.Json.dll
+E:\MovieWeb\obj\Debug\net9.0\compressed\lgninhctd2-354n6ymfbi.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\h7dmb560k0-vhso9bkwnt.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\jijh3rzkxw-5sdrynol9l.gz

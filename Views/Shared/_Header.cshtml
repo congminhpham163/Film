@@ -11,6 +11,20 @@
 
 <header class="main-header">
 
+    <div class="menu-toggle" onclick="toggleMenu(event)">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <script>
+    window.toggleMenu = function(e){
+        e?.stopPropagation();
+
+        document.querySelector(".header-nav")
+            .classList.toggle("open");
+    }
+    </script>
+
     <!-- LOGO -->
     <div class="logo">
         <a href="/Movie">MOVIE+</a>
@@ -73,6 +87,7 @@
 </header>
 
 <script>
+    /* SEARCH */
     (function () {
         // Click trigger → toggle .open; click outside → close all
         document.querySelectorAll('.nav-dropdown .dropdown-trigger').forEach(trigger => {
@@ -102,12 +117,6 @@
         });
     })();
 
-// window.addEventListener("scroll",()=>{
-//     if(window.scrollY > 20)
-//         document.body.classList.add("scrolled");
-//     else
-//         document.body.classList.remove("scrolled");
-// });
 
     const search = document.querySelector(".header-search");
     const toggle = document.querySelector(".search-toggle");
@@ -148,4 +157,5 @@
             search.classList.remove("open");
         }
     });
+
 </script>

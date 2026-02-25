@@ -1,0 +1,114 @@
+/* ================= ACTOR PAGE ================= */
+
+.actor-page {
+    padding: 40px;
+    max-width: 1300px;
+    margin: auto;
+}
+
+/* ================= ACTOR INFO ================= */
+
+.actor-info {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 50px;
+    align-items: flex-start;
+}
+
+.actor-info img {
+    width: 260px;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow: 0 6px 20px rgba(0,0,0,.3);
+}
+
+.actor-info h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.actor-info p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+/* ================= FILMOGRAPHY ================= */
+
+.actor-page h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Grid movie */
+.movie-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 22px;
+}
+
+/* ===== MOVIE CARD BUTTON ===== */
+.movie-card {
+    display: block;
+    text-decoration: none;
+    color: white;
+
+    background: #141414;
+    border-radius: 12px;
+    overflow: hidden;
+
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Image */
+.movie-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* Title */
+.movie-card p {
+    padding: 10px 10px 2px;
+    font-weight: 600;
+}
+
+/* Type */
+.movie-card small {
+    padding: 0 10px 12px;
+    display: block;
+    color: #aaa;
+}
+
+/* ===== HOVER EFFECT ===== */
+.movie-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(255, 0, 70, 0.35);
+}
+
+/* Zoom poster */
+.movie-card:hover img {
+    transform: scale(1.08);
+}
+
+/* ===== CLICK EFFECT ===== */
+.movie-card:active {
+    transform: scale(0.96);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .actor-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .actor-info img {
+        width: 220px;
+    }
+}

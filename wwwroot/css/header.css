@@ -260,17 +260,170 @@ body.scrolled .main-header{
 /* ===============================
    MOBILE
 =================================*/
-@media(max-width:900px){
 
-    .header-nav{
-        display:none !important;
-    }
+/* ===============================
+   RESPONSIVE TABLET & MOBILE
+=================================*/
+@media (max-width:768px){
 
+    /* HEADER */
     .main-header{
-        padding:0 18px;
+        padding:0 16px;
+        gap:14px;
+        height:64px;
     }
 
-    .search-wrapper input{
-        width:200px;
+    /* LOGO nhỏ lại */
+    .logo a{
+        font-size:20px;
+    }
+
+    /* ======================
+       HAMBURGER BUTTON
+    ======================*/
+    .menu-toggle{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        gap:5px;
+        cursor:pointer;
+    }
+
+    .menu-toggle span{
+        width:22px;
+        height:2px;
+        background:#fff;
+        transition:.3s;
+    }
+
+    /* ======================
+       NAV MOBILE
+    ======================*/
+    .header-nav{
+        position:fixed;
+        top:64px;
+        left:0;
+
+        width:100%;
+        max-width:250px;
+        height:calc(100vh - 64px);
+
+        background:#0c0c0c;
+
+        flex-direction:column;
+        align-items:flex-start;
+        padding:25px;
+
+        transform:translateX(-100%);
+        transition:.35s ease;
+
+        z-index:9997;
+        overflow-y:auto;
+    }
+
+    /* OPEN MENU */
+    .header-nav.open{
+        transform:translateX(0);
+    }
+
+    /* NAV ITEM */
+    .nav-link{
+        width:100%;
+        font-size:16px;
+        padding:14px 0;
+    }
+
+    /* ======================
+       DROPDOWN MOBILE
+    ======================*/
+    /* ======================
+   DROPDOWN MOBILE FIX
+    ======================*/
+    .nav-dropdown{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .dropdown-menu{
+        position:static;
+        display:none;
+
+        min-width:unset !important;
+        width:100% !important;
+        max-width:100% !important;
+        
+        height: 200px;
+        margin-top:8px;
+
+        padding:0;
+
+        background:#111;
+        border-radius:8px;
+        border:none;
+        box-shadow:none;
+
+        /* 🔥 QUAN TRỌNG NHẤT */
+        columns:unset !important;
+        column-count:1 !important;
+        column-gap:0 !important;
+
+        flex-direction:column;   /* ⭐ ép dọc */
+    }
+
+    .nav-dropdown.open .dropdown-menu{
+        display:flex;
+        width: 100px;
+    }
+
+    .dropdown-item{
+        padding:14px 16px;
+        font-size:15px;
+        white-space:nowrap;
+        width:100%;
+        border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .dropdown-item:last-child{
+        border-bottom:none;
+    }
+    /* ======================
+       SEARCH MOBILE
+    ======================*/
+    .header-search{
+        position:static;
+    }
+
+    .search-box{
+        position:fixed;
+
+        top:64px;          
+        left:12px;
+        right:12px;
+
+        width:auto;
+
+        transform:translateY(-15px);
+        opacity:0;
+        visibility:hidden;
+
+        z-index:9998;
+    }
+
+    .header-search.open .search-box{
+        opacity:1;
+        visibility:visible;
+        transform:translateY(0);
+    }
+
+    .search-box input{
+        width:95%;
+        height:44px;
+        font-size:15px;
+        border-radius:30px;
+
+        background:#111;
+        border:1px solid rgba(255,255,255,.15);
     }
 }

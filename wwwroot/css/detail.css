@@ -294,6 +294,37 @@ body.cinema-mode .now-watching {
     border-left: 4px solid #e50914;
 }
 
+/* ===== ACTORS ===== */
+
+.movie-actors {
+    margin-top: 15px;
+    line-height: 1.8;
+}
+
+.actor-tag {
+    display: inline-block;
+    margin: 5px 6px 5px 0;
+    padding: 6px 14px;
+
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+
+    border-radius: 999px;
+    transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.actor-tag:hover {
+    background: #e50914;
+    border-color: #e50914;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(229,9,20,0.5);
+}
+
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
 
