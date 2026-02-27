@@ -387,7 +387,9 @@
 @media(max-width:480px){
 
     .movie p{
-        display:none;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
     }
 
     .volume-slider{

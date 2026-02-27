@@ -94,4 +94,41 @@ public class ActorController : Controller
             return NotFound();
         }
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetActorImage(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return Json(null);
+
+        var http = _httpFactory.CreateClient("tmdb");
+
+        var res = await http.GetAsync(
+            $"search/person?api_key={API_KEY}&query={Uri.EscapeDataString(name)}"
+        );
+
+        if (!res.IsSuccessStatusCode)
+            return Json(null);
+
+        dynamic data =
+            JsonConvert.DeserializeObject(await res.Content.ReadAsStringAsync());
+
+        var results = ((IEnumerable<dynamic>)data.results);
+
+        var actor = results
+            .OrderByDescending(x => (double)x.popularity)
+            .FirstOrDefault();
+
+        if (actor == null || actor.profile_path == null)
+            return Json(null);
+
+        string image =
+            "https://image.tmdb.org/t/p/w185" + (string)actor.profile_path;
+
+        return Json(new
+        {
+            name = name,
+            image = image
+        });
+    }
 }

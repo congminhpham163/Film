@@ -38,8 +38,52 @@
     <div class="detail-container">
 
         <div class="detail-left">
+
             <img src="@Model.movie.poster_url"
-                 onerror="this.src='https://placehold.co/300x450?text=No+Image'"/>
+                onerror="this.src='https://placehold.co/300x450?text=No+Image'" />
+
+            <!-- DIỄN VIÊN -->
+            <div class="movie-actors-left">
+                <strong>Diễn viên</strong>
+
+                <div class="actor-list">
+                    @foreach (var actor in Model.movie.actor)
+                    {
+                        var slug = actor.ToLower().Replace(" ", "-");
+
+                        <a href="/Actor/Actor/@slug" class="actor-card">
+                            <img class="actor-img"
+                                data-name="@actor"
+                                src="/images/actor-placeholder.png" 
+                                onerror="this.src='https://placehold.co/300x450?text=No+Image'"/>
+
+                            <span>@actor</span>
+                        </a>
+                    }
+                </div>
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", async () => {
+
+                    const actors = document.querySelectorAll(".actor-img");
+
+                    actors.forEach(async img => {
+
+                        const name = img.dataset.name;
+
+                        try{
+                            const res = await fetch(`/Actor/GetActorImage?name=${encodeURIComponent(name)}`);
+                            const data = await res.json();
+
+                            if(data && data.image){
+                                img.src = data.image;
+                            }
+                        }
+                        catch{}
+                    });
+
+                });
+                </script>
         </div>
 
         <div class="detail-right">
@@ -96,7 +140,7 @@
                 }
             </p>
 
-            <p class="movie-actors">
+            <!-- <p class="movie-actors">
                 <strong>Diễn viên:</strong>
 
                 @if (Model.movie.actor != null && Model.movie.actor.Any())
@@ -114,7 +158,7 @@
                 {
                     <span>Đang cập nhật</span>
                 }
-            </p>
+            </p> -->
 
             <p><strong>Trạng thái:</strong> @statusVN</p>
 

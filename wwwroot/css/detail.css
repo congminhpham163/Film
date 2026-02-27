@@ -294,35 +294,109 @@ body.cinema-mode .now-watching {
     border-left: 4px solid #e50914;
 }
 
-/* ===== ACTORS ===== */
+/* =========================
+   ACTOR SECTION
+========================= */
 
-.movie-actors {
-    margin-top: 15px;
-    line-height: 1.8;
+.movie-actors-left{
+    margin-top:25px;
 }
 
-.actor-tag {
-    display: inline-block;
-    margin: 5px 6px 5px 0;
-    padding: 6px 14px;
-
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-
-    border-radius: 999px;
-    transition: all 0.25s ease;
+.movie-actors-left strong{
+    display:block;
+    margin-bottom:12px;
+    font-size:18px;
+    font-weight:600;
+    color:#fff;
 }
 
-/* Hover effect */
-.actor-tag:hover {
-    background: #e50914;
-    border-color: #e50914;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(229,9,20,0.5);
+/* LIST */
+
+.actor-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+/* CARD */
+
+.actor-card{
+    width:90px;
+    text-align:center;
+    text-decoration:none;
+    color:#ddd;
+    transition:.25s;
+}
+
+/* AVATAR */
+
+.actor-img{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#1a1a1a;
+    border:2px solid transparent;
+
+    transition:
+        transform .35s,
+        border .35s,
+        box-shadow .35s;
+}
+
+/* NAME */
+
+.actor-card span{
+    display:block;
+    margin-top:6px;
+    font-size:13px;
+    line-height:1.3;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+/* HOVER EFFECT */
+
+.actor-card:hover{
+    color:#fff;
+}
+
+.actor-card:hover .actor-img{
+    transform:scale(1.12);
+    border-color:#e50914;
+    box-shadow:
+        0 0 12px rgba(229,9,20,.6),
+        0 0 30px rgba(229,9,20,.25);
+}
+
+/* LOADING IMAGE EFFECT */
+
+.actor-img[src*="placeholder"]{
+    filter:grayscale(100%);
+    opacity:.6;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .actor-list{
+        gap:10px;
+    }
+
+    .actor-card{
+        width:72px;
+    }
+
+    .actor-img{
+        width:65px;
+        height:65px;
+    }
+
+    .actor-card span{
+        font-size:12px;
+    }
 }
 
 /* ===== MOBILE RESPONSIVE ===== */
