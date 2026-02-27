@@ -57,33 +57,44 @@
                                 src="/images/actor-placeholder.png" 
                                 onerror="this.src='https://placehold.co/300x450?text=No+Image'"/>
 
-                            <span>@actor</span>
+                            <span class="actor-name">@actor</span>
                         </a>
                     }
                 </div>
             </div>
             <script>
-                document.addEventListener("DOMContentLoaded", async () => {
+            document.addEventListener("DOMContentLoaded", () => {
 
-                    const actors = document.querySelectorAll(".actor-img");
+                document.querySelectorAll(".actor-img")
+                .forEach(async img => {
 
-                    actors.forEach(async img => {
+                    const name = img.dataset.name;
 
-                        const name = img.dataset.name;
+                    try{
+                        const res =
+                            await fetch(`/Actor/GetActorImage?name=${encodeURIComponent(name)}`);
 
-                        try{
-                            const res = await fetch(`/Actor/GetActorImage?name=${encodeURIComponent(name)}`);
-                            const data = await res.json();
+                        const data = await res.json();
 
-                            if(data && data.image){
+                        if(data){
+
+                            if(data.image)
                                 img.src = data.image;
-                            }
+
+                            if(data.name)
+                                img.closest(".actor-card")
+                                .querySelector(".actor-name")
+                                .textContent = data.name;
                         }
-                        catch{}
-                    });
+                    }
+                    catch(e){
+                        console.log("actor load error");
+                    }
 
                 });
-                </script>
+
+            });
+            </script>
         </div>
 
         <div class="detail-right">

@@ -25,7 +25,7 @@ public class ActorController : Controller
             // 1. SEARCH ACTOR
             // =============================
             var searchRes = await http.GetAsync(
-                $"search/person?api_key={API_KEY}&query={Uri.EscapeDataString(actorName)}"
+                $"search/person?api_key={API_KEY}&query={Uri.EscapeDataString(actorName)}&language=vi-VN"
             );
 
             if (!searchRes.IsSuccessStatusCode)
@@ -57,6 +57,27 @@ public class ActorController : Controller
 
             dynamic actorDetail =
                 JsonConvert.DeserializeObject(await detailRes.Content.ReadAsStringAsync());
+                
+            // =============================
+            // ƯU TIÊN TÊN QUỐC TẾ
+            // =============================
+            string displayName = actorDetail.name;
+
+            foreach (var aka in actorDetail.also_known_as)
+            {
+                string n = (string)aka;
+
+                // nếu chứa chữ Latin
+                if (!string.IsNullOrEmpty(n) &&
+                    n.Any(c => c >= 'A' && c <= 'z'))
+                {
+                    displayName = n;
+                    break;
+                }
+            }
+
+            // override name
+            actorDetail.name = displayName;
 
             // =============================
             // 3. FULL FILMOGRAPHY ⭐⭐⭐
@@ -94,7 +115,7 @@ public class ActorController : Controller
             return NotFound();
         }
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> GetActorImage(string name)
     {
@@ -119,15 +140,46 @@ public class ActorController : Controller
             .OrderByDescending(x => (double)x.popularity)
             .FirstOrDefault();
 
-        if (actor == null || actor.profile_path == null)
+        if (actor == null)
             return Json(null);
 
-        string image =
-            "https://image.tmdb.org/t/p/w185" + (string)actor.profile_path;
+        int actorId = actor.id;
+
+        // ⭐ LẤY DETAIL ĐỂ CÓ ALSO_KNOWN_AS
+        var detailRes = await http.GetAsync(
+            $"person/{actorId}?api_key={API_KEY}"
+        );
+
+        if (!detailRes.IsSuccessStatusCode)
+            return Json(null);
+
+        dynamic detail =
+            JsonConvert.DeserializeObject(await detailRes.Content.ReadAsStringAsync());
+
+        string displayName = detail.name;
+
+        // =============================
+        // ƯU TIÊN TÊN LATIN
+        // =============================
+        foreach (var aka in detail.also_known_as)
+        {
+            string n = (string)aka;
+
+            // nếu chứa chữ latin
+            if (n.Any(c => c >= 'A' && c <= 'z'))
+            {
+                displayName = n;
+                break;
+            }
+        }
+
+        string image = detail.profile_path != null
+            ? "https://image.tmdb.org/t/p/w185" + (string)detail.profile_path
+            : "/images/no-actor.png";
 
         return Json(new
         {
-            name = name,
+            name = displayName,
             image = image
         });
     }
