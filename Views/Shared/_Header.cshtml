@@ -36,7 +36,11 @@
         <a href="/Movie?type=series&showAll=true" class="nav-link">Phim Bộ</a>
         <a href="/Movie?type=single&showAll=true" class="nav-link">Phim Lẻ</a>
         <a href="/Movie?category=hoathinh" class="nav-link">Hoạt Hình</a>
-
+        <a asp-controller="Reel"
+            asp-action="ThuocPhim"
+            class="nav-link highlight">
+            Thước Phim
+        </a>
         <!-- Thể Loại dropdown -->
         <div class="nav-dropdown">
             <span class="nav-link dropdown-trigger">

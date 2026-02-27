@@ -1,0 +1,408 @@
+@model List<ReelVideoVM>
+@functions{
+
+    public string Slug(string text)
+    {
+        if(string.IsNullOrEmpty(text))
+            return "";
+
+        text = text.ToLower();
+
+        text = text.Replace("đ","d");
+
+        var normalized =
+            text.Normalize(System.Text.NormalizationForm.FormD);
+
+        var sb = new System.Text.StringBuilder();
+
+        foreach(var c in normalized)
+        {
+            var uc =
+                System.Globalization.CharUnicodeInfo
+                .GetUnicodeCategory(c);
+
+            if(uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                sb.Append(c);
+        }
+
+        return sb.ToString()
+            .Normalize(System.Text.NormalizationForm.FormC)
+            .Replace(" ","-");
+    }
+}
+@{
+    Layout= null;
+}
+
+<link rel="stylesheet" href="/css/movie.css" />
+<link rel="stylesheet" href="/css/reel.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+@Html.Partial("_Header")
+
+<div class="tiktok-feed">
+
+@foreach(var reel in Model)
+{
+    <div class="video-item">
+
+        <video
+            class="reel-video"
+            src="@reel.VideoUrl"
+            playsinline
+            preload="metadata"
+            muted
+            loop>
+        </video>
+
+        <div class="tap-layer"></div>
+
+        <div class="video-info">
+
+            <!-- ACTOR -->
+            @if(reel.ActorName != null)
+            {
+                <a asp-controller="Actor"
+                    asp-action="Actor"
+                    asp-route-id="@Slug(reel.ActorName)"
+                    class="actor">
+
+                    <img src="@reel.ActorImage" />
+
+                    <span>
+                        @reel.ActorName
+                        <span class="verified">✔</span>
+                    </span>
+
+                </a>
+            }
+
+            <!-- MOVIE -->
+            @if(reel.MovieName != null)
+            {
+                <a asp-controller="Movie"
+                    asp-action="Detail"
+                    asp-route-id="@reel.MovieSlug"
+                    class="movie">
+
+                    <img src="@reel.PosterUrl" />
+
+                    <p>@reel.MovieName</p>
+
+                </a>
+            }
+
+        </div>
+
+        <div class="volume-control">
+            <img class="volume-icon"
+                 src="/icons/volume-down.png" />
+
+            <input type="range"
+                   class="volume-slider"
+                   min="0"
+                   max="1"
+                   step="0.01"
+                   value="0.3">
+        </div>
+
+        <div class="video-actions">
+
+            <div class="action like">
+                <img class="like-icon" src="/icons/heart1.png">
+                <span class="like-count">0</span>
+            </div>
+
+            <div class="action view">
+                <span class="view-count">0</span>
+                <small>lượt xem</small>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+</div>
+
+<script>
+
+const videos = document.querySelectorAll(".reel-video");
+const sliders = document.querySelectorAll(".volume-slider");
+const icons = document.querySelectorAll(".volume-icon");
+
+/* =============================
+   LOAD VOLUME SAVED
+============================= */
+
+let savedVolume = localStorage.getItem("reelVolume");
+
+if(savedVolume === null){
+    savedVolume = 0.3;
+}else{
+    savedVolume = parseFloat(savedVolume);
+}
+
+/* =============================
+   APPLY VOLUME TO ALL VIDEOS
+============================= */
+
+function applyVolume(volume){
+
+    videos.forEach(v=>{
+        v.volume = volume;
+        v.muted = volume === 0;
+    });
+
+    sliders.forEach(s=>s.value = volume);
+
+    icons.forEach(icon=>{
+        icon.src =
+            volume === 0
+            ? "/icons/volume-down.png"
+            : "/icons/volume-up.png";
+    });
+
+    localStorage.setItem("reelVolume", volume);
+}
+
+applyVolume(savedVolume);
+
+
+/* =============================
+   AUTO PLAY OBSERVER
+============================= */
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        const video = entry.target;
+
+        if(entry.isIntersecting){
+
+            videos.forEach(v=>{
+                if(v!==video) v.pause();
+            });
+
+            video.play().catch(()=>{});
+
+        }else{
+            video.pause();
+        }
+
+    });
+
+},{threshold:0.6});
+
+videos.forEach(v=>observer.observe(v));
+
+
+/* =============================
+   CLICK VIDEO = PAUSE
+============================= */
+
+videos.forEach(video=>{
+    video.addEventListener("click",()=>{
+        video.paused ? video.play() : video.pause();
+    });
+});
+
+
+/* =============================
+   SLIDER CONTROL (GLOBAL)
+============================= */
+
+sliders.forEach(slider=>{
+
+    slider.addEventListener("input",()=>{
+        applyVolume(slider.value);
+    });
+
+});
+
+
+/* =============================
+   VOLUME UI LIKE TIKTOK (FIX)
+============================= */
+
+document.querySelectorAll(".volume-control")
+.forEach(control=>{
+
+    const icon = control.querySelector(".volume-icon");
+    const slider = control.querySelector(".volume-slider");
+
+    /* CLICK ICON → CHỈ MỞ SLIDER */
+    icon.addEventListener("click",(e)=>{
+
+        e.stopPropagation();
+
+        // đóng hết control khác
+        document.querySelectorAll(".volume-control")
+        .forEach(c=>{
+            if(c!==control) c.classList.remove("active");
+        });
+
+        control.classList.toggle("active");
+    });
+
+    /* DRAG SLIDER → CHANGE VOLUME */
+    slider.addEventListener("input",(e)=>{
+
+        e.stopPropagation();
+
+        const volume = parseFloat(slider.value);
+
+        applyVolume(volume);
+    });
+
+});
+
+/* CLICK OUTSIDE → CLOSE SLIDER */
+
+document.addEventListener("click",(e)=>{
+
+    if(!e.target.closest(".volume-control")){
+        document
+            .querySelectorAll(".volume-control")
+            .forEach(c=>c.classList.remove("active"));
+    }
+
+});
+
+/* =============================
+   TIKTOK DOUBLE TAP ENGINE
+============================= */
+
+document.querySelectorAll(".video-item")
+.forEach(item=>{
+
+    const video = item.querySelector(".reel-video");
+    const tapLayer = item.querySelector(".tap-layer");
+    const likeIcon = item.querySelector(".like-icon");
+    const likeCountEl = item.querySelector(".like-count");
+    const viewCountEl = item.querySelector(".view-count");
+
+    let likes = Math.floor(Math.random()*500)+50;
+    let views = Math.floor(Math.random()*5000)+500;
+
+    likeCountEl.innerText = likes;
+    viewCountEl.innerText = views;
+
+    video.addEventListener("play",()=>{
+        views++;
+        viewCountEl.innerText = views;
+    });
+
+    /* ===== TAP SYSTEM ===== */
+
+    let tapTimeout = null;
+    let lastTap = 0;
+
+    tapLayer.addEventListener("pointerup",(e)=>{
+
+        const now = Date.now();
+
+        // DOUBLE TAP
+        if(now - lastTap < 250){
+
+            clearTimeout(tapTimeout);
+
+            triggerLike(e,item,likeIcon,likeCountEl);
+
+            lastTap = 0;
+            return;
+        }
+
+        // SINGLE TAP (delay để chờ tap thứ 2)
+        lastTap = now;
+
+        tapTimeout = setTimeout(()=>{
+
+            video.paused
+                ? video.play()
+                : video.pause();
+
+        },250);
+
+    });
+
+});
+
+
+function triggerLike(e,item,likeIcon,countEl){
+
+    const liked = likeIcon.classList.toggle("active");
+
+    if(liked){
+        likeIcon.src="/icons/red-heart.png";
+        countEl.innerText =
+            parseInt(countEl.innerText)+1;
+    }
+    else{
+        likeIcon.src="/icons/heart1.png";
+        countEl.innerText =
+            parseInt(countEl.innerText)-1;
+    }
+
+    likeIcon.classList.remove("liked");
+    void likeIcon.offsetWidth;
+    likeIcon.classList.add("liked");
+
+    spawnHearts(e,item);
+}
+
+function spawnHearts(e,container){
+
+    const heartAmount = 6; // số tim mỗi tap
+
+    for(let i=0;i<heartAmount;i++){
+
+        const heart=document.createElement("div");
+        heart.className="heart-fly";
+        heart.innerHTML="❤";
+
+        const x=e.offsetX+(Math.random()*80-40);
+        const y=e.offsetY+(Math.random()*40-20);
+
+        heart.style.left=x+"px";
+        heart.style.top=y+"px";
+
+        const rotate=Math.random()*80-40;
+        heart.style.transform=`rotate(${rotate}deg)`;
+
+        container.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),1000);
+    }
+}
+
+function createHeart(e,container){
+
+    // tạo nhiều tim cùng lúc
+    const totalHearts = 3;
+
+    for(let i=0;i<totalHearts;i++){
+
+        const heart = document.createElement("div");
+        heart.className="heart-fly";
+        heart.innerHTML="❤";
+
+        const x = e.offsetX + (Math.random()*60-30);
+        const y = e.offsetY + (Math.random()*40-20);
+
+        heart.style.left = x+"px";
+        heart.style.top = y+"px";
+
+        const rotate = Math.random()*60-30;
+        heart.style.transform=`rotate(${rotate}deg)`;
+
+        container.appendChild(heart);
+
+        setTimeout(()=>heart.remove(),1000);
+    }
+}
+
+
+</script>
+

@@ -1,0 +1,397 @@
+/* ===============================
+   REEL FEED CONTAINER
+=================================*/
+
+.tiktok-feed{
+    height:calc(100dvh - 72px);
+    overflow-y:auto;
+    margin-top: 5px;
+    scroll-snap-type:y mandatory;
+    scroll-behavior:smooth;
+
+    background:#000;
+}
+
+/* ẨN SCROLLBAR */
+
+.tiktok-feed::-webkit-scrollbar{
+    display:none;
+}
+
+.tiktok-feed{
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+}
+
+
+/* ===============================
+   VIDEO ITEM
+=================================*/
+
+.video-item{
+    position:relative;
+    height:calc(100dvh - 72px);
+    width:100%;
+    margin-top: 100px;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#000;
+}
+
+.video-item::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:radial-gradient(
+        circle at center,
+        rgba(0,0,0,.4),
+        rgba(0,0,0,.95)
+    );
+
+    z-index:1;
+}
+
+/* ===============================
+   VIDEO STYLE
+=================================*/
+
+.reel-video{
+
+    width:auto;
+    max-width:100%;
+    height:100%;
+    object-fit:cover;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.6);
+
+    position:relative;
+    z-index:2;
+
+    transform:translateY(-40px);
+}
+
+
+/* ===============================
+   TAP LAYER
+=================================*/
+
+.tap-layer{
+    position:absolute;
+    width:420px;
+    height:75vh;
+    z-index:3;
+    transform:translateY(-40px);
+}
+
+
+/* ===============================
+   VIDEO INFO (LEFT)
+=================================*/
+
+.video-info{
+    position:absolute;
+    bottom:90px;
+    left:18px;
+    z-index:5;
+
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+/* ACTOR */
+
+.actor{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+
+    background:rgba(0,0,0,0.35);
+    backdrop-filter:blur(12px);
+
+    padding:8px 12px;
+    border-radius:40px;
+
+    transition:.3s;
+}
+
+.actor:hover{
+    background:rgba(255,255,255,0.15);
+}
+
+.actor img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.verified{
+    color:#1da1f2;
+    margin-left:6px;
+}
+
+/* MOVIE */
+
+.movie{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    text-decoration:none;
+    color:white;
+
+    background:rgba(0,0,0,0.35);
+    backdrop-filter:blur(12px);
+
+    padding:8px 12px;
+    border-radius:14px;
+}
+
+.movie img{
+    width:42px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.movie p{
+    margin:0;
+    font-size:14px;
+    font-weight:500;
+}
+
+
+/* ===============================
+   RIGHT ACTION BAR
+=================================*/
+
+.video-actions{
+    position:absolute;
+    right:14px;
+    bottom:110px;
+    z-index:5;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+}
+
+.action{
+    text-align:center;
+    color:white;
+    font-size:14px;
+}
+
+.action img{
+    width:42px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.action img:hover{
+    transform:scale(1.15);
+}
+
+.like-count{
+    font-weight:600;
+}
+
+
+/* ===============================
+   VOLUME CONTROL
+=================================*/
+
+.volume-control{
+    position:absolute;
+
+    top:90px;
+    right:18px;
+
+    z-index:6;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(10px);
+
+    padding:6px 10px;
+    border-radius:30px;
+
+    opacity:.8;
+    transition:.25s;
+}
+
+.volume-control:hover{
+    opacity:1;
+}
+
+.volume-icon{
+    width:22px;
+    cursor:pointer;
+    filter: invert(1);
+}
+
+.volume-slider{
+    width:0;
+    opacity:0;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.volume-control.active .volume-slider{
+    width:80px;
+    opacity:1;
+    margin-left:8px;
+}
+
+
+/* ===============================
+   HEART ANIMATION
+=================================*/
+
+.heart-fly{
+    position:absolute;
+    color:#ff2d55;
+    font-size:26px;
+    pointer-events:none;
+    animation:heartUp 1s ease forwards;
+    z-index:10;
+}
+
+@keyframes heartUp{
+    0%{
+        opacity:1;
+        transform:translateY(0) scale(.8);
+    }
+    100%{
+        opacity:0;
+        transform:translateY(-160px) scale(1.4);
+    }
+}
+
+
+/* ===============================
+   LIKE ICON ANIMATION
+=================================*/
+
+.like-icon.liked{
+    animation:likePop .4s ease;
+}
+
+@keyframes likePop{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.4);}
+    100%{transform:scale(1);}
+}
+
+
+/* ===============================
+   GRADIENT OVERLAY
+=================================*/
+
+.video-item::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.75),
+            rgba(0,0,0,0) 45%
+        );
+
+    pointer-events:none;
+}
+
+
+/* ===============================
+   MOBILE RESPONSIVE ≤768px
+=================================*/
+
+@media(max-width:768px){
+
+    .video-info{
+        bottom:110px;
+        left:12px;
+        gap:10px;
+    }
+
+    .actor img{
+        width:36px;
+        height:36px;
+    }
+
+    .movie img{
+        width:36px;
+        height:52px;
+    }
+
+    .video-actions{
+        right:10px;
+        bottom:130px;
+        gap:18px;
+    }
+
+    .action img{
+        width:36px;
+    }
+
+    .volume-control{
+        top:auto;        
+        bottom:90px;
+        right:12px;
+
+        padding:6px 10px;
+    }
+
+    .volume-slider{
+        width:90px;
+    }
+
+    .reel-video{
+        width:92%;
+        height:78vh;
+        border-radius:14px;
+    }
+
+    .tap-layer{
+        width:92%;
+        height:78vh;
+    }
+
+}
+
+
+/* ===============================
+   SMALL PHONE ≤480px
+=================================*/
+
+@media(max-width:480px){
+
+    .movie p{
+        display:none;
+    }
+
+    .volume-slider{
+        display:none;
+    }
+
+}

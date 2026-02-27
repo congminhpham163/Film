@@ -37,12 +37,32 @@
       "PackagePath": "staticwebassets\\css\\movie.css"
     },
     {
+      "Id": "E:\\MovieWeb\\wwwroot\\css\\reel.css",
+      "PackagePath": "staticwebassets\\css\\reel.css"
+    },
+    {
       "Id": "E:\\MovieWeb\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
       "Id": "E:\\MovieWeb\\wwwroot\\icons\\find.png",
       "PackagePath": "staticwebassets\\icons\\find.png"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\icons\\heart1.png",
+      "PackagePath": "staticwebassets\\icons\\heart1.png"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\icons\\red-heart.png",
+      "PackagePath": "staticwebassets\\icons\\red-heart.png"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\icons\\volume-down.png",
+      "PackagePath": "staticwebassets\\icons\\volume-down.png"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\icons\\volume-up.png",
+      "PackagePath": "staticwebassets\\icons\\volume-up.png"
     },
     {
       "Id": "E:\\MovieWeb\\wwwroot\\js\\site.js",
@@ -275,6 +295,26 @@
     {
       "Id": "E:\\MovieWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\videos\\fixed_bachloc.mp4",
+      "PackagePath": "staticwebassets\\videos\\fixed_bachloc.mp4"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\videos\\fixed_dichlenhatba.mp4",
+      "PackagePath": "staticwebassets\\videos\\fixed_dichlenhatba.mp4"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\videos\\fixed_goyounjung.mp4",
+      "PackagePath": "staticwebassets\\videos\\fixed_goyounjung.mp4"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\videos\\fixed_kimjiwon.mp4",
+      "PackagePath": "staticwebassets\\videos\\fixed_kimjiwon.mp4"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\videos\\fixed_trieulotu.mp4",
+      "PackagePath": "staticwebassets\\videos\\fixed_trieulotu.mp4"
     },
     {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.MovieWeb.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
