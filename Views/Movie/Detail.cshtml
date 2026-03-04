@@ -314,6 +314,7 @@
 
         @{
             int index = 0;
+            int serverIndex = 0;
         }
 
         @foreach (var server in Model.episodes)
@@ -326,17 +327,21 @@
                         data-index="@index"
                         data-url="@ep.link_embed"
                         data-name="@ep.name"
+                        data-server="@server.server_name"
+                        data-server-index="@serverIndex"
                         onclick="playMovie(this, @index)">
                     @ep.name
                 </button>
 
                 index++;
             }
+
+            serverIndex++;
         }
     </div>
 
     <div class="now-watching">
-        Bạn đang xem: Tập <span id="currentEpisodeName">Chưa chọn tập</span>
+        Bạn đang xem: <span id="currentEpisodeName">Chưa chọn tập</span>
     </div>
 
     <!-- Custom Video Player -->
@@ -511,8 +516,12 @@
     const timeDur    = document.getElementById('timeDuration');
 
     // ===== INIT =====
+    let hasMultipleServers = false;
     document.addEventListener('DOMContentLoaded', function () {
         episodeButtons = document.querySelectorAll('.episode-btn');
+        // Kiểm tra xem phim có nhiều phần (server) không
+        const serverSet = new Set([...episodeButtons].map(b => b.dataset.server));
+        hasMultipleServers = serverSet.size > 1;
 
         // Initial play (pre-fetch is handled inside playMovie)
         const history = getWatchHistory();
@@ -610,12 +619,23 @@
     async function playMovie(element, index, scroll = true) {
         currentIndex = index;
         const name = element.dataset.name;
+        const serverName = element.dataset.server || '';
+
+        // Xây dựng label hiển thị có hoặc không có tên Phần
+        let episodeLabel, videoTitle;
+        if (hasMultipleServers && serverName) {
+            episodeLabel = serverName + ' Tập ' + name;
+            videoTitle = movieName + ' ' + serverName + ' Tập ' + name;
+        } else {
+            episodeLabel = 'Tập ' + name;
+            videoTitle = movieName + ' - Tập ' + name;
+        }
 
         episodeButtons.forEach(btn => btn.classList.remove('active-episode'));
         element.classList.add('active-episode');
-        document.getElementById('currentEpisodeName').innerText = name;
-        document.getElementById('vidTitle').innerText = movieName + ' - ' + name;
-        saveToWatchHistory(index, name);
+        document.getElementById('currentEpisodeName').innerText = episodeLabel;
+        document.getElementById('vidTitle').innerText = videoTitle;
+        saveToWatchHistory(index, episodeLabel);
 
         loadingEl.classList.remove('hidden');
 
@@ -626,10 +646,14 @@
                     .then(r => r.json())
                     .then(data => {
                         if (data.episodes) {
-                            data.episodes.forEach(server => {
+                            data.episodes.forEach((server, serverIdx) => {
                                 server.server_data.forEach(ep => {
                                     episodeButtons.forEach(btn => {
-                                        if (btn.dataset.name === ep.name && ep.link_m3u8) {
+                                        // Match theo cả server_name (hoặc server index) lẫn ep.name
+                                        // để tránh tập cùng số của Phần 2 ghi đè Phần 1
+                                        const sameServer = btn.dataset.server === server.server_name ||
+                                                           parseInt(btn.dataset.serverIndex) === serverIdx;
+                                        if (sameServer && btn.dataset.name === ep.name && ep.link_m3u8) {
                                             btn.dataset.m3u8 = ep.link_m3u8;
                                         }
                                     });
