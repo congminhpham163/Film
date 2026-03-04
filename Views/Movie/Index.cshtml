@@ -425,11 +425,28 @@
                 // Fake progress bar (random between 15% and 85% to look realistic)
                 const progress = item.progress || Math.floor(Math.random() * 70 + 15);
 
+                let formattedEp = "";
+                if (item.episodeName) {
+                    let ep = String(item.episodeName).trim();
+                    if (ep.toLowerCase().startsWith("tập") || ep.startsWith("(")) {
+                        formattedEp = ep;
+                    } else {
+                        let idx = ep.toLowerCase().indexOf(" tập ");
+                        if (idx > 0) {
+                            let prefix = ep.substring(0, idx).trim();
+                            let suffix = ep.substring(idx + 1).trim();
+                            formattedEp = '(' + prefix + ') ' + suffix;
+                        } else {
+                            formattedEp = "Tập " + ep;
+                        }
+                    }
+                }
+
                 card.innerHTML =
                     '<div class="cw-thumb">' +
                         '<img src="' + item.poster + '" onerror="this.src=\'https://placehold.co/400x225?text=No+Image\'" alt="' + escapeHtml(item.name) + '" />' +
                         '<div class="cw-play-overlay"></div>' +
-                        '<span class="cw-episode-badge">Tập ' + escapeHtml(item.episodeName) + '</span>' +
+                        '<span class="cw-episode-badge">' + escapeHtml(formattedEp) + '</span>' +
                         '<div class="cw-progress"><div class="cw-progress-bar" style="width: ' + progress + '%"></div></div>' +
                     '</div>' +
                     '<div class="cw-info">' +

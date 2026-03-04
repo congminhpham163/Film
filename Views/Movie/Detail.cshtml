@@ -624,8 +624,8 @@
         // Xây dựng label hiển thị có hoặc không có tên Phần
         let episodeLabel, videoTitle;
         if (hasMultipleServers && serverName) {
-            episodeLabel = serverName + ' Tập ' + name;
-            videoTitle = movieName + ' ' + serverName + ' Tập ' + name;
+            episodeLabel = '(' + serverName + ') Tập ' + name;
+            videoTitle = movieName + ' (' + serverName + ') Tập ' + name;
         } else {
             episodeLabel = 'Tập ' + name;
             videoTitle = movieName + ' - Tập ' + name;
