@@ -377,6 +377,23 @@ body.cinema-mode .now-watching {
     opacity:.6;
 }
 
+.season-block{
+    margin-bottom: 28px;
+}
+
+.season-title{
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #fff;
+}
+
+.episode-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
 /* RESPONSIVE */
 
 @media(max-width:768px){

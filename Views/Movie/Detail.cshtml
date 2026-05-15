@@ -314,24 +314,39 @@
 
         @{
             int index = 0;
+            int seasonNumber = 1;
+            bool hasMultipleParts = Model.episodes.Count > 1;
         }
 
         @foreach (var server in Model.episodes)
         {
-            <h3>@server.server_name</h3>
+            <div class="season-block">
 
-            @foreach (var ep in server.server_data)
-            {
-                <button class="episode-btn"
-                        data-index="@index"
-                        data-url="@ep.link_embed"
-                        data-name="@ep.name"
-                        onclick="playMovie(this, @index)">
-                    @ep.name
-                </button>
+                @if (hasMultipleParts)
+                {
+                    <div class="season-title">
+                        Phần @seasonNumber
+                    </div>
+                }
 
-                index++;
-            }
+                <div class="episode-list">
+                    @foreach (var ep in server.server_data)
+                    {
+                        <button class="episode-btn"
+                                data-index="@index"
+                                data-url="@ep.link_embed"
+                                data-name="@ep.name"
+                                onclick="playMovie(this, @index)">
+                            Tập @ep.name
+                        </button>
+
+                        index++;
+                    }
+                </div>
+
+            </div>
+
+            seasonNumber++;
         }
     </div>
 
@@ -611,6 +626,24 @@
         currentIndex = index;
         const name = element.dataset.name;
 
+        videoReady = false;
+
+        videoEl.pause();
+        videoEl.removeAttribute("src");
+        videoEl.load();
+
+        videoEl.currentTime = 0;
+
+        updateProgress(0);
+
+        timeCur.innerText = "0:00";
+        timeDur.innerText = "0:00";
+
+        if (hls) {
+            hls.destroy();
+            hls = null;
+        }
+
         episodeButtons.forEach(btn => btn.classList.remove('active-episode'));
         element.classList.add('active-episode');
         document.getElementById('currentEpisodeName').innerText = name;
@@ -697,6 +730,11 @@
             window.scrollTo({ top: document.getElementById('playerContainer').offsetTop - 80, behavior: 'smooth' });
         }
         showOverlay();
+    }
+
+    // ===== PHẦN CỦA PHIM =====
+    function getWatchKey(episodeIndex) {
+        return `${movieSlug}-ep-${episodeIndex}`;
     }
 
     // ===== VIDEO CONTROLS =====
@@ -848,13 +886,33 @@
         catch { return []; }
     }
     function saveToWatchHistory(episodeIndex, episodeName) {
+
         let history = getWatchHistory();
-        const idx = history.findIndex(i => i.slug === movieSlug);
-        const entry = { slug:movieSlug, name:movieName, poster:moviePoster,
-                        episodeIndex, episodeName, year:movieYear,
-                        timestamp:Date.now(), progress:5 };
-        if (idx !== -1) history[idx] = entry; else history.unshift(entry);
-        if (history.length > 20) history = history.slice(0, 20);
+
+        const watchKey = getWatchKey(episodeIndex);
+
+        const idx = history.findIndex(i => i.watchKey === watchKey);
+
+        const entry = {
+            watchKey: watchKey,
+            slug: movieSlug,
+            name: movieName,
+            poster: moviePoster,
+            episodeIndex,
+            episodeName,
+            year: movieYear,
+            timestamp: Date.now(),
+            progress: 0
+        };
+
+        if (idx !== -1)
+            history[idx] = entry;
+        else
+            history.unshift(entry);
+
+        if (history.length > 50)
+            history = history.slice(0, 50);
+
         localStorage.setItem('watchHistory', JSON.stringify(history));
     }
     </script>
