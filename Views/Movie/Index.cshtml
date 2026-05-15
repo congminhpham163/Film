@@ -21,35 +21,156 @@
 
     @Html.Partial("_Header")
 
-    <!-- LUNAR NEW YEAR BANNER -->
-    <div class="tet-banner">
-        <div class="tet-overlay"></div>
+    <!-- HERO BANNER -->
+    @if (ViewBag.BannerMovie != null)
+    {
+        var banner = (MovieItem)ViewBag.BannerMovie;
 
-        <div class="tet-content">
-            <h1>🧧 Chúc Mừng Năm Mới Âm Lịch 2026 🧧</h1>
-            <p>An khang thịnh vượng – Vạn sự như ý – Xem phim thả ga cùng Movie+ 🍿</p>
-        </div>
+        <section class="hero-banner">
+            <div class="hero-overlay"></div>
 
-        <div class="lantern lantern-left"></div>
-        <div class="lantern lantern-right"></div>
-    </div>
-    <script>
-    function createPetal() {
-        const petal = document.createElement("div");
+            <img class="hero-bg"
+                src="https://img.ophim.live/uploads/movies/@banner.poster_url"
+                onerror="this.src='https://placehold.co/1600x900?text=Banner'" />
 
-        const symbols = ["🌸", "🧧", "✨", "🏵️"];
-        petal.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            <div class="hero-content">
 
-        petal.className = "petal";
-        petal.style.left = Math.random() * 100 + "vw";
-        petal.style.animationDuration = (3 + Math.random() * 5) + "s";
+                <div class="hero-left">
+                    <span class="hero-tag">Movie+</span>
 
-        document.body.appendChild(petal);
+                    <h1>@banner.name</h1>
 
-        setTimeout(() => petal.remove(), 8000);
+                    <div class="hero-meta">
+                        <span>@banner.year</span>
+                        <span>•</span>
+                        <span>HD</span>
+                        <span>•</span>
+                        <span>Movie</span>
+                    </div>
+
+                    
+
+                    <div class="hero-buttons">
+                        <a href="/Movie/Detail/@banner.slug" class="play-btn">
+                            ▶ Xem Ngay
+                        </a>
+
+                        <a href="/Movie/Detail/@banner.slug" class="info-btn">
+                            ⓘ Chi Tiết
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    @if (ViewBag.LatestMovies != null)
+                    {
+                        foreach (var movie in ((List<MovieItem>)ViewBag.LatestMovies)
+                                    .Take(5)
+                                    .ToList())
+                        {
+                            <div class="mini-card"
+                                data-index="@(((List<MovieItem>)ViewBag.LatestMovies).Take(5).ToList().IndexOf(movie))">
+                                <img src="https://img.ophim.live/uploads/movies/@movie.poster_url"
+                                    onerror="this.src='https://placehold.co/200x300?text=Movie'" />
+
+                                <div class="mini-overlay">
+                                    <p>@movie.name</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+        </section>
     }
+    <script>
+        // ===== HERO SLIDER =====  
 
-    setInterval(createPetal, 400);
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const movies = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+                ((List<MovieItem>)ViewBag.LatestMovies ?? new List<MovieItem>())
+                    .Take(5)
+            ));
+
+            if (!movies || movies.length <= 1) return;
+
+            let currentIndex = 0;
+
+            const heroBg = document.querySelector(".hero-bg");
+            const heroTitle = document.querySelector(".hero-left h1");
+            const heroYear = document.querySelector(".hero-meta span");
+            const playBtn = document.querySelector(".play-btn");
+            const infoBtn = document.querySelector(".info-btn");
+
+            const miniCards = document.querySelectorAll(".mini-card");
+
+            function updateBanner(index) {
+
+                const movie = movies[index];
+
+                // Background
+                heroBg.style.opacity = 0;
+
+                setTimeout(() => {
+
+                    heroBg.src =
+                        "https://img.ophim.live/uploads/movies/" + movie.poster_url;
+
+                    heroBg.style.opacity = 1;
+
+                }, 300);
+
+                // Text
+                heroTitle.style.opacity = 0;
+
+                setTimeout(() => {
+
+                    heroTitle.innerText = movie.name;
+
+                    heroYear.innerText = movie.year;
+
+                    playBtn.href = "/Movie/Detail/" + movie.slug;
+                    infoBtn.href = "/Movie/Detail/" + movie.slug;
+
+                    heroTitle.style.opacity = 1;
+
+                }, 300);
+
+                // Active mini card
+                miniCards.forEach(c => c.classList.remove("active"));
+
+                if (miniCards[index]) {
+                    miniCards[index].classList.add("active");
+                }
+            }
+
+            // Auto slide mỗi 5s
+            setInterval(() => {
+
+                currentIndex++;
+
+                if (currentIndex >= movies.length) {
+                    currentIndex = 0;
+                }
+
+                updateBanner(currentIndex);
+
+            }, 5000);
+
+            // CLICK MINI CARD => CHANGE BANNER
+            miniCards.forEach(card => {
+
+                card.addEventListener("click", function () {
+
+                    currentIndex = parseInt(card.dataset.index);
+
+                    updateBanner(currentIndex);
+                });
+
+            });
+        });
     </script>
 
     <!-- Continue Watching Section -->

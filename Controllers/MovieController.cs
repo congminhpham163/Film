@@ -77,11 +77,14 @@ public class MovieController : Controller
                 result = await _filmService.GetMoviesByPage(page);
                 
                 if (isHomePage)
-                {
-                    ViewBag.LatestMovies = result?.items ?? new List<MovieItem>();
+                {   
+                    var latestMovies = result?.items ?? new List<MovieItem>();
+                    ViewBag.BannerMovie = latestMovies.FirstOrDefault();
+                    ViewBag.LatestMovies = latestMovies;
                     ViewBag.ActionMovies = await _filmService.GetActionMovies();
                     ViewBag.HorrorMovies = await _filmService.GetHorrorMovies();
                     ViewBag.AnimationMovies = await _filmService.GetAnimationMovies();
+                    
                 }
             }
         }
