@@ -1,0 +1,430 @@
+/* =========================
+   CHATBOT FLOAT
+========================= */
+
+.chatbot-float{
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 999999;
+}
+
+/* =========================
+   FLOAT BUTTON
+========================= */
+
+.chatbot-toggle{
+    width: 68px;
+    height: 68px;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #e50914,
+        #ff2d55
+    );
+
+    color: white;
+
+    font-size: 30px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.45);
+
+    transition: .25s ease;
+}
+
+.chatbot-toggle:hover{
+    transform: scale(1.08);
+}
+
+.chatbot-toggle:active{
+    transform: scale(.95);
+}
+
+/* =========================
+   CHAT BOX
+========================= */
+
+.chat-wrapper{
+    position: absolute;
+
+    right: 0;
+    bottom: 88px;
+
+    width: 390px;
+    height: 650px;
+
+    background: #111;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    display: none;
+    flex-direction: column;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.55);
+
+    backdrop-filter: blur(10px);
+}
+
+.chat-wrapper.active{
+    display: flex;
+    animation: chatOpen .25s ease;
+}
+
+@keyframes chatOpen{
+    from{
+        opacity: 0;
+        transform: translateY(15px) scale(.96);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.chat-header{
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e50914,
+            #b20710
+        );
+
+    color: white;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+}
+
+.chat-header h2{
+    margin: 0;
+    font-size: 22px;
+}
+
+.chat-header span{
+    font-size: 13px;
+    opacity: .85;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
+.chat-messages{
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #111,
+            #181818
+        );
+}
+
+.chat-messages::-webkit-scrollbar{
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.15);
+    border-radius: 10px;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    max-width: 85%;
+
+    padding: 14px 16px;
+
+    border-radius: 18px;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+
+    animation: fadeIn .2s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* AI */
+
+.message.ai{
+    align-self: flex-start;
+
+    background: #1f1f1f;
+
+    color: white;
+
+    border-bottom-left-radius: 5px;
+}
+
+/* USER */
+
+.message.user{
+    align-self: flex-end;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e50914,
+            #ff2d55
+        );
+
+    color: white;
+
+    border-bottom-right-radius: 5px;
+}
+
+/* =========================
+   TYPING
+========================= */
+
+.typing{
+    opacity: .8;
+    font-style: italic;
+}
+
+/* =========================
+   QUICK PROMPTS
+========================= */
+
+.quick-prompts{
+    padding: 12px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    background: #151515;
+
+    border-top:
+        1px solid rgba(255,255,255,.05);
+}
+
+.quick-prompts button{
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    background: #262626;
+
+    color: white;
+
+    font-size: 13px;
+
+    transition: .2s;
+
+    white-space: nowrap;
+}
+
+.quick-prompts button:hover{
+    background: #e50914;
+}
+
+/* =========================
+   INPUT AREA
+========================= */
+
+.chat-input-area{
+    display: flex;
+
+    gap: 10px;
+
+    padding: 14px;
+
+    background: #111;
+
+    border-top:
+        1px solid rgba(255,255,255,.05);
+}
+
+.chat-input-area input{
+    flex: 1;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 0 16px;
+
+    background: #1e1e1e;
+
+    color: white;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.chat-input-area input::placeholder{
+    color: rgba(255,255,255,.4);
+}
+
+.chat-input-area button{
+    border: none;
+
+    padding: 0 20px;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e50914,
+            #ff2d55
+        );
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: .2s;
+}
+
+.chat-input-area button:hover{
+    transform: scale(1.03);
+}
+
+/* =========================
+   MOVIE LIST
+========================= */
+
+.ai-movie-list{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-top: 14px;
+}
+
+/* =========================
+   MOVIE CARD
+========================= */
+
+.ai-movie-card{
+    display: flex;
+    gap: 12px;
+
+    text-decoration: none;
+
+    background: #1c1c1c;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    transition: .2s ease;
+}
+
+.ai-movie-card:hover{
+    transform: translateY(-2px);
+
+    background: #252525;
+}
+
+.ai-movie-card img{
+    width: 80px;
+    height: 110px;
+
+    object-fit: cover;
+}
+
+.ai-movie-info{
+    padding: 10px 10px 10px 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ai-movie-info h4{
+    margin: 0 0 6px;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+.ai-movie-info span{
+    color: rgba(255,255,255,.6);
+
+    font-size: 13px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .chatbot-float{
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .chat-wrapper{
+        width: calc(100vw - 20px);
+        height: 82vh;
+
+        right: -5px;
+        bottom: 82px;
+    }
+
+    .chatbot-toggle{
+        width: 62px;
+        height: 62px;
+    }
+}

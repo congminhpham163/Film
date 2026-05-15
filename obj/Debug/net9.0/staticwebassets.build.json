@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bioTQhW2gdK2Url/eTyCI46lrJxsxQPosTgRltguHEQ=",
+  "Hash": "0kiopLRuDEp3S4D2pxb7YPSmGIg+v4xUOHLch95XEUQ=",
   "Source": "MovieWeb",
   "BasePath": "_content/MovieWeb",
   "Mode": "Default",
@@ -78,6 +78,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\MovieWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Identity": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\16uahsxtvz-xs6ivz10xe.gz",
+      "SourceId": "MovieWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/MovieWeb",
+      "RelativePath": "css/chatbot1#[.{fingerprint=xs6ivz10xe}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "E:\\MovieWeb\\wwwroot\\css\\chatbot1.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "2eezuxz9qd",
+      "Integrity": "Zlp5gC/FgAeRo8sxAHeBG0kuP53Ehum4WlriZsAQnB8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\MovieWeb\\wwwroot\\css\\chatbot1.css"
     },
     {
       "Identity": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\2loh5ctd7j-l2av4jpuoj.gz",
@@ -752,6 +773,27 @@
       "OriginalItemSpec": "E:\\MovieWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
+      "Identity": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\g4g62i323y-ejabl8ranj.gz",
+      "SourceId": "MovieWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/MovieWeb",
+      "RelativePath": "css/chatbot#[.{fingerprint=ejabl8ranj}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "E:\\MovieWeb\\wwwroot\\css\\chatbot.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "9rxuda60b3",
+      "Integrity": "ZftuK0L3PN0mYC3OqbrdgpA6JNR2ZdttIIvLo7ofPxQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "E:\\MovieWeb\\wwwroot\\css\\chatbot.css"
+    },
+    {
       "Identity": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ghqgjqjvcw-ay5nd8zt9x.gz",
       "SourceId": "MovieWeb",
       "SourceType": "Discovered",
@@ -941,12 +983,12 @@
       "OriginalItemSpec": "E:\\MovieWeb\\wwwroot\\css\\header.css"
     },
     {
-      "Identity": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-97ele73yw0.gz",
+      "Identity": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-vlyaanzh5n.gz",
       "SourceId": "MovieWeb",
       "SourceType": "Discovered",
       "ContentRoot": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/MovieWeb",
-      "RelativePath": "css/movie#[.{fingerprint=97ele73yw0}]?.css.gz",
+      "RelativePath": "css/movie#[.{fingerprint=vlyaanzh5n}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -955,8 +997,8 @@
       "RelatedAsset": "E:\\MovieWeb\\wwwroot\\css\\movie.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "bzsqi2ugma",
-      "Integrity": "yXAkDDDDrC6egW/LqtHF0lMptZSDUBo4LFx56TWRv6s=",
+      "Fingerprint": "k2wme2uiz0",
+      "Integrity": "JD6sVHMocrDlmno/BcezFcvIdA4KNe9PhRvtBw8vjXk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\MovieWeb\\wwwroot\\css\\movie.css"
@@ -1550,6 +1592,48 @@
       "OriginalItemSpec": "wwwroot\\css\\actor.css"
     },
     {
+      "Identity": "E:\\MovieWeb\\wwwroot\\css\\chatbot.css",
+      "SourceId": "MovieWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\MovieWeb\\wwwroot\\",
+      "BasePath": "_content/MovieWeb",
+      "RelativePath": "css/chatbot#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ejabl8ranj",
+      "Integrity": "Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\chatbot.css"
+    },
+    {
+      "Identity": "E:\\MovieWeb\\wwwroot\\css\\chatbot1.css",
+      "SourceId": "MovieWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\MovieWeb\\wwwroot\\",
+      "BasePath": "_content/MovieWeb",
+      "RelativePath": "css/chatbot1#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xs6ivz10xe",
+      "Integrity": "DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\chatbot1.css"
+    },
+    {
       "Identity": "E:\\MovieWeb\\wwwroot\\css\\continue-watching.css",
       "SourceId": "MovieWeb",
       "SourceType": "Discovered",
@@ -1669,8 +1753,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "97ele73yw0",
-      "Integrity": "JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE=",
+      "Fingerprint": "vlyaanzh5n",
+      "Integrity": "Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\movie.css"
@@ -3744,6 +3828,602 @@
       ]
     },
     {
+      "Route": "css/chatbot.css",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\g4g62i323y-ejabl8ranj.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000657030223"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1521"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZftuK0L3PN0mYC3OqbrdgpA6JNR2ZdttIIvLo7ofPxQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:57:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot.css",
+      "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\chatbot.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5331"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:57:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot.css.gz",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\g4g62i323y-ejabl8ranj.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1521"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZftuK0L3PN0mYC3OqbrdgpA6JNR2ZdttIIvLo7ofPxQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:57:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZftuK0L3PN0mYC3OqbrdgpA6JNR2ZdttIIvLo7ofPxQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot.ejabl8ranj.css",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\g4g62i323y-ejabl8ranj.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000657030223"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1521"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZftuK0L3PN0mYC3OqbrdgpA6JNR2ZdttIIvLo7ofPxQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:57:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ejabl8ranj"
+        },
+        {
+          "Name": "label",
+          "Value": "css/chatbot.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot.ejabl8ranj.css",
+      "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\chatbot.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5331"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:57:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ejabl8ranj"
+        },
+        {
+          "Name": "label",
+          "Value": "css/chatbot.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Go9PQY8gOOka1BpFSa6XzxzI0LVOLqWCeMxw4nNTMA8="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot.ejabl8ranj.css.gz",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\g4g62i323y-ejabl8ranj.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1521"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZftuK0L3PN0mYC3OqbrdgpA6JNR2ZdttIIvLo7ofPxQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:57:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ejabl8ranj"
+        },
+        {
+          "Name": "label",
+          "Value": "css/chatbot.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZftuK0L3PN0mYC3OqbrdgpA6JNR2ZdttIIvLo7ofPxQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot1.css",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\16uahsxtvz-xs6ivz10xe.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000663570007"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1506"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zlp5gC/FgAeRo8sxAHeBG0kuP53Ehum4WlriZsAQnB8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:45:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot1.css",
+      "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\chatbot1.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6339"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:45:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot1.css.gz",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\16uahsxtvz-xs6ivz10xe.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1506"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zlp5gC/FgAeRo8sxAHeBG0kuP53Ehum4WlriZsAQnB8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:45:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zlp5gC/FgAeRo8sxAHeBG0kuP53Ehum4WlriZsAQnB8="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot1.xs6ivz10xe.css",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\16uahsxtvz-xs6ivz10xe.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000663570007"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1506"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zlp5gC/FgAeRo8sxAHeBG0kuP53Ehum4WlriZsAQnB8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:45:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xs6ivz10xe"
+        },
+        {
+          "Name": "label",
+          "Value": "css/chatbot1.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot1.xs6ivz10xe.css",
+      "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\chatbot1.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6339"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:45:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xs6ivz10xe"
+        },
+        {
+          "Name": "label",
+          "Value": "css/chatbot1.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DxKs6GrrbPWycL7NdWBsEmxrKrfCdb8i5MZgm0IM7eU="
+        }
+      ]
+    },
+    {
+      "Route": "css/chatbot1.xs6ivz10xe.css.gz",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\16uahsxtvz-xs6ivz10xe.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1506"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zlp5gC/FgAeRo8sxAHeBG0kuP53Ehum4WlriZsAQnB8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:45:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xs6ivz10xe"
+        },
+        {
+          "Name": "label",
+          "Value": "css/chatbot1.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zlp5gC/FgAeRo8sxAHeBG0kuP53Ehum4WlriZsAQnB8="
+        }
+      ]
+    },
+    {
       "Route": "css/continue-watching.css",
       "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\w5h9di40kk-vx3ksdvo98.gz",
       "Selectors": [
@@ -5234,13 +5914,13 @@
       ]
     },
     {
-      "Route": "css/movie.97ele73yw0.css",
-      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-97ele73yw0.gz",
+      "Route": "css/movie.css",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-vlyaanzh5n.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000269759914"
+          "Quality": "0.000241021933"
         }
       ],
       "ResponseHeaders": [
@@ -5250,19 +5930,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3706"
+          "Value": "4148"
         },
         {
           "Name": "ETag",
-          "Value": "\"yXAkDDDDrC6egW/LqtHF0lMptZSDUBo4LFx56TWRv6s=\""
+          "Value": "\"JD6sVHMocrDlmno/BcezFcvIdA4KNe9PhRvtBw8vjXk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 15 May 2026 06:33:46 GMT"
+          "Value": "Fri, 15 May 2026 16:47:02 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
+          "Value": "no-cache"
         },
         {
           "Name": "Content-Encoding",
@@ -5278,26 +5958,18 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE=\""
+          "Value": "W/\"Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok=\""
         }
       ],
       "EndpointProperties": [
         {
-          "Name": "fingerprint",
-          "Value": "97ele73yw0"
-        },
-        {
-          "Name": "label",
-          "Value": "css/movie.css"
-        },
-        {
           "Name": "integrity",
-          "Value": "sha256-JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE="
+          "Value": "sha256-Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok="
         }
       ]
     },
     {
-      "Route": "css/movie.97ele73yw0.css",
+      "Route": "css/movie.css",
       "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\movie.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -5307,7 +5979,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15041"
+          "Value": "17331"
         },
         {
           "Name": "Content-Type",
@@ -5315,11 +5987,156 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE=\""
+          "Value": "\"Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 15 May 2026 06:33:46 GMT"
+          "Value": "Fri, 15 May 2026 16:47:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok="
+        }
+      ]
+    },
+    {
+      "Route": "css/movie.css.gz",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-vlyaanzh5n.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4148"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JD6sVHMocrDlmno/BcezFcvIdA4KNe9PhRvtBw8vjXk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:47:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-JD6sVHMocrDlmno/BcezFcvIdA4KNe9PhRvtBw8vjXk="
+        }
+      ]
+    },
+    {
+      "Route": "css/movie.vlyaanzh5n.css",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-vlyaanzh5n.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000241021933"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4148"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JD6sVHMocrDlmno/BcezFcvIdA4KNe9PhRvtBw8vjXk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:47:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vlyaanzh5n"
+        },
+        {
+          "Name": "label",
+          "Value": "css/movie.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok="
+        }
+      ]
+    },
+    {
+      "Route": "css/movie.vlyaanzh5n.css",
+      "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\movie.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "17331"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 15 May 2026 16:47:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5329,7 +6146,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "97ele73yw0"
+          "Value": "vlyaanzh5n"
         },
         {
           "Name": "label",
@@ -5337,13 +6154,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE="
+          "Value": "sha256-Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok="
         }
       ]
     },
     {
-      "Route": "css/movie.97ele73yw0.css.gz",
-      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-97ele73yw0.gz",
+      "Route": "css/movie.vlyaanzh5n.css.gz",
+      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-vlyaanzh5n.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5352,7 +6169,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3706"
+          "Value": "4148"
         },
         {
           "Name": "Content-Type",
@@ -5360,11 +6177,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yXAkDDDDrC6egW/LqtHF0lMptZSDUBo4LFx56TWRv6s=\""
+          "Value": "\"JD6sVHMocrDlmno/BcezFcvIdA4KNe9PhRvtBw8vjXk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 15 May 2026 06:33:46 GMT"
+          "Value": "Fri, 15 May 2026 16:47:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5382,7 +6199,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "97ele73yw0"
+          "Value": "vlyaanzh5n"
         },
         {
           "Name": "label",
@@ -5390,144 +6207,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-yXAkDDDDrC6egW/LqtHF0lMptZSDUBo4LFx56TWRv6s="
-        }
-      ]
-    },
-    {
-      "Route": "css/movie.css",
-      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-97ele73yw0.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000269759914"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3706"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yXAkDDDDrC6egW/LqtHF0lMptZSDUBo4LFx56TWRv6s=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 15 May 2026 06:33:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE="
-        }
-      ]
-    },
-    {
-      "Route": "css/movie.css",
-      "AssetFile": "E:\\MovieWeb\\wwwroot\\css\\movie.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "15041"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 15 May 2026 06:33:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-JTVSC3enxOFbgJGcRMLOnYufCb1YfHATb1OmpFRh2JE="
-        }
-      ]
-    },
-    {
-      "Route": "css/movie.css.gz",
-      "AssetFile": "E:\\MovieWeb\\obj\\Debug\\net9.0\\compressed\\ktzyd8hlpa-97ele73yw0.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3706"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yXAkDDDDrC6egW/LqtHF0lMptZSDUBo4LFx56TWRv6s=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 15 May 2026 06:33:46 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-yXAkDDDDrC6egW/LqtHF0lMptZSDUBo4LFx56TWRv6s="
+          "Value": "sha256-JD6sVHMocrDlmno/BcezFcvIdA4KNe9PhRvtBw8vjXk="
         }
       ]
     },
@@ -23630,7 +24310,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23691,7 +24371,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23736,7 +24416,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23791,7 +24471,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23852,7 +24532,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23897,7 +24577,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -23952,7 +24632,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24005,7 +24685,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24042,7 +24722,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24089,7 +24769,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24142,7 +24822,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24179,7 +24859,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 11 Feb 2026 15:03:52 GMT"
+          "Value": "Fri, 15 May 2026 10:01:29 GMT"
         },
         {
           "Name": "Cache-Control",

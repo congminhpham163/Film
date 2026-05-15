@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\css\\actor.css"
     },
     {
+      "Id": "E:\\MovieWeb\\wwwroot\\css\\chatbot.css",
+      "PackagePath": "staticwebassets\\css\\chatbot.css"
+    },
+    {
+      "Id": "E:\\MovieWeb\\wwwroot\\css\\chatbot1.css",
+      "PackagePath": "staticwebassets\\css\\chatbot1.css"
+    },
+    {
       "Id": "E:\\MovieWeb\\wwwroot\\css\\continue-watching.css",
       "PackagePath": "staticwebassets\\css\\continue-watching.css"
     },

@@ -1,0 +1,282 @@
+<div class="chatbot-float">
+
+    <!-- FLOAT BUTTON -->
+    <button class="chatbot-toggle"
+            onclick="toggleChatbot()">
+        💬
+    </button>
+
+    <!-- CHAT BOX -->
+    <div class="chat-wrapper"
+         id="chatbotBox">
+
+        <div class="chat-header">
+
+            <div>
+                <h2>Movie+</h2>
+                <span>Movie+ Recommend Movies</span>
+            </div>
+
+        </div>
+
+        <div class="chat-messages"
+             id="chatMessages">
+
+            <div class="message ai">
+                Xin chào 👋<br />
+                Hãy mô tả bộ phim bạn muốn xem.
+            </div>
+
+        </div>
+
+        <div class="quick-prompts">
+
+            <button onclick="setPrompt('phim buồn')">
+                Phim buồn
+            </button>
+
+            <button onclick="setPrompt('anime dark')">
+                Anime dark
+            </button>
+
+            <button onclick="setPrompt('phim giống Interstellar')">
+                Giống Interstellar
+            </button>
+
+            <button onclick="setPrompt('phim kinh dị nhẹ')">
+                Kinh dị nhẹ
+            </button>
+            <button onclick="setPrompt('phim tình cảm gia đình')">
+                Tình cảm gia đình
+            </button>
+
+        </div>
+
+        <div class="chat-input-area">
+
+            <input type="text"
+                   id="chatInput"
+                   placeholder="Ví dụ: phim plot twist hay..."
+                   onkeypress="handleEnter(event)" />
+
+            <button onclick="sendMessage()">
+                Gửi
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    async function sendMessage() {
+
+        const input = document.getElementById("chatInput");
+
+        const message = input.value.trim();
+
+        if (!message)
+            return;
+
+        addMessage(message, "user");
+
+        input.value = "";
+
+        showTyping();
+
+        try {
+
+            const response = await fetch('/AI/Recommend', {
+
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    message: message
+                })
+
+            });
+
+            const data = await response.json();
+
+            removeTyping();
+
+            if (data.success) {
+
+                addMovieMessage(
+                    data.reply,
+                    data.movies
+                );
+
+            } else {
+
+                addMessage(
+                    data.message || "AI lỗi.",
+                    "ai"
+                );
+            }
+
+        }
+        catch {
+
+            removeTyping();
+
+            addMessage(
+                "Không thể kết nối AI.",
+                "ai"
+            );
+        }
+    }
+
+    function addMovieMessage(reply, movies) {
+
+        const box =
+            document.getElementById("chatMessages");
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className = "message ai";
+
+        wrapper.innerHTML = `
+            <div class="ai-reply-text">
+                ${reply}
+            </div>
+        `;
+
+        if (movies && movies.length > 0) {
+
+            const movieList =
+                document.createElement("div");
+
+            movieList.className =
+                "ai-movie-list";
+
+            movies.forEach(movie => {
+
+                const poster =
+                    movie.poster_url
+                    ? `https://img.ophim.live/uploads/movies/${movie.poster_url}`
+                    : '/images/no-image.png';
+
+                movieList.innerHTML += `
+
+                    <a class="ai-movie-card"
+                       href="/Movie/Detail/${movie.slug}">
+
+                        <img
+                            src="${poster}"
+                            alt="${movie.name}" />
+
+                        <div class="ai-movie-info">
+
+                            <h4>
+                                ${movie.name}
+                            </h4>
+
+                            <span>
+                                ${movie.year || ''}
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                `;
+            });
+
+            wrapper.appendChild(movieList);
+
+        } else {
+
+            wrapper.innerHTML += `
+                <div>
+                    Không tìm thấy phim phù hợp 😢
+                </div>
+            `;
+        }
+
+        box.appendChild(wrapper);
+
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function addMessage(text, type) {
+
+        const box =
+            document.getElementById("chatMessages");
+
+        const div =
+            document.createElement("div");
+
+        div.className = `message ${type}`;
+
+        div.innerHTML =
+            text.replace(/\n/g, "<br>");
+
+        box.appendChild(div);
+
+        box.scrollTop =
+            box.scrollHeight;
+    }
+
+    function showTyping() {
+
+        const box =
+            document.getElementById("chatMessages");
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "message ai typing";
+
+        div.id = "typing";
+
+        div.innerHTML =
+            "🎬 AI đang tìm phim phù hợp...";
+
+        box.appendChild(div);
+
+        box.scrollTop =
+            box.scrollHeight;
+    }
+
+    function removeTyping() {
+
+        const typing =
+            document.getElementById("typing");
+
+        if (typing)
+            typing.remove();
+    }
+
+    function handleEnter(event) {
+
+        if (event.key === 'Enter') {
+
+            sendMessage();
+        }
+    }
+
+    function setPrompt(text) {
+
+        document.getElementById("chatInput").value = text;
+
+        sendMessage();
+    }
+
+    function toggleChatbot() {
+
+        const box =
+            document.getElementById("chatbotBox");
+
+        box.classList.toggle("active");
+    }
+
+</script>

@@ -24,6 +24,10 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWN0b3JcQWN0b3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/MovieWeb/Views/AI/Chatbot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQUlcQ2hhdGJvdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/MovieWeb/Views/Movie/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW92aWVcRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/MovieWeb/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/MovieWeb/Views/Shared/_Chatbot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGF0Ym90LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/MovieWeb/Views/Shared/_Footer.cshtml]

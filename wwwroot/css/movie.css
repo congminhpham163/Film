@@ -637,6 +637,59 @@ h2 {
     line-height: 1.3;
 }
 
+#chatbot-floating{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+
+    /* Bong bóng chat */
+    #chatbot-floating .chatbot-toggle{
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        background: #e50914;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(0,0,0,.35);
+        transition: .3s;
+    }
+
+    #chatbot-floating .chatbot-toggle:hover{
+        transform: scale(1.08);
+    }
+
+    /* Khung chat */
+    #chatbot-floating .chatbot-box{
+        width: 350px;
+        height: 500px;
+        background: #111;
+        border-radius: 18px;
+        overflow: hidden;
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        display: none;
+        box-shadow: 0 10px 40px rgba(0,0,0,.5);
+    }
+
+    #chatbot-floating.open .chatbot-box{
+        display: block;
+    }
+
+    @media(max-width:768px){
+        #chatbot-floating .chatbot-box{
+            width: 92vw;
+            height: 75vh;
+            right: -10px;
+        }
+    }
+
 /* RESPONSIVE */
 
 @media(max-width: 1100px) {
@@ -686,6 +739,63 @@ h2 {
     .info-btn {
         padding: 12px 18px;
         font-size: 14px;
+    }
+}
+/* ===== MINI OVERLAY MOBILE ===== */
+@media(max-width:768px){
+
+    .hero-right{
+        gap:10px;
+        padding-bottom:8px;
+    }
+
+    .mini-card{
+        width:110px;
+        height:165px;
+        border-radius:14px;
+        flex-shrink:0;
+    }
+
+    .mini-overlay{
+        padding:10px;
+
+        background:
+            linear-gradient(
+                to top,
+                rgba(0,0,0,0.95) 10%,
+                rgba(0,0,0,0.45) 60%,
+                rgba(0,0,0,0.05) 100%
+            );
+    }
+
+    .mini-overlay p{
+        font-size:12px;
+        line-height:1.35;
+
+        display:-webkit-box;
+        -webkit-line-clamp:2;
+        line-clamp:2;
+
+        -webkit-box-orient:vertical;
+        overflow:hidden;
+
+        text-shadow:0 2px 8px rgba(0,0,0,.7);
+    }
+
+    .mini-card:hover{
+        transform:none;
+    }
+
+    .hero-bg{
+        object-fit:cover;
+
+        object-position:center top;
+
+        transform:scale(1.08);
+
+        filter:
+            brightness(0.38)
+            blur(1px);
     }
 }
 

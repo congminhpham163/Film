@@ -8,6 +8,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<FilmService>();
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddMemoryCache();
 
 builder.Services.AddDbContext<AppDbContext>(options =>

@@ -1,0 +1,210 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Movie+ Assistant</title>
+
+    <link rel="stylesheet" href="/css/chatbot.css" />
+</head>
+<body>
+
+    <div class="chat-wrapper">
+
+        <div class="chat-header">
+        <button class="back-circle" onclick="goBack()">
+            ←
+        </button>
+            <div>
+                <h2>Movie+</h2>
+                <span>Movie+ Recommend Movies</span>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+
+            <div class="message ai">
+                Xin chào 👋<br />
+                Hãy mô tả bộ phim bạn muốn xem.
+            </div>
+
+        </div>
+        <div class="quick-prompts">
+            <button onclick="setPrompt('phim buồn')">Phim buồn</button>
+            <button onclick="setPrompt('anime dark')">Anime dark</button>
+            <button onclick="setPrompt('phim giống Interstellar')">Giống Interstellar</button>
+            <button onclick="setPrompt('phim kinh dị nhẹ')">Kinh dị nhẹ</button>
+            <button onclick="setPrompt('phim tình cảm gia đình')">
+                Tình cảm gia đình
+            </button>
+        </div>
+
+        <div class="chat-input-area">
+
+            <input type="text"
+                   id="chatInput"
+                   placeholder="Ví dụ: phim plot twist hay..."
+                   onkeypress="handleEnter(event)" />
+
+            <button onclick="sendMessage()">
+                Gửi
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        async function sendMessage() {
+            const input = document.getElementById("chatInput");
+            const message = input.value.trim();
+
+            if (!message)
+                return;
+
+            addMessage(message, "user");
+
+            input.value = "";
+
+            showTyping();
+
+            try {
+
+                const response = await fetch('/AI/Recommend', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: message
+                    })
+                });
+
+                const data = await response.json();
+
+                removeTyping();
+
+                if (data.success) {
+
+                    // text AI gợi ý
+                    if (data.reply)
+                        addMessage(data.reply, "ai");
+
+                    // render phim
+                    if (data.movies && data.movies.length > 0) {
+                        addMovieCards(data.movies);
+                    }
+                    else {
+                        addMessage("Không tìm thấy phim phù hợp 😢", "ai");
+                    }
+
+                } else {
+                    addMessage(data.message || "AI đang bận, thử lại sau.", "ai");
+                }
+
+            } catch (err) {
+                console.log(err);
+                removeTyping();
+                addMessage("Không thể kết nối AI.", "ai");
+            }
+        }
+
+        function addMessage(text, type) {
+
+            const box = document.getElementById("chatMessages");
+
+            const div = document.createElement("div");
+
+            div.className = `message ${type}`;
+
+            div.innerHTML = text.replace(/\n/g, "<br>");
+
+            box.appendChild(div);
+
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function addMovieCards(movies) {
+
+            const box = document.getElementById("chatMessages");
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "message ai";
+
+            let html = `<div>🎬 Đây là danh sách phim phù hợp:</div>`;
+
+            html += `<div class="movie-list">`;
+
+            movies.forEach(m => {
+
+                const img = m.poster_url
+                    ? `https://img.ophim.live/uploads/movies/${m.poster_url}`
+                    : `https://placehold.co/300x450?text=No+Image`;
+
+                html += `
+                <a class="movie-card" href="/Movie/Detail/${m.slug}">
+                    <img src="${img}" />
+                    <div class="movie-info">
+                        <div class="movie-name">${m.name}</div>
+                        <div class="movie-year">${m.year || ""}</div>
+                    </div>
+                </a>
+                `;
+            });
+
+            html += `</div>`;
+
+            wrapper.innerHTML = html;
+
+            box.appendChild(wrapper);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function showTyping() {
+
+            const box = document.getElementById("chatMessages");
+
+            const div = document.createElement("div");
+
+            div.className = "message ai typing";
+            div.id = "typing";
+
+            div.innerHTML = "AI đang suy nghĩ...";
+
+            box.appendChild(div);
+
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function removeTyping() {
+            const typing = document.getElementById("typing");
+
+            if (typing)
+                typing.remove();
+        }
+
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function setPrompt(text) {
+            document.getElementById("chatInput").value = text;
+            sendMessage();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+    </script>
+
+</body>
+</html>
