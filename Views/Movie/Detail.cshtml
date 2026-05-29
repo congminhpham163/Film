@@ -809,27 +809,66 @@
     }
     function renderQualityMenu(levels) {
         const qList = document.getElementById('qualityList');
-        qList.innerHTML = '<button onclick="setQuality(-1, this)" class="active-speed">Auto</button>';
-        if (levels && levels.length > 0) {
-            let addedQualities = new Set();
-            levels.forEach((level, index) => {
-                let height = level.height || Math.round(level.bitrate / 1000);
-                if (!addedQualities.has(height)) {
-                    addedQualities.add(height);
-                    let text = level.height ? level.height + 'p' : height + ' kbps';
-                    qList.innerHTML += `<button onclick="setQuality(${index}, this)">${text}</button>`;
-                }
-            });
-        }
+
+        qList.innerHTML = `
+            <button onclick="setQuality(-1, this)" class="active-speed">
+                Auto
+            </button>
+        `;
+
+        if (!levels || levels.length === 0) return;
+
+        // sort từ cao xuống thấp
+        const sorted = [...levels]
+            .map((level, index) => ({
+                index,
+                height: level.height,
+                bitrate: level.bitrate
+            }))
+            .sort((a, b) => b.height - a.height);
+
+        sorted.forEach(level => {
+
+            const text = level.height
+                ? `${level.height}p`
+                : `${Math.round(level.bitrate / 1000)} kbps`;
+
+            qList.innerHTML += `
+                <button onclick="setQuality(${level.index}, this)">
+                    ${text}
+                </button>
+            `;
+        });
     }
+    
     function setQuality(levelIndex, btn) {
-        if (hls) {
-            hls.currentLevel = levelIndex;
-            document.getElementById('qualityLabel').innerText = levelIndex === -1 ? 'Auto' : hls.levels[levelIndex].height + 'p';
-            document.querySelectorAll('#qualityList button').forEach(b => b.classList.remove('active-speed'));
-            if (btn) btn.classList.add('active-speed');
+        if (!hls) return;
+
+        hls.currentLevel = levelIndex;
+
+        let label = "Auto";
+
+        if (levelIndex !== -1) {
+
+            const level = hls.levels[levelIndex];
+
+            label = level.height
+                ? `${level.height}p`
+                : `${Math.round(level.bitrate / 1000)} kbps`;
         }
+
+        document.getElementById('qualityLabel').innerText = label;
+
+        document.querySelectorAll('#qualityList button')
+            .forEach(b => b.classList.remove('active-speed'));
+
+        if (btn)
+            btn.classList.add('active-speed');
+
         document.getElementById('qualityMenu').style.display = 'none';
+
+        showToast(`Đã chuyển chất lượng: ${label}`, "success");
+
         showOverlay();
     }
 
@@ -930,6 +969,41 @@
             toast.className = "toast";
         }, 2500);
     }
+
+    // ===== AUTO HIDE CURSOR IN FULLSCREEN =====
+    let cursorTimer = null;
+
+    function resetCursorHide() {
+
+        const wrapper = document.getElementById("playerWrapper");
+
+        // hiện lại chuột
+        wrapper.classList.remove("hide-cursor");
+
+        overlay.classList.add("show");
+        
+        clearTimeout(cursorTimer);
+
+        // chỉ ẩn khi fullscreen
+        if (document.fullscreenElement ||
+            document.webkitFullscreenElement) {
+
+            cursorTimer = setTimeout(() => {
+                wrapper.classList.add("hide-cursor");
+                overlay.classList.remove("show");
+            }, 2000); // 2 giây không đụng chuột sẽ ẩn
+        }
+    }
+
+    // mouse move
+    document.addEventListener("mousemove", resetCursorHide);
+
+    // touch mobile
+    document.addEventListener("touchstart", resetCursorHide);
+
+    // khi đổi trạng thái fullscreen
+    document.addEventListener("fullscreenchange", resetCursorHide);
+    document.addEventListener("webkitfullscreenchange", resetCursorHide);
 
     </script>
     @Html.Partial("_Footer")

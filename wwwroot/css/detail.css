@@ -394,6 +394,12 @@ body.cinema-mode .now-watching {
     gap:10px;
 }
 
+/* Ẩn chuột */
+.player-wrapper.hide-cursor,
+.player-wrapper.hide-cursor * {
+    cursor: none !important;
+}
+
 /* RESPONSIVE */
 
 @media(max-width:768px){
