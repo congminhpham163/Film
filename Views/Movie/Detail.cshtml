@@ -335,6 +335,7 @@
                         <button class="episode-btn"
                                 data-index="@index"
                                 data-url="@ep.link_embed"
+                                data-m3u8="@ep.link_m3u8"
                                 data-name="@ep.name"
                                 onclick="playMovie(this, @index)">
                             @ep.name
@@ -548,6 +549,7 @@
 
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function () {
+        loadSavedVolume();
         episodeButtons = document.querySelectorAll('.episode-btn');
 
         // Initial play (pre-fetch is handled inside playMovie)
@@ -663,6 +665,18 @@
 
         videoReady = false;
 
+        previewImg.src = "";
+        hidePreview();
+
+        if (previewHls) {
+            previewHls.destroy();
+            previewHls = null;
+        }
+
+        previewVideo.pause();
+        previewVideo.removeAttribute("src");
+        previewVideo.load();
+
         videoEl.pause();
         videoEl.removeAttribute("src");
         videoEl.load();
@@ -673,7 +687,7 @@
 
         timeCur.innerText = "0:00";
         timeDur.innerText = "0:00";
-
+        
         if (hls) {
             hls.destroy();
             hls = null;
@@ -688,26 +702,26 @@
         loadingEl.classList.remove('hidden');
 
         // Ensure links are loaded
-        if (!element.dataset.m3u8) {
-            if (!prefetchPromise) {
-                prefetchPromise = fetch(`https://ophim1.com/phim/${movieSlug}`)
-                    .then(r => r.json())
-                    .then(data => {
-                        if (data.episodes) {
-                            data.episodes.forEach(server => {
-                                server.server_data.forEach(ep => {
-                                    episodeButtons.forEach(btn => {
-                                        if (btn.dataset.name === ep.name && ep.link_m3u8) {
-                                            btn.dataset.m3u8 = ep.link_m3u8;
-                                        }
-                                    });
-                                });
-                            });
-                        }
-                    }).catch(err => console.error("Lỗi lấy link phim:", err));
-            }
-            await prefetchPromise;
-        }
+        // if (!element.dataset.m3u8) {
+        //     if (!prefetchPromise) {
+        //         prefetchPromise = fetch(`https://ophim1.com/phim/${movieSlug}`)
+        //             .then(r => r.json())
+        //             .then(data => {
+        //                 if (data.episodes) {
+        //                     data.episodes.forEach(server => {
+        //                         server.server_data.forEach(ep => {
+        //                             episodeButtons.forEach(btn => {
+        //                                 if (btn.dataset.name === ep.name && ep.link_m3u8) {
+        //                                     btn.dataset.m3u8 = ep.link_m3u8;
+        //                                 }
+        //                             });
+        //                         });
+        //                     });
+        //                 }
+        //             }).catch(err => console.error("Lỗi lấy link phim:", err));
+        //     }
+        //     await prefetchPromise;
+        // }
 
         const m3u8 = element.dataset.m3u8;
         if (!m3u8) {
@@ -719,13 +733,17 @@
         if (Hls.isSupported()) {
             if (hls) hls.destroy();
             hls = new Hls({
-                maxBufferLength: 30,
-                maxMaxBufferLength: 600,
+                maxBufferLength: 10,
+                maxMaxBufferLength: 30,
+                backBufferLength: 10,
+                enableWorker: true,
+                lowLatencyMode: true
             });
             hls.loadSource(m3u8);
             hls.attachMedia(videoEl);
             hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
                 renderQualityMenu(data.levels);
+                initPreviewVideo();
                 videoReady = true;
                 loadingEl.classList.add('hidden');
             });
@@ -825,16 +843,72 @@
         document.body.classList.toggle('cinema-mode');
     }
     // Volume
-    function toggleMute() {
-        videoEl.muted = !videoEl.muted;
-        document.getElementById('iconVolOn').style.display  = videoEl.muted ? 'none' : '';
-        document.getElementById('iconVolOff').style.display = videoEl.muted ? '' : 'none';
+    function loadSavedVolume() {
+
+        const savedVol = localStorage.getItem("playerVolume");
+
+        if (savedVol !== null) {
+
+            videoEl.volume = parseFloat(savedVol);
+
+            document.getElementById("volRange").value = savedVol;
+
+            videoEl.muted = savedVol == 0;
+
+        } else {
+
+            videoEl.volume = 1;
+
+        }
+
+        updateVolumeIcon();
     }
+
+    // lưu volume
+    function saveVolume(v) {
+
+        localStorage.setItem("playerVolume", parseFloat(v));
+    }
+
+    // update icon loa
+    function updateVolumeIcon() {
+
+        const muted = videoEl.muted || videoEl.volume == 0;
+
+        document.getElementById('iconVolOn').style.display =
+            muted ? 'none' : 'block';
+
+        document.getElementById('iconVolOff').style.display =
+            muted ? 'block' : 'none';
+    }
+
+    // mute
+    function toggleMute() {
+
+        videoEl.muted = !videoEl.muted;
+
+        if (!videoEl.muted && videoEl.volume == 0) {
+            videoEl.volume = 0.5;
+        }
+
+        document.getElementById("volRange").value =
+            videoEl.muted ? 0 : videoEl.volume;
+
+        updateVolumeIcon();
+
+        saveVolume(videoEl.muted ? 0 : videoEl.volume);
+    }
+
+    // chỉnh volume
     function setVol(v) {
-        videoEl.volume = v;
+
+        videoEl.volume = parseFloat(v);
+
         videoEl.muted = (v == 0);
-        document.getElementById('iconVolOn').style.display  = (v == 0) ? 'none' : '';
-        document.getElementById('iconVolOff').style.display = (v == 0) ? '' : 'none';
+
+        updateVolumeIcon();
+
+        saveVolume(v);
     }
     // Quality
     function toggleQualityMenu() {
@@ -1001,12 +1075,22 @@ async function showPreview(e) {
 
     previewTime.innerText = fmtTime(previewTimeSec);
 
-    previewBox.style.left =
-        Math.min(rect.width - 110, Math.max(110, x)) + "px";
+    // ===== FIX POSITION =====
+    const previewWidth = 180;
+
+    let left = x;
+
+    if (left < previewWidth / 2)
+        left = previewWidth / 2;
+
+    if (left > rect.width - previewWidth / 2)
+        left = rect.width - previewWidth / 2;
+
+    previewBox.style.left = left + "px";
 
     previewBox.classList.add("show");
 
-    // init preview source
+    // init source
     if (!previewVideo.src && !previewHls) {
         initPreviewVideo();
     }
@@ -1017,9 +1101,10 @@ async function showPreview(e) {
 
     try {
 
-        previewVideo.currentTime = previewTimeSec;
+        // ===== SEEK CHUẨN =====
+        previewVideo.pause();
 
-        previewVideo.onseeked = () => {
+        const seekHandler = () => {
 
             try {
 
@@ -1032,14 +1117,29 @@ async function showPreview(e) {
                 );
 
                 previewImg.src =
-                    previewCanvas.toDataURL("image/jpeg", 0.7);
+                    previewCanvas.toDataURL("image/jpeg", 0.75);
 
             } catch(err) {
+
                 console.log("preview draw error", err);
+
             }
+
+            previewVideo.removeEventListener(
+                "seeked",
+                seekHandler
+            );
 
             previewLock = false;
         };
+
+        previewVideo.addEventListener(
+            "seeked",
+            seekHandler,
+            { once:true }
+        );
+
+        previewVideo.currentTime = previewTimeSec;
 
     } catch(err) {
 
@@ -1178,6 +1278,7 @@ async function showPreview(e) {
     // khi đổi trạng thái fullscreen
     document.addEventListener("fullscreenchange", resetCursorHide);
     document.addEventListener("webkitfullscreenchange", resetCursorHide);
+
 
     </script>
     @Html.Partial("_Footer")

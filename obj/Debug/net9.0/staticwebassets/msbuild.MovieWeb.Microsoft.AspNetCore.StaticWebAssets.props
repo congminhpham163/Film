@@ -174,8 +174,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>nkvnyner84</Fingerprint>
-      <Integrity>l72IdIWhjoxAH9AjeRo3pw6dzsUQiumr2nvAxtnHtVc=</Integrity>
+      <Fingerprint>iawrytp6yr</Fingerprint>
+      <Integrity>OuJrkYq/RDQj+kLzXcf2WDo5C2GGTvVTCMxHD82msJI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\movie-frame.css'))</OriginalItemSpec>
