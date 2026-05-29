@@ -156,8 +156,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>vlyaanzh5n</Fingerprint>
-      <Integrity>Tbyw+PHioMCmq1dNnNN6XnE6lKXTtY9Jr0/zhvCMhok=</Integrity>
+      <Fingerprint>k5p254bb84</Fingerprint>
+      <Integrity>2BBXSWqQ1ZoESJEoZPZ84xF32XGv09gb7iHRM1NNhnE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\movie.css'))</OriginalItemSpec>

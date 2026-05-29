@@ -81,6 +81,10 @@ public class MovieController : Controller
                     var latestMovies = result?.items ?? new List<MovieItem>();
                     ViewBag.BannerMovie = latestMovies.FirstOrDefault();
                     ViewBag.LatestMovies = latestMovies;
+                    ViewBag.TopMovies = latestMovies
+                        .OrderByDescending(x => x.episode_current)
+                        .Take(10)
+                        .ToList();
                     ViewBag.ActionMovies = await _filmService.GetActionMovies();
                     ViewBag.HorrorMovies = await _filmService.GetHorrorMovies();
                     ViewBag.AnimationMovies = await _filmService.GetAnimationMovies();

@@ -690,6 +690,188 @@ h2 {
         }
     }
 
+
+    /* =========================
+   TOP 10 SECTION
+========================= */
+
+.top10-container {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    padding: 20px 30px 40px;
+    scroll-behavior: smooth;
+}
+
+.top10-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.top10-container::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,.2);
+    border-radius: 20px;
+}
+
+.top10-card {
+    position: relative;
+    min-width: 220px;
+    transition: .3s ease;
+}
+
+.top10-card:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+.top10-card a {
+    text-decoration: none;
+}
+
+/* POSTER */
+.top10-card img {
+    width: 220px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 18px;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    transition: .3s ease;
+}
+
+.top10-card:hover img {
+    box-shadow: 0 18px 45px rgba(0,0,0,.7);
+}
+
+/* =========================
+   TOP 10 RANK STYLE
+========================= */
+
+.top10-rank {
+    position: absolute;
+    top: -5px;
+    left: -12px;
+
+    z-index: 10;
+
+    font-size: 5.2rem;
+    font-weight: 900;
+    line-height: 1;
+
+    font-family: Impact, sans-serif;
+
+    background: linear-gradient(
+        180deg,
+        #ffef9f 0%,
+        #ffb700 40%,
+        #ff5e00 75%,
+        #ff2a00 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    -webkit-text-stroke: 2px rgba(255,255,255,.15);
+
+    filter:
+        drop-shadow(0 0 12px rgba(255,140,0,.55))
+        drop-shadow(0 8px 18px rgba(0,0,0,.7));
+
+    transform: rotate(-5deg);
+
+    pointer-events: none;
+
+    transition: .3s ease;
+}
+
+/* Hover */
+.top10-card:hover .top10-rank {
+    transform: rotate(-5deg) scale(1.08);
+
+    filter:
+        drop-shadow(0 0 18px rgba(255,180,0,.85))
+        drop-shadow(0 12px 28px rgba(0,0,0,.8));
+}
+
+/* Top 1 nổi bật hơn */
+.top10-card:nth-child(1) .top10-rank {
+    background: linear-gradient(
+        180deg,
+        #fff7c2 0%,
+        #ffd900 35%,
+        #ff9d00 70%,
+        #ff5100 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(0 0 20px rgba(255,215,0,.95))
+        drop-shadow(0 10px 30px rgba(0,0,0,.75));
+}
+
+
+/* INFO */
+.top10-info {
+    margin-top: 14px;
+    padding: 0 4px;
+}
+
+.top10-info h4 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.top10-info p {
+    color: #aaa;
+    font-size: .9rem;
+}
+
+/* HEADER */
+.row-header {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 40px 30px 10px;
+}
+
+/* MOBILE */
+@media(max-width:768px) {
+
+    .top10-container {
+        padding: 15px;
+        gap: 16px;
+    }
+
+    .top10-card {
+        min-width: 160px;
+    }
+
+    .top10-card img {
+        width: 160px;
+        height: 240px;
+    }
+
+    .top10-rank {
+        width: 52px;
+        height: 52px;
+        font-size: 1.4rem;
+        top: -12px;
+        left: -12px;
+        border-radius: 16px;
+    }
+
+    .row-header {
+        font-size: 1.4rem;
+        margin: 30px 15px 10px;
+    }
+}
 /* RESPONSIVE */
 
 @media(max-width: 1100px) {
