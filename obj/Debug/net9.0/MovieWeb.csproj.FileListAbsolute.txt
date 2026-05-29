@@ -413,7 +413,6 @@ C:\Users\acer\Downloads\Film\obj\Debug\net9.0\compressed\w5h9di40kk-vx3ksdvo98.g
 E:\MovieWeb\bin\Debug\net9.0\response.json
 E:\MovieWeb\bin\Debug\net9.0\response_quynhaptrang2.json
 E:\MovieWeb\obj\Debug\net9.0\compressed\w5h9di40kk-vx3ksdvo98.gz
-E:\MovieWeb\obj\Debug\net9.0\compressed\7qq3yoi6ef-noepahtek9.gz
 E:\MovieWeb\bin\Debug\net9.0\Newtonsoft.Json.dll
 E:\MovieWeb\obj\Debug\net9.0\compressed\h7dmb560k0-vhso9bkwnt.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\jijh3rzkxw-8uqunauyun.gz
@@ -421,4 +420,5 @@ E:\MovieWeb\obj\Debug\net9.0\compressed\un8qvk0unx-9mjk3rh5r5.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\16uahsxtvz-xs6ivz10xe.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\g4g62i323y-ejabl8ranj.gz
 E:\MovieWeb\obj\Debug\net9.0\compressed\lgninhctd2-qk7benl43b.gz
-E:\MovieWeb\obj\Debug\net9.0\compressed\ktzyd8hlpa-k5p254bb84.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\ktzyd8hlpa-anr8n8wzb7.gz
+E:\MovieWeb\obj\Debug\net9.0\compressed\7qq3yoi6ef-nkvnyner84.gz

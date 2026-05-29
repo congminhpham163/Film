@@ -394,6 +394,11 @@
                     <!-- Progress row -->
                     <div class="vid-progress-row">
                         <div class="vid-progress-wrap" id="progressWrap">
+                            <!-- PREVIEW -->
+                            <div class="preview-box" id="previewBox">
+                                <img id="previewImg" src="" />
+                                <span id="previewTime">0:00</span>
+                            </div>
                             <div class="vid-progress-bg">
                                 <div class="vid-progress-fill" id="progressFill"></div>
                                 <div class="vid-progress-thumb" id="progressThumb"></div>
@@ -525,6 +530,22 @@
     const timeCur    = document.getElementById('timeCurrent');
     const timeDur    = document.getElementById('timeDuration');
 
+    const previewBox  = document.getElementById("previewBox");
+    const previewImg  = document.getElementById("previewImg");
+    const previewTime = document.getElementById("previewTime");
+
+    let previewCanvas = document.createElement("canvas");
+    let previewCtx = previewCanvas.getContext("2d");
+
+    previewCanvas.width = 320;
+    previewCanvas.height = 180;
+
+    let previewVideo = document.createElement("video");
+    let previewHls = null;
+
+    previewVideo.crossOrigin = "anonymous";
+    previewVideo.muted = true;
+
     // ===== INIT =====
     document.addEventListener('DOMContentLoaded', function () {
         episodeButtons = document.querySelectorAll('.episode-btn');
@@ -578,6 +599,20 @@
                 videoEl.play().catch(()=>{});
             }
         }
+        // ===== PREVIEW HOVER =====
+
+        progressWrap.addEventListener("mousemove", showPreview);
+
+        progressWrap.addEventListener("mouseleave", hidePreview);
+
+        progressWrap.addEventListener("touchmove", function(e){
+
+            showPreview(e.touches[0]);
+
+        }, { passive:true });
+
+        progressWrap.addEventListener("touchend", hidePreview);
+
         progressWrap.addEventListener('mousedown', handleDragStart);
         progressWrap.addEventListener('touchstart', handleDragStart, {passive:true});
         document.addEventListener('mousemove', handleDragMove);
@@ -903,6 +938,145 @@
         if (!videoEl.duration || isDragging) return;
         timeCur.innerText = fmtTime(videoEl.currentTime);
         updateProgress(videoEl.currentTime / videoEl.duration);
+    }
+    // ===== VIDEO PREVIEW =====
+
+    // ===== PREVIEW VIDEO =====
+let previewReady = false;
+
+function initPreviewVideo() {
+
+    const currentBtn = episodeButtons[currentIndex];
+
+    if (!currentBtn?.dataset?.m3u8) return;
+
+    const src = currentBtn.dataset.m3u8;
+
+    // reset cũ
+    if (previewHls) {
+        previewHls.destroy();
+        previewHls = null;
+    }
+
+    previewVideo.pause();
+    previewVideo.removeAttribute("src");
+    previewVideo.load();
+
+    previewVideo.muted = true;
+    previewVideo.crossOrigin = "anonymous";
+    previewVideo.playsInline = true;
+
+    previewVideo.autoplay = false;
+    previewVideo.preload = "auto";
+
+    // HLS.js support
+    if (Hls.isSupported()) {
+
+        previewHls = new Hls({
+            enableWorker: false,
+            lowLatencyMode: false
+        });
+
+        previewHls.loadSource(src);
+        previewHls.attachMedia(previewVideo);
+
+    } else {
+
+        previewVideo.src = src;
+
+    }
+}
+
+async function showPreview(e) {
+
+    if (!videoEl.duration) return;
+
+    const rect = progressWrap.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+
+    const pct = Math.max(0, Math.min(1, x / rect.width));
+
+    const previewTimeSec = pct * videoEl.duration;
+
+    previewTime.innerText = fmtTime(previewTimeSec);
+
+    previewBox.style.left =
+        Math.min(rect.width - 110, Math.max(110, x)) + "px";
+
+    previewBox.classList.add("show");
+
+    // init preview source
+    if (!previewVideo.src && !previewHls) {
+        initPreviewVideo();
+    }
+
+    if (previewLock) return;
+
+    previewLock = true;
+
+    try {
+
+        previewVideo.currentTime = previewTimeSec;
+
+        previewVideo.onseeked = () => {
+
+            try {
+
+                previewCtx.drawImage(
+                    previewVideo,
+                    0,
+                    0,
+                    previewCanvas.width,
+                    previewCanvas.height
+                );
+
+                previewImg.src =
+                    previewCanvas.toDataURL("image/jpeg", 0.7);
+
+            } catch(err) {
+                console.log("preview draw error", err);
+            }
+
+            previewLock = false;
+        };
+
+    } catch(err) {
+
+        console.log(err);
+
+        previewLock = false;
+    }
+}
+
+    function hidePreview() {
+        previewBox.classList.remove("show");
+    }
+
+    let previewLock = false;
+
+    // ===== LIVE PREVIEW =====
+
+    function generatePreviewFrame() {
+
+        try {
+
+            previewCtx.drawImage(
+                videoEl,
+                0,
+                0,
+                previewCanvas.width,
+                previewCanvas.height
+            );
+
+            previewImg.src =
+                previewCanvas.toDataURL("image/jpeg", 0.6);
+
+        } catch(err) {
+
+            console.log("preview error");
+
+        }
     }
     function fmtTime(s) {
         const m = Math.floor(s / 60), sec = Math.floor(s % 60);
